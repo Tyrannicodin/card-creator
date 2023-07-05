@@ -1,0 +1,35 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
+
+config_version=5
+
+[application]
+
+config/name="Card"
+run/main_scene="res://scenes/main.tscn"
+config/features=PackedStringArray("4.0", "GL Compatibility")
+boot_splash/image="res://hc-tcg-bw.png"
+config/icon="res://hc-tcg.png"
+
+[display]
+
+window/stretch/mode="canvas_items"
+
+[dotnet]
+
+project/assembly_name="Card"
+
+[editor]
+
+movie_writer/movie_file="res://recording.avi"
+movie_writer/fps=40
+
+[rendering]
+
+renderer/rendering_method="gl_compatibility"
+renderer/rendering_method.mobile="gl_compatibility"

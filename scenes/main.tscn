@@ -1,0 +1,59 @@
+[gd_scene load_steps=5 format=3 uid="uid://dvank5bn5rmt8"]
+
+[ext_resource type="Texture2D" uid="uid://s37wp7fccucs" path="res://hc-tcg-bw.png" id="1_lgsjk"]
+[ext_resource type="PackedScene" uid="uid://60d6grue45mi" path="res://scenes/sidebar.tscn" id="2_tb4kv"]
+[ext_resource type="PackedScene" uid="uid://cgc4vedgq7j3d" path="res://scenes/properties.tscn" id="3_expo4"]
+[ext_resource type="Script" path="res://scripts/popupManager.gd" id="4_2w8xr"]
+
+[node name="root" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Background" type="PanelContainer" parent="."]
+layout_mode = 2
+offset_right = 1152.0
+offset_bottom = 648.0
+size_flags_horizontal = 3
+
+[node name="Logo" type="TextureRect" parent="Background"]
+custom_minimum_size = Vector2(107, 100)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("1_lgsjk")
+expand_mode = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+offset_right = 1152.0
+offset_bottom = 648.0
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="sidebar" parent="MarginContainer/HBoxContainer" instance=ExtResource("2_tb4kv")]
+custom_minimum_size = Vector2(250, 0)
+layout_mode = 2
+
+[node name="properties" parent="MarginContainer/HBoxContainer" instance=ExtResource("3_expo4")]
+layout_mode = 2
+
+[node name="FilePopupManager" type="Node" parent="."]
+script = ExtResource("4_2w8xr")
+
+[node name="FileDialog" type="FileDialog" parent="FilePopupManager"]
+transparent_bg = true
+size = Vector2i(392, 162)
+
+[connection signal="getFd" from="MarginContainer/HBoxContainer/sidebar/VBoxContainer" to="FilePopupManager" method="createDialog"]
+[connection signal="folderPicked" from="FilePopupManager" to="MarginContainer/HBoxContainer/sidebar/VBoxContainer" method="openServer"]
+
+[editable path="MarginContainer/HBoxContainer/sidebar"]
