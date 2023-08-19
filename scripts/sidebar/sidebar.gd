@@ -38,12 +38,15 @@ class fileClass:
 		" "
 	]
 	
-	func _init(fileName, folder:folderClass):
-		var file = FileAccess.open(folder.path + "/" + folder.name + "/" + fileName, FileAccess.READ)
-		jsString = file.get_as_text()
-		file.close()
-		constructor = get_constructor()
-		name = constructor["id"]
+	func _init(folder:folderClass, fileName:String = ""):
+		if fileName:
+			var file = FileAccess.open(folder.path + "/" + folder.name + "/" + fileName, FileAccess.READ)
+			jsString = file.get_as_text()
+			file.close()
+			constructor = get_constructor()
+			name = constructor["id"]
+		else:
+			constructor = {}
 	
 	func render(pressEvent):
 		var button = Button.new()
@@ -238,8 +241,8 @@ class folderClass:
 				addFile(file)
 	
 	func addFile(fileName):
-		files.append(fileClass.new(fileName, self))
-		
+		files.append(fileClass.new(self, fileName))
+	
 	func render():
 		var base = VBoxContainer.new()
 		base.name = "folder_%s" % name
@@ -255,6 +258,9 @@ class folderClass:
 		var createButton = Button.new()
 		createButton.text = "New"
 		createButton.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+		createButton.pressed.connect(func():
+			addFile("")
+			filePicked.emit())
 		header.add_child(createButton)
 		
 		base.add_child(header)

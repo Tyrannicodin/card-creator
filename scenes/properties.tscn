@@ -108,6 +108,27 @@ theme = ExtResource("1_3x1m3")
 script = ExtResource("1_df6e3")
 types = ["effects", "single-use"]
 
+[node name="label_expansion" type="Label" parent="properties/vertical_container/main" groups=["properties"]]
+layout_mode = 2
+theme = ExtResource("1_3x1m3")
+text = "Expansion pack"
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("3_o27c0")
+
+[node name="expansion" type="OptionButton" parent="properties/vertical_container/main" groups=["properties"]]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("1_3x1m3")
+alignment = 1
+item_count = 2
+selected = 0
+popup/item_0/text = "Base"
+popup/item_0/id = 0
+popup/item_1/text = "Alter egos"
+popup/item_1/id = 1
+script = ExtResource("5_sxemd")
+
 [node name="label_type" type="Label" parent="properties/vertical_container/main" groups=["properties"]]
 layout_mode = 2
 size_flags_horizontal = 3
