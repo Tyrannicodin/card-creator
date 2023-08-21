@@ -1,10 +1,11 @@
-[gd_scene load_steps=9 format=3 uid="uid://b5va7cxsa3mhf"]
+[gd_scene load_steps=10 format=3 uid="uid://b5va7cxsa3mhf"]
 
 [ext_resource type="Script" path="res://scripts/project_manager/load_projects.gd" id="1_2o8uo"]
 [ext_resource type="Script" path="res://scripts/project_manager/version_label.gd" id="2_ih1ic"]
 [ext_resource type="ButtonGroup" uid="uid://d7aivuku4qo3" path="res://assets/button_groups/project_button.tres" id="2_xhspu"]
 [ext_resource type="Theme" uid="uid://dg0qmxc8vjun0" path="res://assets/themes/project_selector.tres" id="3_hwfbg"]
 [ext_resource type="Script" path="res://scripts/project_manager/download.gd" id="3_sal2g"]
+[ext_resource type="Script" path="res://scripts/project_manager/ButtonManager.gd" id="6_44pjc"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ntu3c"]
 bg_color = Color(0.0705882, 0.0705882, 0.0705882, 1)
@@ -180,23 +181,34 @@ layout_mode = 2
 
 [node name="ProjectManageButtons" type="VBoxContainer" parent="MainContainer/DownloadContainer"]
 layout_mode = 2
+script = ExtResource("6_44pjc")
 
 [node name="EditButton" type="Button" parent="MainContainer/DownloadContainer/ProjectManageButtons"]
 layout_mode = 2
+disabled = true
 text = "Edit"
 
 [node name="RunButton" type="Button" parent="MainContainer/DownloadContainer/ProjectManageButtons"]
 layout_mode = 2
+disabled = true
 text = "Run"
 
 [node name="DuplicateButton" type="Button" parent="MainContainer/DownloadContainer/ProjectManageButtons"]
+visible = false
 layout_mode = 2
+disabled = true
 text = "Duplicate"
 
 [node name="RenameButton" type="Button" parent="MainContainer/DownloadContainer/ProjectManageButtons"]
 layout_mode = 2
+disabled = true
 text = "Rename"
 
 [node name="RemoveButton" type="Button" parent="MainContainer/DownloadContainer/ProjectManageButtons"]
 layout_mode = 2
+disabled = true
 text = "Remove"
+
+[connection signal="reset_buttons" from="MainContainer/VBoxContainer/ProjectSidebar/MarginContainer/Projects" to="MainContainer/DownloadContainer/ProjectManageButtons" method="disable_buttons"]
+[connection signal="reload_projects" from="MainContainer/DownloadContainer/VersionContainer/Button" to="MainContainer/VBoxContainer/ProjectSidebar/MarginContainer/Projects" method="reload_projects"]
+[connection signal="reload_projects" from="MainContainer/DownloadContainer/ProjectManageButtons" to="MainContainer/VBoxContainer/ProjectSidebar/MarginContainer/Projects" method="reload_projects"]

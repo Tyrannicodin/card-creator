@@ -1,5 +1,8 @@
 extends Button
 
+
+signal reload_projects()
+
 var repository = "https://github.com/martinkadlec0/hc-tcg/archive/"
 
 var sizes = {
@@ -83,6 +86,8 @@ func _pressed():
 		create_new()
 	else:
 		try_download()
+	
+	reload_projects.emit()
 
 func create_new():
 	"""Create a new project by extracting the version file"""
@@ -113,6 +118,7 @@ func create_new():
 		)
 	else:
 		set_status("Error: Couldn't unzip file on your operating system")
+		return
 	
 	# Rename the extracted file to the project name and check for success
 	version_dir.rename("hc-tcg-" + versions[chosen_version], unique_name)
@@ -127,10 +133,14 @@ func create_new():
 		)
 		meta_file.store_string(JSON.stringify({
 			"name": ProjectName.text,
-			"version": chosen_version,
+			"uid": unique_name,
+			"game_version": chosen_version,
+			"editor_version": ProjectSettings.get_setting("application/config/version"),
 			"cards": 0,
 			"packs": 0
 		}))
+		meta_file.close()
+		reload_projects.emit()
 		set_status("Project created", colors.success)
 	else:
 		set_status("Error: Couldn't unzip file")

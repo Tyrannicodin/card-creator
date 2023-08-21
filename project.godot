@@ -21,6 +21,10 @@ window/size/mode=2
 window/stretch/mode="canvas_items"
 window/size/viewport_width=1920
 
+[autoload]
+
+GlobalStorage="*res://scripts/global/global_storage.gd"
+
 [display]
 
 window/size/mode=2
