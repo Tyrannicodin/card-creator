@@ -1,0 +1,67 @@
+[gd_resource type="Theme" load_steps=8 format=3 uid="uid://cfdydek8gida7"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cluyg"]
+bg_color = Color(0.14902, 0.14902, 0.14902, 1)
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_addjc"]
+bg_color = Color(0.129412, 0.129412, 0.129412, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mw1hm"]
+content_margin_left = 8.0
+bg_color = Color(0.384314, 0.384314, 0.384314, 1)
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_y3bde"]
+content_margin_left = 10.0
+content_margin_right = 10.0
+bg_color = Color(0.172549, 0.172549, 0.172549, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_18jfn"]
+content_margin_left = 3.0
+content_margin_right = 3.0
+bg_color = Color(0.317647, 0.317647, 0.317647, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jtby5"]
+content_margin_left = 3.0
+content_margin_right = 3.0
+bg_color = Color(0.172549, 0.172549, 0.172549, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2asmr"]
+content_margin_left = 3.0
+content_margin_right = 3.0
+bg_color = Color(0.384314, 0.384314, 0.384314, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+
+[resource]
+default_font_size = 12
+Button/font_sizes/font_size = 12
+Label/font_sizes/font_size = 12
+LineEdit/styles/normal = SubResource("StyleBoxFlat_cluyg")
+MenuBar/styles/panel = SubResource("StyleBoxFlat_addjc")
+OptionButton/styles/normal = SubResource("StyleBoxFlat_mw1hm")
+TabBar/font_sizes/font_size = 12
+TabBar/styles/button_highlight = null
+TabBar/styles/tab_hovered = null
+TabBar/styles/tab_selected = null
+TabBar/styles/tab_unselected = null
+TabContainer/constants/side_margin = 4
+TabContainer/font_sizes/font_size = 12
+TabContainer/styles/panel = SubResource("StyleBoxFlat_y3bde")
+TabContainer/styles/tab_disabled = null
+TabContainer/styles/tab_hovered = SubResource("StyleBoxFlat_18jfn")
+TabContainer/styles/tab_selected = SubResource("StyleBoxFlat_jtby5")
+TabContainer/styles/tab_unselected = SubResource("StyleBoxFlat_2asmr")
+Tree/font_sizes/font_size = 12
+VBoxContainer/constants/separation = 0
