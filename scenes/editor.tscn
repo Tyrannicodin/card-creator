@@ -1,7 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://dyyqbmrtddy1j"]
+[gd_scene load_steps=6 format=3 uid="uid://c1ogyiok588hj"]
 
-[ext_resource type="Theme" path="res://assets/themes/main_theme.tres" id="1_ajqyn"]
-[ext_resource type="Theme" path="res://assets/themes/main_theme_light.tres" id="2_ea765"]
+[ext_resource type="Theme" uid="uid://dde7m6q5cfe1u" path="res://assets/themes/main_theme.tres" id="1_ajqyn"]
+[ext_resource type="Theme" uid="uid://behexnarv56jn" path="res://assets/themes/main_theme_light.tres" id="2_ea765"]
 [ext_resource type="StyleBox" path="res://assets/themes/light_panel.tres" id="3_1qhfl"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wb5dl"]
@@ -154,7 +154,7 @@ grow_vertical = 2
 size_flags_horizontal = 10
 
 [node name="CardPlaceholder" type="ReferenceRect" parent="VBoxContainer/MainEditor/Panel/VBoxContainer"]
-custom_minimum_size = Vector2(200, 200)
+custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
