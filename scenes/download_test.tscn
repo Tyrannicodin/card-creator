@@ -1,0 +1,202 @@
+[gd_scene load_steps=9 format=3 uid="uid://b5va7cxsa3mhf"]
+
+[ext_resource type="Script" path="res://scripts/project_manager/load_projects.gd" id="1_2o8uo"]
+[ext_resource type="Script" path="res://scripts/project_manager/version_label.gd" id="2_ih1ic"]
+[ext_resource type="ButtonGroup" uid="uid://d7aivuku4qo3" path="res://assets/button_groups/project_button.tres" id="2_xhspu"]
+[ext_resource type="Theme" uid="uid://dg0qmxc8vjun0" path="res://assets/themes/project_selector.tres" id="3_hwfbg"]
+[ext_resource type="Script" path="res://scripts/project_manager/download.gd" id="3_sal2g"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ntu3c"]
+bg_color = Color(0.0705882, 0.0705882, 0.0705882, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qi8dv"]
+bg_color = Color(0.133333, 0.133333, 0.133333, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vpad2"]
+bg_color = Color(0.25098, 0.25098, 0.25098, 1)
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Background" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MainContainer" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MainContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="HeaderLabel" type="Label" parent="MainContainer/VBoxContainer"]
+layout_mode = 2
+text = "Projects"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="MainContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="ProjectSidebar" type="ScrollContainer" parent="MainContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="MainContainer/VBoxContainer/ProjectSidebar"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="Projects" type="VBoxContainer" parent="MainContainer/VBoxContainer/ProjectSidebar/MarginContainer"]
+layout_mode = 2
+script = ExtResource("1_2o8uo")
+
+[node name="v0_6_0" type="VBoxContainer" parent="MainContainer/VBoxContainer/ProjectSidebar/MarginContainer/Projects"]
+layout_mode = 2
+
+[node name="VersionLabel" type="Label" parent="MainContainer/VBoxContainer/ProjectSidebar/MarginContainer/Projects/v0_6_0"]
+layout_mode = 2
+text = "v0.6.0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="test" type="Button" parent="MainContainer/VBoxContainer/ProjectSidebar/MarginContainer/Projects/v0_6_0"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_ntu3c")
+theme_override_styles/hover = SubResource("StyleBoxFlat_qi8dv")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_vpad2")
+toggle_mode = true
+button_group = ExtResource("2_xhspu")
+text = " test"
+alignment = 0
+
+[node name="Path" type="Label" parent="MainContainer/VBoxContainer/ProjectSidebar/MarginContainer/Projects/v0_6_0/test"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -110.0
+offset_top = -17.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_colors/font_color = Color(0.501961, 0.501961, 0.501961, 1)
+theme_override_font_sizes/font_size = 10
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="test2" type="Button" parent="MainContainer/VBoxContainer/ProjectSidebar/MarginContainer/Projects/v0_6_0"]
+layout_mode = 2
+size_flags_vertical = 4
+theme = ExtResource("3_hwfbg")
+toggle_mode = true
+button_group = ExtResource("2_xhspu")
+text = "test"
+alignment = 0
+
+[node name="HSeparator" type="HSeparator" parent="MainContainer/VBoxContainer/ProjectSidebar/MarginContainer/Projects/v0_6_0"]
+layout_mode = 2
+
+[node name="VSeparator" type="VSeparator" parent="MainContainer"]
+layout_mode = 2
+
+[node name="DownloadContainer" type="VBoxContainer" parent="MainContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.25
+
+[node name="MarginContainer" type="MarginContainer" parent="MainContainer/DownloadContainer"]
+layout_mode = 2
+theme_override_constants/margin_right = 2
+
+[node name="VersionLabel" type="Label" parent="MainContainer/DownloadContainer/MarginContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.380392, 0.380392, 0.380392, 1)
+theme_override_font_sizes/font_size = 12
+text = "v0.0.0"
+horizontal_alignment = 2
+vertical_alignment = 1
+script = ExtResource("2_ih1ic")
+
+[node name="VersionContainer" type="VBoxContainer" parent="MainContainer/DownloadContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="MainContainer/DownloadContainer/VersionContainer"]
+layout_mode = 2
+text = "Create new project"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="VersionSelector" type="OptionButton" parent="MainContainer/DownloadContainer/VersionContainer"]
+layout_mode = 2
+
+[node name="DownloadProgress" type="ProgressBar" parent="MainContainer/DownloadContainer/VersionContainer"]
+layout_mode = 2
+
+[node name="ProjectName" type="LineEdit" parent="MainContainer/DownloadContainer/VersionContainer"]
+layout_mode = 2
+placeholder_text = "Project name"
+
+[node name="Button" type="Button" parent="MainContainer/DownloadContainer/VersionContainer"]
+layout_mode = 2
+text = "Download"
+script = ExtResource("3_sal2g")
+
+[node name="StatusLabel" type="Label" parent="MainContainer/DownloadContainer"]
+custom_minimum_size = Vector2(0, 26)
+layout_mode = 2
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="ImportButton" type="Button" parent="MainContainer/DownloadContainer"]
+layout_mode = 2
+text = "Import project"
+expand_icon = true
+
+[node name="HSeparator" type="HSeparator" parent="MainContainer/DownloadContainer"]
+layout_mode = 2
+
+[node name="ProjectManageButtons" type="VBoxContainer" parent="MainContainer/DownloadContainer"]
+layout_mode = 2
+
+[node name="EditButton" type="Button" parent="MainContainer/DownloadContainer/ProjectManageButtons"]
+layout_mode = 2
+text = "Edit"
+
+[node name="RunButton" type="Button" parent="MainContainer/DownloadContainer/ProjectManageButtons"]
+layout_mode = 2
+text = "Run"
+
+[node name="DuplicateButton" type="Button" parent="MainContainer/DownloadContainer/ProjectManageButtons"]
+layout_mode = 2
+text = "Duplicate"
+
+[node name="RenameButton" type="Button" parent="MainContainer/DownloadContainer/ProjectManageButtons"]
+layout_mode = 2
+text = "Rename"
+
+[node name="RemoveButton" type="Button" parent="MainContainer/DownloadContainer/ProjectManageButtons"]
+layout_mode = 2
+text = "Remove"
