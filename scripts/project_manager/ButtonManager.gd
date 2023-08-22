@@ -67,7 +67,7 @@ func duplicate_project():
 	meta["uid"] = unique_name
 	
 	var new_loc = GlobalStorage.path.rsplit("/", true, 1)[0]
-	version_dir.copy_absolute(GlobalStorage.path, new_loc + "/" + unique_name)
+	version_dir.copy(GlobalStorage.path, unique_name)
 	var new_meta = FileAccess.open(
 		new_loc + "/" + unique_name + "/hc-tcg-cc/meta.json",
 		FileAccess.WRITE

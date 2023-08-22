@@ -1,10 +1,15 @@
-[gd_scene load_steps=6 format=3 uid="uid://c1ogyiok588hj"]
+[gd_scene load_steps=12 format=3 uid="uid://c1ogyiok588hj"]
 
 [ext_resource type="Theme" uid="uid://dde7m6q5cfe1u" path="res://assets/themes/main_theme.tres" id="1_ajqyn"]
 [ext_resource type="Theme" uid="uid://behexnarv56jn" path="res://assets/themes/main_theme_light.tres" id="2_ea765"]
-[ext_resource type="StyleBox" path="res://assets/themes/light_panel.tres" id="3_1qhfl"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wb5dl"]
+[ext_resource type="Theme" uid="uid://dg0qmxc8vjun0" path="res://assets/themes/project_selector.tres" id="3_hvyfh"]
+[ext_resource type="ButtonGroup" uid="uid://ds7eyn0w4sgo6" path="res://assets/button_groups/code_category.tres" id="3_yf862"]
+[ext_resource type="Texture2D" uid="uid://b2e7d1xc4skkd" path="res://assets/sprites/color_bars/events.png" id="5_qtb7d"]
+[ext_resource type="Texture2D" uid="uid://c8myn6eirbrvh" path="res://assets/sprites/color_bars/operators.png" id="6_78n1l"]
+[ext_resource type="Texture2D" uid="uid://2t0o5arb0lsc" path="res://assets/sprites/color_bars/actions.png" id="7_f5t02"]
+[ext_resource type="Texture2D" uid="uid://bs1heiwd16u5c" path="res://assets/sprites/color_bars/control.png" id="8_ax7sr"]
+[ext_resource type="Texture2D" uid="uid://bpo1quln8eda7" path="res://assets/sprites/color_bars/variables.png" id="9_uqwbt"]
+[ext_resource type="Texture2D" uid="uid://cus8tonht43hc" path="res://assets/sprites/color_bars/keys.png" id="10_rxs24"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_icv28"]
 bg_color = Color(0.227451, 0.227451, 0.227451, 1)
@@ -20,6 +25,7 @@ theme = ExtResource("1_ajqyn")
 metadata/_edit_use_anchors_ = true
 
 [node name="Background" type="ColorRect" parent="."]
+z_index = -1
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -36,42 +42,31 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Control" type="Control" parent="VBoxContainer"]
+[node name="MenuBar" type="MenuBar" parent="VBoxContainer"]
 layout_mode = 2
-size_flags_vertical = 3
-size_flags_stretch_ratio = 0.01
-
-[node name="Panel" type="Panel" parent="VBoxContainer/Control"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="MenuBar" type="MenuBar" parent="VBoxContainer/Control"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
 theme = ExtResource("1_ajqyn")
 flat = true
 
-[node name="File" type="PopupMenu" parent="VBoxContainer/Control/MenuBar"]
+[node name="Panel" type="Panel" parent="VBoxContainer/MenuBar"]
+z_index = -1
+z_as_relative = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
 
-[node name="Edit" type="PopupMenu" parent="VBoxContainer/Control/MenuBar"]
+[node name="File" type="PopupMenu" parent="VBoxContainer/MenuBar"]
 
-[node name="Project" type="PopupMenu" parent="VBoxContainer/Control/MenuBar"]
+[node name="Edit" type="PopupMenu" parent="VBoxContainer/MenuBar"]
 
-[node name="Build" type="PopupMenu" parent="VBoxContainer/Control/MenuBar"]
+[node name="Project" type="PopupMenu" parent="VBoxContainer/MenuBar"]
 
-[node name="Help" type="PopupMenu" parent="VBoxContainer/Control/MenuBar"]
+[node name="Build" type="PopupMenu" parent="VBoxContainer/MenuBar"]
 
-[node name="HSeparator" type="HSeparator" parent="VBoxContainer"]
-layout_mode = 2
-theme_override_styles/separator = SubResource("StyleBoxFlat_wb5dl")
+[node name="Help" type="PopupMenu" parent="VBoxContainer/MenuBar"]
 
 [node name="MainEditor" type="HBoxContainer" parent="VBoxContainer"]
 layout_mode = 2
@@ -111,26 +106,112 @@ visible = false
 layout_mode = 2
 theme = ExtResource("1_ajqyn")
 
-[node name="BlockContainer" type="VBoxContainer" parent="VBoxContainer/MainEditor"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_stretch_ratio = 0.15
-theme = ExtResource("1_ajqyn")
-
-[node name="TabContainer" type="TabContainer" parent="VBoxContainer/MainEditor/BlockContainer"]
+[node name="TabContainer" type="TabContainer" parent="VBoxContainer/MainEditor"]
 custom_minimum_size = Vector2(0, 90)
 layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.15
 theme = ExtResource("2_ea765")
 clip_tabs = false
 
-[node name="Code Blocks" type="Label" parent="VBoxContainer/MainEditor/BlockContainer/TabContainer"]
+[node name="Code blocks" type="VBoxContainer" parent="VBoxContainer/MainEditor/TabContainer"]
 layout_mode = 2
-theme = ExtResource("1_ajqyn")
 
-[node name="Block Area" type="Panel" parent="VBoxContainer/MainEditor/BlockContainer"]
+[node name="GridContainer" type="GridContainer" parent="VBoxContainer/MainEditor/TabContainer/Code blocks"]
+layout_mode = 2
+theme_override_constants/h_separation = 1
+theme_override_constants/v_separation = 1
+columns = 3
+
+[node name="EventsButton" type="Button" parent="VBoxContainer/MainEditor/TabContainer/Code blocks/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("3_hvyfh")
+toggle_mode = true
+button_pressed = true
+button_group = ExtResource("3_yf862")
+text = "Events"
+icon = ExtResource("5_qtb7d")
+metadata/tab = 0
+
+[node name="OperatorButton" type="Button" parent="VBoxContainer/MainEditor/TabContainer/Code blocks/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("3_hvyfh")
+toggle_mode = true
+button_group = ExtResource("3_yf862")
+text = "Maths"
+icon = ExtResource("6_78n1l")
+metadata/tab = 1
+
+[node name="ActionButton" type="Button" parent="VBoxContainer/MainEditor/TabContainer/Code blocks/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("3_hvyfh")
+toggle_mode = true
+button_group = ExtResource("3_yf862")
+text = "Actions"
+icon = ExtResource("7_f5t02")
+metadata/tab = 2
+
+[node name="ControlButton" type="Button" parent="VBoxContainer/MainEditor/TabContainer/Code blocks/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("3_hvyfh")
+toggle_mode = true
+button_group = ExtResource("3_yf862")
+text = "Control"
+icon = ExtResource("8_ax7sr")
+metadata/tab = 3
+
+[node name="VariablesButton" type="Button" parent="VBoxContainer/MainEditor/TabContainer/Code blocks/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("3_hvyfh")
+toggle_mode = true
+button_group = ExtResource("3_yf862")
+text = "Variables"
+icon = ExtResource("9_uqwbt")
+metadata/tab = 4
+
+[node name="KeysButton" type="Button" parent="VBoxContainer/MainEditor/TabContainer/Code blocks/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("3_hvyfh")
+toggle_mode = true
+button_group = ExtResource("3_yf862")
+text = "Keys"
+icon = ExtResource("10_rxs24")
+metadata/tab = 5
+
+[node name="Blocks" type="TabContainer" parent="VBoxContainer/MainEditor/TabContainer/Code blocks"]
 layout_mode = 2
 size_flags_vertical = 3
-theme_override_styles/panel = ExtResource("3_1qhfl")
+tabs_visible = false
+
+[node name="Events" type="VBoxContainer" parent="VBoxContainer/MainEditor/TabContainer/Code blocks/Blocks"]
+layout_mode = 2
+
+[node name="Operators" type="VBoxContainer" parent="VBoxContainer/MainEditor/TabContainer/Code blocks/Blocks"]
+visible = false
+layout_mode = 2
+
+[node name="Actions" type="VBoxContainer" parent="VBoxContainer/MainEditor/TabContainer/Code blocks/Blocks"]
+visible = false
+layout_mode = 2
+
+[node name="Control" type="VBoxContainer" parent="VBoxContainer/MainEditor/TabContainer/Code blocks/Blocks"]
+visible = false
+layout_mode = 2
+
+[node name="Variables" type="VBoxContainer" parent="VBoxContainer/MainEditor/TabContainer/Code blocks/Blocks"]
+visible = false
+layout_mode = 2
+
+[node name="Keys" type="VBoxContainer" parent="VBoxContainer/MainEditor/TabContainer/Code blocks/Blocks"]
+visible = false
+layout_mode = 2
 
 [node name="Codespace" type="Control" parent="VBoxContainer/MainEditor"]
 layout_mode = 2
