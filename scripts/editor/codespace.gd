@@ -20,8 +20,7 @@ func _drop_data(at_position, data):
 		for connection in available_connections[node]:
 			if connection.distance_to(at_position) < closest[1].distance_to(at_position):
 				closest = [node, connection]
-	if not closest[0] or closest[1].distance_to(at_position) > snap_distance:
-		print("NOSNAP")
+	if not closest[0] or closest[1].distance_to(at_position) > snap_distance or not closest[0].connect_at(data["node"], closest[1]):
 		data["node"].position = at_position - data["offset"]
 		data["node"].placed = true
 		add_child(data["node"])
@@ -30,4 +29,6 @@ func _drop_data(at_position, data):
 			available_connections[data["node"]].append(connection + data["node"].position)
 		return
 	available_connections[closest[0]].erase(closest[1])
-	closest[0].connect_at(data["node"], closest[1])
+	available_connections[data["node"]] = []
+	for connection in data["connections"]:
+		available_connections[data["node"]].append(connection + data["node"].position)

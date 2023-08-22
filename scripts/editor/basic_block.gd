@@ -1,5 +1,5 @@
 extends TextureRect
-
+class_name BasicBlock
 
 var placed = false
 var upper_connection = Vector2(35, 5)
@@ -20,7 +20,9 @@ func _get_drag_data(at_position):
 	}
 
 func connect_at(node, connection):
+	if not node.upper_connection:
+		return false
 	node.placed = true
 	add_child(node)
 	node.position = connection - position - node.upper_connection
-	print(node.position)
+	return true
