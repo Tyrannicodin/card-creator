@@ -1,0 +1,5 @@
+[gd_scene load_steps=2 format=3 uid="uid://d251fxd4rpxey"]
+
+[ext_resource type="PackedScene" uid="uid://cqa5efskeog8q" path="res://assets/models/limb.glb" id="1_fefbe"]
+
+[node name="limb" instance=ExtResource("1_fefbe")]

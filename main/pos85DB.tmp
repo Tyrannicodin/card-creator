@@ -1,0 +1,75 @@
+[gd_scene load_steps=9 format=3 uid="uid://d0pcf0wm5j5tj"]
+
+[ext_resource type="Script" path="res://scripts/pose_editor/resize_selected_object_viewport.gd" id="2_abx25"]
+[ext_resource type="Script" path="res://scripts/pose_editor/pose_editor_camera.gd" id="2_kx801"]
+[ext_resource type="Shader" path="res://assets/shaders/outline.gdshader" id="2_rr72t"]
+[ext_resource type="Script" path="res://scripts/deform_arm.gd" id="4_6eadv"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_fj0pb"]
+render_priority = 0
+shader = ExtResource("2_rr72t")
+shader_parameter/shadow_color = Color(0.933333, 0.423529, 0, 1)
+shader_parameter/shadow_thickness = 1.0
+
+[sub_resource type="QuadMesh" id="QuadMesh_wbh5l"]
+material = SubResource("ShaderMaterial_fj0pb")
+size = Vector2(2, 2)
+center_offset = Vector3(0, 0, -0.73)
+
+[sub_resource type="BoxMesh" id="BoxMesh_oo1au"]
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_e2psq"]
+data = PackedVector3Array(-0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, -0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, -0.5, 0.5, 0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, -0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, -0.5, -0.5)
+
+[node name="pose_editor" type="Node3D"]
+
+[node name="main_viewport" type="SubViewportContainer" parent="."]
+offset_right = 1920.0
+offset_bottom = 1080.0
+
+[node name="SubViewport" type="SubViewport" parent="main_viewport"]
+handle_input_locally = false
+size = Vector2i(1920, 1080)
+render_target_update_mode = 4
+script = ExtResource("2_abx25")
+
+[node name="main_camera" type="Camera3D" parent="main_viewport/SubViewport"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0214267, 0.948903, 2.18368)
+cull_mask = 1047553
+
+[node name="selected_object_viewport" type="SubViewportContainer" parent="."]
+offset_right = 1920.0
+offset_bottom = 1080.0
+
+[node name="SubViewport" type="SubViewport" parent="selected_object_viewport"]
+handle_input_locally = false
+size = Vector2i(1920, 1080)
+render_target_update_mode = 4
+script = ExtResource("2_abx25")
+
+[node name="selected_object_camera" type="Camera3D" parent="selected_object_viewport/SubViewport"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0214267, 0.948903, 2.18368)
+cull_mask = 1047554
+script = ExtResource("2_kx801")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="selected_object_viewport/SubViewport/selected_object_camera"]
+layers = 2
+extra_cull_margin = 16384.0
+mesh = SubResource("QuadMesh_wbh5l")
+skeleton = NodePath("../../../..")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.14891)
+layers = 3
+mesh = SubResource("BoxMesh_oo1au")
+script = ExtResource("4_6eadv")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.14891)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.14891)
+shape = SubResource("ConcavePolygonShape3D_e2psq")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 6.54707, 0)

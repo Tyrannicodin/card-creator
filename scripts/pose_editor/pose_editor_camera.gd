@@ -6,6 +6,8 @@ class_name FreeLookCamera extends Camera3D
 const SHIFT_MULTIPLIER = 2.5
 const ALT_MULTIPLIER = 1.0 / SHIFT_MULTIPLIER
 
+#@onready var main_camera = $"../../../main_viewport/SubViewport/main_camera"
+@onready var r_arm_collision = $"../../../r_arm/arm/static_body/collision"
 
 @export_range(0.0, 1.0) var sensitivity: float = 0.25
 
@@ -45,17 +47,7 @@ func _input(event):
 			MOUSE_BUTTON_WHEEL_DOWN: # Decereases max velocity
 				_vel_multiplier = clamp(_vel_multiplier / 1.1, 0.2, 20)
 			MOUSE_BUTTON_LEFT:
-				var space_state = get_world_3d().direct_space_state
-				var mousepos = get_viewport().get_mouse_position()
-				var origin = project_ray_origin(mousepos)
-
-				var end = origin + project_ray_normal(mousepos) * 1000
-				var query = PhysicsRayQueryParameters3D.create(origin, end)
-				query.collide_with_areas = true
-
-				var result = space_state.intersect_ray(query)
-				if result:
-					print(result.collider)
+				_select_object()
 
 	# Receives key input
 	if event is InputEventKey:
@@ -112,6 +104,8 @@ func _update_movement(delta):
 		_velocity.z = clamp(_velocity.z + offset.z, -_vel_multiplier, _vel_multiplier)
 	
 		translate(_velocity * delta * speed_multi)
+		
+	#main_camera.position = position
 
 # Updates mouse look 
 func _update_mouselook():
@@ -128,3 +122,18 @@ func _update_mouselook():
 	
 		rotate_y(deg_to_rad(-yaw))
 		rotate_object_local(Vector3(1,0,0), deg_to_rad(-pitch))
+		
+	#main_camera.rotation = rotation
+	
+func _select_object():
+	var space_state = get_world_3d().direct_space_state
+	var mousepos = get_viewport().get_mouse_position()
+	var origin = project_ray_origin(mousepos)
+
+	var end = origin + project_ray_normal(mousepos) * 1000
+	var query = PhysicsRayQueryParameters3D.create(origin, end)
+	query.collide_with_areas = true
+
+	var result = space_state.intersect_ray(query)
+	if result:
+		print(result.collider)

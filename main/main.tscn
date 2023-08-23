@@ -1,8 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://dyyqbmrtddy1j"]
+[gd_scene load_steps=6 format=3 uid="uid://cb5qg73q7bjh8"]
 
-[ext_resource type="Theme" uid="uid://c7wvhdcq0vwkq" path="res://assets/themes/main_theme.tres" id="1_ajqyn"]
-[ext_resource type="Theme" uid="uid://cfdydek8gida7" path="res://assets/themes/main_theme_light.tres" id="2_ea765"]
-[ext_resource type="StyleBox" uid="uid://cm5usehrnniev" path="res://assets/themes/light_panel.tres" id="3_1qhfl"]
+[ext_resource type="Theme" uid="uid://d0t0or2366f1y" path="res://assets/themes/main_theme.tres" id="1_ajqyn"]
+[ext_resource type="Theme" uid="uid://cfrogmjujy7a0" path="res://assets/themes/main_theme_light.tres" id="2_ea765"]
+[ext_resource type="StyleBox" uid="uid://bc6vd40qfrwyn" path="res://assets/themes/light_panel.tres" id="3_1qhfl"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2u5yn"]
 bg_color = Color(0.14902, 0.14902, 0.14902, 1)

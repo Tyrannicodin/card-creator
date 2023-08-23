@@ -1,10 +1,10 @@
-[gd_scene load_steps=8 format=3 uid="uid://d0pcf0wm5j5tj"]
+[gd_scene load_steps=11 format=3 uid="uid://d0pcf0wm5j5tj"]
 
 [ext_resource type="Script" path="res://scripts/pose_editor/resize_selected_object_viewport.gd" id="2_abx25"]
 [ext_resource type="Script" path="res://scripts/pose_editor/pose_editor_camera.gd" id="2_kx801"]
 [ext_resource type="Shader" path="res://assets/shaders/outline.gdshader" id="2_rr72t"]
-[ext_resource type="Script" path="res://scripts/pose_editor/rotation_editor.gd" id="4_oo1rs"]
-[ext_resource type="PackedScene" uid="uid://fr0t5xq7habf" path="res://scenes/player_wide.tscn" id="5_wwxhu"]
+[ext_resource type="Script" path="res://scripts/deform_arm.gd" id="4_6eadv"]
+[ext_resource type="Script" path="res://scripts/pose_editor/rotation_editor.gd" id="5_n2ria"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_fj0pb"]
 render_priority = 0
@@ -16,6 +16,15 @@ shader_parameter/shadow_thickness = 1.0
 material = SubResource("ShaderMaterial_fj0pb")
 size = Vector2(2, 2)
 center_offset = Vector3(0, 0, -0.73)
+
+[sub_resource type="BoxMesh" id="BoxMesh_2kq4t"]
+size = Vector3(0.4, 1.2, 0.4)
+subdivide_height = 12
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_e2psq"]
+data = PackedVector3Array(-0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, -0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, -0.5, 0.5, 0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, -0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, -0.5, -0.5)
+
+[sub_resource type="BoxMesh" id="BoxMesh_23q6y"]
 
 [node name="pose_editor" type="Node3D"]
 
@@ -32,14 +41,12 @@ script = ExtResource("2_abx25")
 [node name="main_camera" type="Camera3D" parent="main_viewport/SubViewport"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0214267, 0.948903, 2.18368)
 cull_mask = 1047553
-current = true
 
 [node name="selected_object_viewport" type="SubViewportContainer" parent="."]
 offset_right = 1920.0
 offset_bottom = 1080.0
 
 [node name="SubViewport" type="SubViewport" parent="selected_object_viewport"]
-transparent_bg = true
 handle_input_locally = false
 size = Vector2i(1920, 1080)
 render_target_update_mode = 4
@@ -48,7 +55,6 @@ script = ExtResource("2_abx25")
 [node name="selected_object_camera" type="Camera3D" parent="selected_object_viewport/SubViewport"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0214267, 0.948903, 2.18368)
 cull_mask = 1047554
-current = true
 script = ExtResource("2_kx801")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="selected_object_viewport/SubViewport/selected_object_camera"]
@@ -57,9 +63,21 @@ extra_cull_margin = 16384.0
 mesh = SubResource("QuadMesh_wbh5l")
 skeleton = NodePath("../../../..")
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, -0.5, 0.866025, 0, -0.866025, -0.5, 0, 6.54707, 0)
+[node name="r_arm" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.14891)
 layers = 3
+mesh = SubResource("BoxMesh_2kq4t")
+script = ExtResource("4_6eadv")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="r_arm"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.14891)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="r_arm/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.14891)
+shape = SubResource("ConcavePolygonShape3D_e2psq")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 6.54707, 0)
 
 [node name="ui_viewport" type="SubViewportContainer" parent="."]
 offset_right = 40.0
@@ -80,7 +98,7 @@ custom_minimum_size = Vector2(400, 0)
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
-script = ExtResource("4_oo1rs")
+script = ExtResource("5_n2ria")
 
 [node name="x" type="HSlider" parent="ui_viewport/ui/Control/rotation_editor"]
 layout_mode = 2
@@ -99,10 +117,13 @@ tick_count = 12
 
 [node name="bend" type="HSlider" parent="ui_viewport/ui/Control/rotation_editor"]
 layout_mode = 2
-max_value = 50.0
+max_value = 25.0
 tick_count = 12
 
-[node name="player_wide" parent="." instance=ExtResource("5_wwxhu")]
+[node name="body" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.107354, -0.44503)
+layers = 3
+mesh = SubResource("BoxMesh_23q6y")
 
 [connection signal="value_changed" from="ui_viewport/ui/Control/rotation_editor/x" to="ui_viewport/ui/Control/rotation_editor" method="_on_x_value_changed"]
 [connection signal="value_changed" from="ui_viewport/ui/Control/rotation_editor/y" to="ui_viewport/ui/Control/rotation_editor" method="_on_y_value_changed"]
