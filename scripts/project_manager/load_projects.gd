@@ -1,6 +1,8 @@
 extends VBoxContainer
 
 
+signal reset_buttons()
+
 var project_button_group = preload("res://assets/button_groups/project_button.tres")
 var project_button_theme = preload("res://assets/themes/project_selector.tres")
 
@@ -9,6 +11,9 @@ func _ready():
 
 func reload_projects():
 	"""Load all projects and put them in a list"""
+	
+	GlobalStorage.path = ""
+	reset_buttons.emit()
 	
 	# Remove all old children
 	for child in get_children():
@@ -45,7 +50,8 @@ func generate_project_button(path:String):
 	"""Generate a button for a project"""
 	
 	var button = Button.new()
-	button.text = path.rsplit("/", true, 1)[1]
+	button.name = path.rsplit("/", true, 2)[1] + "\\" + path.rsplit("/", true, 1)[1]
+	button.text = " " + path.rsplit("/", true, 1)[1]
 	button.alignment = HORIZONTAL_ALIGNMENT_LEFT
 	button.toggle_mode = true
 	button.button_group = project_button_group
@@ -53,9 +59,18 @@ func generate_project_button(path:String):
 	button.theme = project_button_theme
 	
 	if not FileAccess.file_exists(path + "/hc-tcg-cc/meta.json"):
+		override_button_font_color(button, Color(1, 0, 0))
+		button.tooltip_text = "Couldn't find custom files"
 		return button
 	var meta_file = FileAccess.open(path + "/hc-tcg-cc/meta.json", FileAccess.READ)
 	var meta = JSON.parse_string(meta_file.get_as_text())
+	meta_file.close()
+	if meta["editor_version"] != ProjectSettings.get_setting("application/config/version"):
+		override_button_font_color(button, Color(.5, .5, 0))
+		button.tooltip_text = "Incorrect version, project might not open correctly"
+		return button
+	
+	button.text = " " + meta["name"]
 	
 	var sub_label = Label.new()
 	sub_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_RIGHT
@@ -72,3 +87,11 @@ func generate_project_button(path:String):
 	button.add_child(sub_label)
 	
 	return button
+
+func override_button_font_color(button, color):
+	button.add_theme_color_override("font_color", color)
+	button.add_theme_color_override("font_pressed_color", color)
+	button.add_theme_color_override("font_hover_color", color)
+	button.add_theme_color_override("font_focus_color", color)
+	button.add_theme_color_override("font_hover_pressed_color", color)
+	button.add_theme_color_override("font_disabled_color", color)

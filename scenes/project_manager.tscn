@@ -1,10 +1,10 @@
 [gd_scene load_steps=9 format=3 uid="uid://b5va7cxsa3mhf"]
 
-[ext_resource type="Script" path="res://scripts/project_manager/load_projects.gd" id="1_2o8uo"]
-[ext_resource type="Script" path="res://scripts/project_manager/version_label.gd" id="2_ih1ic"]
-[ext_resource type="ButtonGroup" uid="uid://d7aivuku4qo3" path="res://assets/button_groups/project_button.tres" id="2_xhspu"]
-[ext_resource type="Theme" uid="uid://dg0qmxc8vjun0" path="res://assets/themes/project_selector.tres" id="3_hwfbg"]
-[ext_resource type="Script" path="res://scripts/project_manager/download.gd" id="3_sal2g"]
+[ext_resource type="Script" path="res://scripts/project_manager/load_projects.gd" id="1_q8s7o"]
+[ext_resource type="ButtonGroup" uid="uid://d7aivuku4qo3" path="res://assets/button_groups/project_button.tres" id="2_2ub0v"]
+[ext_resource type="Script" path="res://scripts/project_manager/version_label.gd" id="3_s3g1u"]
+[ext_resource type="Script" path="res://scripts/project_manager/download.gd" id="4_kofl7"]
+[ext_resource type="Script" path="res://scripts/project_manager/ButtonManager.gd" id="5_mgpcn"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ntu3c"]
 bg_color = Color(0.0705882, 0.0705882, 0.0705882, 1)
@@ -67,7 +67,7 @@ theme_override_constants/margin_bottom = 5
 
 [node name="Projects" type="VBoxContainer" parent="MainContainer/VBoxContainer/ProjectSidebar/MarginContainer"]
 layout_mode = 2
-script = ExtResource("1_2o8uo")
+script = ExtResource("1_q8s7o")
 
 [node name="v0_6_0" type="VBoxContainer" parent="MainContainer/VBoxContainer/ProjectSidebar/MarginContainer/Projects"]
 layout_mode = 2
@@ -85,7 +85,7 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_ntu3c")
 theme_override_styles/hover = SubResource("StyleBoxFlat_qi8dv")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_vpad2")
 toggle_mode = true
-button_group = ExtResource("2_xhspu")
+button_group = ExtResource("2_2ub0v")
 text = " test"
 alignment = 0
 
@@ -104,15 +104,6 @@ theme_override_colors/font_color = Color(0.501961, 0.501961, 0.501961, 1)
 theme_override_font_sizes/font_size = 10
 horizontal_alignment = 2
 vertical_alignment = 1
-
-[node name="test2" type="Button" parent="MainContainer/VBoxContainer/ProjectSidebar/MarginContainer/Projects/v0_6_0"]
-layout_mode = 2
-size_flags_vertical = 4
-theme = ExtResource("3_hwfbg")
-toggle_mode = true
-button_group = ExtResource("2_xhspu")
-text = "test"
-alignment = 0
 
 [node name="HSeparator" type="HSeparator" parent="MainContainer/VBoxContainer/ProjectSidebar/MarginContainer/Projects/v0_6_0"]
 layout_mode = 2
@@ -136,7 +127,7 @@ theme_override_font_sizes/font_size = 12
 text = "v0.0.0"
 horizontal_alignment = 2
 vertical_alignment = 1
-script = ExtResource("2_ih1ic")
+script = ExtResource("3_s3g1u")
 
 [node name="VersionContainer" type="VBoxContainer" parent="MainContainer/DownloadContainer"]
 layout_mode = 2
@@ -161,7 +152,7 @@ placeholder_text = "Project name"
 [node name="Button" type="Button" parent="MainContainer/DownloadContainer/VersionContainer"]
 layout_mode = 2
 text = "Download"
-script = ExtResource("3_sal2g")
+script = ExtResource("4_kofl7")
 
 [node name="StatusLabel" type="Label" parent="MainContainer/DownloadContainer"]
 custom_minimum_size = Vector2(0, 26)
@@ -180,23 +171,34 @@ layout_mode = 2
 
 [node name="ProjectManageButtons" type="VBoxContainer" parent="MainContainer/DownloadContainer"]
 layout_mode = 2
+script = ExtResource("5_mgpcn")
 
 [node name="EditButton" type="Button" parent="MainContainer/DownloadContainer/ProjectManageButtons"]
 layout_mode = 2
+disabled = true
 text = "Edit"
 
 [node name="RunButton" type="Button" parent="MainContainer/DownloadContainer/ProjectManageButtons"]
 layout_mode = 2
+disabled = true
 text = "Run"
 
 [node name="DuplicateButton" type="Button" parent="MainContainer/DownloadContainer/ProjectManageButtons"]
+visible = false
 layout_mode = 2
+disabled = true
 text = "Duplicate"
 
 [node name="RenameButton" type="Button" parent="MainContainer/DownloadContainer/ProjectManageButtons"]
 layout_mode = 2
+disabled = true
 text = "Rename"
 
 [node name="RemoveButton" type="Button" parent="MainContainer/DownloadContainer/ProjectManageButtons"]
 layout_mode = 2
+disabled = true
 text = "Remove"
+
+[connection signal="reset_buttons" from="MainContainer/VBoxContainer/ProjectSidebar/MarginContainer/Projects" to="MainContainer/DownloadContainer/ProjectManageButtons" method="disable_buttons"]
+[connection signal="reload_projects" from="MainContainer/DownloadContainer/VersionContainer/Button" to="MainContainer/VBoxContainer/ProjectSidebar/MarginContainer/Projects" method="reload_projects"]
+[connection signal="reload_projects" from="MainContainer/DownloadContainer/ProjectManageButtons" to="MainContainer/VBoxContainer/ProjectSidebar/MarginContainer/Projects" method="reload_projects"]

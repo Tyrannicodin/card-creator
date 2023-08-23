@@ -1,9 +1,8 @@
-[gd_scene load_steps=18 format=3 uid="uid://c1ogyiok588hj"]
+[gd_scene load_steps=15 format=3 uid="uid://c1ogyiok588hj"]
 
 [ext_resource type="Theme" uid="uid://dde7m6q5cfe1u" path="res://assets/themes/main_theme.tres" id="1_ajqyn"]
 [ext_resource type="Theme" uid="uid://behexnarv56jn" path="res://assets/themes/main_theme_light.tres" id="2_ea765"]
 [ext_resource type="Theme" uid="uid://dg0qmxc8vjun0" path="res://assets/themes/project_selector.tres" id="3_hvyfh"]
-[ext_resource type="Script" path="res://scripts/editor/tab_container.gd" id="3_xkw35"]
 [ext_resource type="ButtonGroup" uid="uid://ds7eyn0w4sgo6" path="res://assets/button_groups/code_category.tres" id="3_yf862"]
 [ext_resource type="Texture2D" uid="uid://b2e7d1xc4skkd" path="res://assets/sprites/color_bars/events.png" id="5_qtb7d"]
 [ext_resource type="Texture2D" uid="uid://c8myn6eirbrvh" path="res://assets/sprites/color_bars/operators.png" id="6_78n1l"]
@@ -12,10 +11,8 @@
 [ext_resource type="Texture2D" uid="uid://bpo1quln8eda7" path="res://assets/sprites/color_bars/variables.png" id="9_uqwbt"]
 [ext_resource type="Texture2D" uid="uid://cus8tonht43hc" path="res://assets/sprites/color_bars/keys.png" id="10_rxs24"]
 [ext_resource type="Texture2D" uid="uid://cl4ll7524u4v6" path="res://assets/sprites/base_blocks/events.png" id="11_a0p0g"]
-[ext_resource type="Script" path="res://scripts/editor/header_block.gd" id="12_iq7yc"]
+[ext_resource type="Script" path="res://scripts/editor/block.gd" id="12_vcyas"]
 [ext_resource type="Script" path="res://scripts/editor/codespace.gd" id="13_5cq6c"]
-[ext_resource type="Texture2D" uid="uid://cl56jrgy086li" path="res://assets/sprites/base_blocks/actions.png" id="14_h8ovg"]
-[ext_resource type="Script" path="res://scripts/editor/basic_block.gd" id="15_yusfm"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_icv28"]
 bg_color = Color(0.227451, 0.227451, 0.227451, 1)
@@ -129,7 +126,6 @@ layout_mode = 2
 theme_override_constants/h_separation = 1
 theme_override_constants/v_separation = 1
 columns = 3
-script = ExtResource("3_xkw35")
 
 [node name="EventsButton" type="Button" parent="VBoxContainer/MainEditor/TabContainer/Code blocks/GridContainer"]
 layout_mode = 2
@@ -210,7 +206,7 @@ size_flags_horizontal = 4
 size_flags_vertical = 4
 texture = ExtResource("11_a0p0g")
 stretch_mode = 3
-script = ExtResource("12_iq7yc")
+script = ExtResource("12_vcyas")
 
 [node name="Operators" type="VBoxContainer" parent="VBoxContainer/MainEditor/TabContainer/Code blocks/Blocks"]
 visible = false
@@ -219,12 +215,6 @@ layout_mode = 2
 [node name="Actions" type="VBoxContainer" parent="VBoxContainer/MainEditor/TabContainer/Code blocks/Blocks"]
 visible = false
 layout_mode = 2
-
-[node name="TextureRect" type="TextureRect" parent="VBoxContainer/MainEditor/TabContainer/Code blocks/Blocks/Actions"]
-layout_mode = 2
-texture = ExtResource("14_h8ovg")
-stretch_mode = 3
-script = ExtResource("15_yusfm")
 
 [node name="Control" type="VBoxContainer" parent="VBoxContainer/MainEditor/TabContainer/Code blocks/Blocks"]
 visible = false
