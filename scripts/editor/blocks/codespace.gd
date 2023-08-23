@@ -30,8 +30,11 @@ func _drop_data(at_position, data):
 	var closest:Array[Array] = []
 	for node in available_connections:
 		for connection in node.available_connections(node.position):
-			closest.append([connection[0], connection[1], connection[2]])
-	closest.sort_custom(func(item1:Array, item2:Array): return item1[1].distance_to(at_position - data["offset"]) < item2[1].distance_to(at_position - data["offset"]))
+			closest.append(connection)
+	closest.sort_custom(
+		func(item1:Array, item2:Array):
+			return item1[1].distance_to(at_position - data["offset"]) < item2[1].distance_to(at_position - data["offset"])
+	)
 	available_connections.append(data["node"])
 	clear_highlight.connect(data["node"].unhighlight)
 	var snap_to
