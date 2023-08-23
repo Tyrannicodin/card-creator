@@ -13,6 +13,8 @@ def generate_block(_type, upper_indent=True):
         ((0, 0), (200, 50)),
         12,
         COLORS[_type],
+        (0, 0, 0, 255),
+        #2,
         corners=(False, False, False, False)
         if upper_indent
         else (True, True, False, False),
