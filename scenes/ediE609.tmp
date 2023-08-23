@@ -3,7 +3,7 @@
 [ext_resource type="Theme" uid="uid://dde7m6q5cfe1u" path="res://assets/themes/main_theme.tres" id="1_ajqyn"]
 [ext_resource type="Theme" uid="uid://behexnarv56jn" path="res://assets/themes/main_theme_light.tres" id="2_ea765"]
 [ext_resource type="Theme" uid="uid://dg0qmxc8vjun0" path="res://assets/themes/project_selector.tres" id="3_hvyfh"]
-[ext_resource type="Script" path="res://scripts/editor/blocks/tab_container.gd" id="3_xkw35"]
+[ext_resource type="Script" path="res://scripts/editor/tab_container.gd" id="3_xkw35"]
 [ext_resource type="ButtonGroup" uid="uid://ds7eyn0w4sgo6" path="res://assets/button_groups/code_category.tres" id="3_yf862"]
 [ext_resource type="Texture2D" uid="uid://b2e7d1xc4skkd" path="res://assets/sprites/color_bars/events.png" id="5_qtb7d"]
 [ext_resource type="Texture2D" uid="uid://c8myn6eirbrvh" path="res://assets/sprites/color_bars/operators.png" id="6_78n1l"]
@@ -11,9 +11,9 @@
 [ext_resource type="Texture2D" uid="uid://bs1heiwd16u5c" path="res://assets/sprites/color_bars/control.png" id="8_ax7sr"]
 [ext_resource type="Texture2D" uid="uid://bpo1quln8eda7" path="res://assets/sprites/color_bars/variables.png" id="9_uqwbt"]
 [ext_resource type="Texture2D" uid="uid://cus8tonht43hc" path="res://assets/sprites/color_bars/keys.png" id="10_rxs24"]
-[ext_resource type="Script" path="res://scripts/editor/blocks/header_block.gd" id="12_iq7yc"]
-[ext_resource type="Script" path="res://scripts/editor/blocks/codespace.gd" id="13_5cq6c"]
-[ext_resource type="Script" path="res://scripts/editor/blocks/basic_block.gd" id="15_yusfm"]
+[ext_resource type="Script" path="res://scripts/editor/codespace.gd" id="13_5cq6c"]
+[ext_resource type="ArrayMesh" uid="uid://d1s2aexp843j0" path="res://assets/sprites/base_blocks/block_template.tres" id="14_ltyb3"]
+[ext_resource type="Script" path="res://scripts/editor/basic_block.gd" id="15_yusfm"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_icv28"]
 bg_color = Color(0.227451, 0.227451, 0.227451, 1)
@@ -204,10 +204,6 @@ layout_mode = 2
 
 [node name="Control" type="Control" parent="VBoxContainer/MainEditor/TabContainer/Code blocks/Blocks/Events"]
 layout_mode = 2
-script = ExtResource("12_iq7yc")
-
-[node name="Control2" type="Control" parent="VBoxContainer/MainEditor/TabContainer/Code blocks/Blocks/Events"]
-layout_mode = 2
 script = ExtResource("15_yusfm")
 
 [node name="Operators" type="VBoxContainer" parent="VBoxContainer/MainEditor/TabContainer/Code blocks/Blocks"]
@@ -352,3 +348,8 @@ vertical_alignment = 1
 [node name="Token" type="SpinBox" parent="VBoxContainer/MainEditor/Panel/VBoxContainer/PropertyContainer/MarginContainer2/GridContainer"]
 layout_mode = 2
 max_value = 4.0
+
+[node name="BlockTemplate" type="MeshInstance2D" parent="."]
+position = Vector2(243, 135)
+scale = Vector2(0.0934999, 0.0934999)
+mesh = ExtResource("14_ltyb3")
