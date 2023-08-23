@@ -11,8 +11,8 @@
 [ext_resource type="Texture2D" uid="uid://bs1heiwd16u5c" path="res://assets/sprites/color_bars/control.png" id="8_ax7sr"]
 [ext_resource type="Texture2D" uid="uid://bpo1quln8eda7" path="res://assets/sprites/color_bars/variables.png" id="9_uqwbt"]
 [ext_resource type="Texture2D" uid="uid://cus8tonht43hc" path="res://assets/sprites/color_bars/keys.png" id="10_rxs24"]
-[ext_resource type="Script" path="res://scripts/editor/header_block.gd" id="12_iq7yc"]
 [ext_resource type="Script" path="res://scripts/editor/codespace.gd" id="13_5cq6c"]
+[ext_resource type="ArrayMesh" uid="uid://d1s2aexp843j0" path="res://assets/sprites/base_blocks/block_template.tres" id="14_ltyb3"]
 [ext_resource type="Script" path="res://scripts/editor/basic_block.gd" id="15_yusfm"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_icv28"]
@@ -204,10 +204,6 @@ layout_mode = 2
 
 [node name="Control" type="Control" parent="VBoxContainer/MainEditor/TabContainer/Code blocks/Blocks/Events"]
 layout_mode = 2
-script = ExtResource("12_iq7yc")
-
-[node name="Control2" type="Control" parent="VBoxContainer/MainEditor/TabContainer/Code blocks/Blocks/Events"]
-layout_mode = 2
 script = ExtResource("15_yusfm")
 
 [node name="Operators" type="VBoxContainer" parent="VBoxContainer/MainEditor/TabContainer/Code blocks/Blocks"]
@@ -352,3 +348,8 @@ vertical_alignment = 1
 [node name="Token" type="SpinBox" parent="VBoxContainer/MainEditor/Panel/VBoxContainer/PropertyContainer/MarginContainer2/GridContainer"]
 layout_mode = 2
 max_value = 4.0
+
+[node name="BlockTemplate" type="MeshInstance2D" parent="."]
+position = Vector2(243, 135)
+scale = Vector2(0.0934999, 0.0934999)
+mesh = ExtResource("14_ltyb3")
