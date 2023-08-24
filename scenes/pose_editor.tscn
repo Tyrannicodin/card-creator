@@ -4,7 +4,7 @@
 [ext_resource type="Script" path="res://scripts/pose_editor/master.gd" id="1_vqpyv"]
 [ext_resource type="Script" path="res://scripts/pose_editor/pose_editor_camera.gd" id="2_84yji"]
 [ext_resource type="Script" path="res://scripts/pose_editor/main_viewport_size.gd" id="3_1epss"]
-[ext_resource type="PackedScene" uid="uid://s0qousks114p" path="res://scenes/player_slim.tscn" id="3_e0nhy"]
+[ext_resource type="PackedScene" path="res://scenes/player_slim.tscn" id="3_e0nhy"]
 [ext_resource type="Script" path="res://scripts/pose_editor/skin_selector.gd" id="5_v6e1j"]
 
 [sub_resource type="Environment" id="Environment_vfflu"]

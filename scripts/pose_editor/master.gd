@@ -97,11 +97,6 @@ func _ready():
 		items.add_item(key)
 	_apply_skin(steve_texture, player_mesh[TypeSelected.WIDE])
 	_apply_skin(alex_texture, player_mesh[TypeSelected.SLIM])
-	
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
 
 func _on_x_value_changed(value):
 	if not pickup_changes:

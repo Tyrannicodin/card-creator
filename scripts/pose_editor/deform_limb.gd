@@ -11,12 +11,10 @@ var _current_bend = 0 as float
 var _bend_nodes = []
 var _joint_nodes = []
 
-# Called when the node enters the scene tree for the first time.
 func _ready():
 	_gen_mesh()
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _process(_d):
 	if update:
 		_gen_mesh()
 		update = false
@@ -44,22 +42,22 @@ func _gen_mesh():
 	mesh.clear_surfaces()
 	mdt.commit_to_surface(mesh)
 	
-func _rotateVertex(vertex: Vector3, rotation: Vector3, origin: Vector3) -> Vector3:
+func _rotateVertex(vertex: Vector3, new_rotation: Vector3, origin: Vector3) -> Vector3:
 	var r = {
 		"x": Vector3(
-			cos(rotation.y) * cos(rotation.z), 
-			sin(rotation.z), 
-			sin(rotation.y)
+			cos(new_rotation.y) * cos(new_rotation.z), 
+			sin(new_rotation.z), 
+			sin(new_rotation.y)
 			),
 		"y": Vector3(
-			-1 * sin(rotation.z), 
-			cos(rotation.x) * cos(rotation.z), 
-			sin(rotation.x)
+			-1 * sin(new_rotation.z), 
+			cos(new_rotation.x) * cos(new_rotation.z), 
+			sin(new_rotation.x)
 			),
 		"z": Vector3(
-			-1 * sin(rotation.y), 
-			-1 * sin(rotation.x), 
-			cos(rotation.x) * cos(rotation.y)
+			-1 * sin(new_rotation.y), 
+			-1 * sin(new_rotation.x), 
+			cos(new_rotation.x) * cos(new_rotation.y)
 			)
 		}
 		

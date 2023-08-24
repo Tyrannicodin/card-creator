@@ -127,6 +127,10 @@ func create_new():
 		
 		# Create custom dir and meta for card data
 		version_dir.make_dir("hc-tcg-cc")
+		version_dir.change_dir("hc-tcg-cc")
+		version_dir.make_dir("cards")
+		version_dir.make_dir("status effects")
+		version_dir.make_dir("packs")
 		var meta_file = FileAccess.open(
 			"user://versions/" + chosen_version + "/" + unique_name + "/hc-tcg-cc/meta.json",
 			FileAccess.WRITE
