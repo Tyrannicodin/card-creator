@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://c1ogyiok588hj"]
+[gd_scene load_steps=21 format=3 uid="uid://c1ogyiok588hj"]
 
 [ext_resource type="Theme" uid="uid://dde7m6q5cfe1u" path="res://assets/themes/main_theme.tres" id="1_ajqyn"]
 [ext_resource type="Theme" uid="uid://behexnarv56jn" path="res://assets/themes/main_theme_light.tres" id="2_ea765"]
@@ -16,6 +16,9 @@
 [ext_resource type="Script" path="res://scripts/editor/codespace.gd" id="13_5cq6c"]
 [ext_resource type="Texture2D" uid="uid://cl56jrgy086li" path="res://assets/sprites/base_blocks/actions.png" id="14_h8ovg"]
 [ext_resource type="Script" path="res://scripts/editor/basic_block.gd" id="15_yusfm"]
+[ext_resource type="PackedScene" uid="uid://b845nyhds8jwb" path="res://scenes/card.tscn" id="17_k0vv5"]
+[ext_resource type="Script" path="res://scripts/editor/card_container.gd" id="17_u5ocs"]
+[ext_resource type="Script" path="res://scripts/editor/bg_button.gd" id="19_sau5h"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_icv28"]
 bg_color = Color(0.227451, 0.227451, 0.227451, 1)
@@ -260,12 +263,14 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 10
 
-[node name="CardPlaceholder" type="ReferenceRect" parent="VBoxContainer/MainEditor/Panel/VBoxContainer"]
-custom_minimum_size = Vector2(50, 50)
+[node name="card_container" type="Panel" parent="VBoxContainer/MainEditor/Panel/VBoxContainer"]
+custom_minimum_size = Vector2(0, 300)
 layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-editor_only = false
+script = ExtResource("17_u5ocs")
+
+[node name="card" parent="VBoxContainer/MainEditor/Panel/VBoxContainer/card_container" instance=ExtResource("17_k0vv5")]
+position = Vector2(28, 34)
+scale = Vector2(0.45, 0.45)
 
 [node name="PropertyContainer" type="VBoxContainer" parent="VBoxContainer/MainEditor/Panel/VBoxContainer"]
 layout_mode = 2
@@ -274,46 +279,49 @@ theme_override_constants/separation = 0
 
 [node name="MarginContainer2" type="MarginContainer" parent="VBoxContainer/MainEditor/Panel/VBoxContainer/PropertyContainer"]
 layout_mode = 2
-theme_override_constants/margin_left = 5
+theme_override_constants/margin_left = 10
 theme_override_constants/margin_top = 5
-theme_override_constants/margin_right = 5
+theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 5
 
-[node name="GridContainer" type="GridContainer" parent="VBoxContainer/MainEditor/Panel/VBoxContainer/PropertyContainer/MarginContainer2"]
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/MainEditor/Panel/VBoxContainer/PropertyContainer/MarginContainer2"]
+layout_mode = 2
+
+[node name="GridContainer" type="GridContainer" parent="VBoxContainer/MainEditor/Panel/VBoxContainer/PropertyContainer/MarginContainer2/VBoxContainer"]
 layout_mode = 2
 columns = 2
 
-[node name="NameLabel" type="Label" parent="VBoxContainer/MainEditor/Panel/VBoxContainer/PropertyContainer/MarginContainer2/GridContainer"]
+[node name="NameLabel" type="Label" parent="VBoxContainer/MainEditor/Panel/VBoxContainer/PropertyContainer/MarginContainer2/VBoxContainer/GridContainer"]
 custom_minimum_size = Vector2(0, 35)
 layout_mode = 2
 text = "Name"
 vertical_alignment = 1
 
-[node name="Name" type="LineEdit" parent="VBoxContainer/MainEditor/Panel/VBoxContainer/PropertyContainer/MarginContainer2/GridContainer"]
+[node name="Name" type="LineEdit" parent="VBoxContainer/MainEditor/Panel/VBoxContainer/PropertyContainer/MarginContainer2/VBoxContainer/GridContainer"]
 custom_minimum_size = Vector2(0, 25)
 layout_mode = 2
 size_flags_horizontal = 3
 theme = ExtResource("2_ea765")
 
-[node name="PackLabel" type="Label" parent="VBoxContainer/MainEditor/Panel/VBoxContainer/PropertyContainer/MarginContainer2/GridContainer"]
+[node name="PackLabel" type="Label" parent="VBoxContainer/MainEditor/Panel/VBoxContainer/PropertyContainer/MarginContainer2/VBoxContainer/GridContainer"]
 custom_minimum_size = Vector2(0, 35)
 layout_mode = 2
 text = "Pack"
 vertical_alignment = 1
 
-[node name="Pack" type="LineEdit" parent="VBoxContainer/MainEditor/Panel/VBoxContainer/PropertyContainer/MarginContainer2/GridContainer"]
+[node name="Pack" type="LineEdit" parent="VBoxContainer/MainEditor/Panel/VBoxContainer/PropertyContainer/MarginContainer2/VBoxContainer/GridContainer"]
 custom_minimum_size = Vector2(0, 25)
 layout_mode = 2
 size_flags_horizontal = 3
 theme = ExtResource("2_ea765")
 
-[node name="TypeLabel" type="Label" parent="VBoxContainer/MainEditor/Panel/VBoxContainer/PropertyContainer/MarginContainer2/GridContainer"]
+[node name="TypeLabel" type="Label" parent="VBoxContainer/MainEditor/Panel/VBoxContainer/PropertyContainer/MarginContainer2/VBoxContainer/GridContainer"]
 custom_minimum_size = Vector2(0, 35)
 layout_mode = 2
 text = "Type"
 vertical_alignment = 1
 
-[node name="Type" type="OptionButton" parent="VBoxContainer/MainEditor/Panel/VBoxContainer/PropertyContainer/MarginContainer2/GridContainer"]
+[node name="Type" type="OptionButton" parent="VBoxContainer/MainEditor/Panel/VBoxContainer/PropertyContainer/MarginContainer2/VBoxContainer/GridContainer"]
 custom_minimum_size = Vector2(0, 25)
 layout_mode = 2
 theme = ExtResource("2_ea765")
@@ -339,24 +347,185 @@ popup/item_8/id = 8
 popup/item_9/text = "Terraform"
 popup/item_9/id = 9
 
-[node name="HealthLabel" type="Label" parent="VBoxContainer/MainEditor/Panel/VBoxContainer/PropertyContainer/MarginContainer2/GridContainer"]
+[node name="HealthLabel" type="Label" parent="VBoxContainer/MainEditor/Panel/VBoxContainer/PropertyContainer/MarginContainer2/VBoxContainer/GridContainer"]
 custom_minimum_size = Vector2(0, 35)
 layout_mode = 2
 text = "Health"
 vertical_alignment = 1
 
-[node name="Health" type="SpinBox" parent="VBoxContainer/MainEditor/Panel/VBoxContainer/PropertyContainer/MarginContainer2/GridContainer"]
+[node name="Health" type="SpinBox" parent="VBoxContainer/MainEditor/Panel/VBoxContainer/PropertyContainer/MarginContainer2/VBoxContainer/GridContainer"]
 layout_mode = 2
 min_value = 50.0
-max_value = 300.0
-value = 250.0
+max_value = 999.0
+value = 50.0
 
-[node name="TokenLabel" type="Label" parent="VBoxContainer/MainEditor/Panel/VBoxContainer/PropertyContainer/MarginContainer2/GridContainer"]
+[node name="TokenLabel" type="Label" parent="VBoxContainer/MainEditor/Panel/VBoxContainer/PropertyContainer/MarginContainer2/VBoxContainer/GridContainer"]
 custom_minimum_size = Vector2(0, 35)
 layout_mode = 2
 text = "Token Cost"
 vertical_alignment = 1
 
-[node name="Token" type="SpinBox" parent="VBoxContainer/MainEditor/Panel/VBoxContainer/PropertyContainer/MarginContainer2/GridContainer"]
+[node name="Token" type="SpinBox" parent="VBoxContainer/MainEditor/Panel/VBoxContainer/PropertyContainer/MarginContainer2/VBoxContainer/GridContainer"]
 layout_mode = 2
 max_value = 4.0
+
+[node name="Background" type="Label" parent="VBoxContainer/MainEditor/Panel/VBoxContainer/PropertyContainer/MarginContainer2/VBoxContainer/GridContainer"]
+custom_minimum_size = Vector2(0, 35)
+layout_mode = 2
+text = "Background"
+vertical_alignment = 1
+
+[node name="Button" type="Button" parent="VBoxContainer/MainEditor/Panel/VBoxContainer/PropertyContainer/MarginContainer2/VBoxContainer/GridContainer"]
+layout_mode = 2
+text = "Select file"
+script = ExtResource("19_sau5h")
+
+[node name="FileDialog" type="FileDialog" parent="VBoxContainer/MainEditor/Panel/VBoxContainer/PropertyContainer/MarginContainer2/VBoxContainer/GridContainer"]
+title = "Open a File"
+initial_position = 2
+size = Vector2i(500, 500)
+ok_button_text = "Open"
+file_mode = 0
+access = 2
+filters = PackedStringArray("*.png ; PNG Images")
+
+[node name="PrimaryMoveLabel" type="Label" parent="VBoxContainer/MainEditor/Panel/VBoxContainer/PropertyContainer/MarginContainer2/VBoxContainer"]
+custom_minimum_size = Vector2(0, 35)
+layout_mode = 2
+text = "Primary"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="primary_move_grid" type="GridContainer" parent="VBoxContainer/MainEditor/Panel/VBoxContainer/PropertyContainer/MarginContainer2/VBoxContainer"]
+layout_mode = 2
+columns = 2
+
+[node name="NameLabel" type="Label" parent="VBoxContainer/MainEditor/Panel/VBoxContainer/PropertyContainer/MarginContainer2/VBoxContainer/primary_move_grid"]
+custom_minimum_size = Vector2(0, 35)
+layout_mode = 2
+text = "Name"
+vertical_alignment = 1
+
+[node name="Name" type="LineEdit" parent="VBoxContainer/MainEditor/Panel/VBoxContainer/PropertyContainer/MarginContainer2/VBoxContainer/primary_move_grid"]
+custom_minimum_size = Vector2(0, 25)
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("2_ea765")
+
+[node name="DamageLabel" type="Label" parent="VBoxContainer/MainEditor/Panel/VBoxContainer/PropertyContainer/MarginContainer2/VBoxContainer/primary_move_grid"]
+custom_minimum_size = Vector2(0, 35)
+layout_mode = 2
+text = "Damage"
+vertical_alignment = 1
+
+[node name="Damage" type="SpinBox" parent="VBoxContainer/MainEditor/Panel/VBoxContainer/PropertyContainer/MarginContainer2/VBoxContainer/primary_move_grid"]
+layout_mode = 2
+max_value = 999.0
+
+[node name="TypedCostLabel" type="Label" parent="VBoxContainer/MainEditor/Panel/VBoxContainer/PropertyContainer/MarginContainer2/VBoxContainer/primary_move_grid"]
+custom_minimum_size = Vector2(0, 35)
+layout_mode = 2
+text = "Typed Cost"
+vertical_alignment = 1
+
+[node name="TypedCost" type="SpinBox" parent="VBoxContainer/MainEditor/Panel/VBoxContainer/PropertyContainer/MarginContainer2/VBoxContainer/primary_move_grid"]
+layout_mode = 2
+max_value = 3.0
+
+[node name="UntypedCostLabel" type="Label" parent="VBoxContainer/MainEditor/Panel/VBoxContainer/PropertyContainer/MarginContainer2/VBoxContainer/primary_move_grid"]
+custom_minimum_size = Vector2(0, 35)
+layout_mode = 2
+text = "Untyped Cost"
+vertical_alignment = 1
+
+[node name="UntypedCost" type="SpinBox" parent="VBoxContainer/MainEditor/Panel/VBoxContainer/PropertyContainer/MarginContainer2/VBoxContainer/primary_move_grid"]
+layout_mode = 2
+max_value = 3.0
+
+[node name="AbilityLabel" type="Label" parent="VBoxContainer/MainEditor/Panel/VBoxContainer/PropertyContainer/MarginContainer2/VBoxContainer/primary_move_grid"]
+custom_minimum_size = Vector2(0, 35)
+layout_mode = 2
+text = "Ability"
+vertical_alignment = 1
+
+[node name="Ability" type="LineEdit" parent="VBoxContainer/MainEditor/Panel/VBoxContainer/PropertyContainer/MarginContainer2/VBoxContainer/primary_move_grid"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="SecondaryMoveLabel" type="Label" parent="VBoxContainer/MainEditor/Panel/VBoxContainer/PropertyContainer/MarginContainer2/VBoxContainer"]
+custom_minimum_size = Vector2(0, 35)
+layout_mode = 2
+text = "Secondary"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="secondary_move_grid" type="GridContainer" parent="VBoxContainer/MainEditor/Panel/VBoxContainer/PropertyContainer/MarginContainer2/VBoxContainer"]
+layout_mode = 2
+columns = 2
+
+[node name="NameLabel" type="Label" parent="VBoxContainer/MainEditor/Panel/VBoxContainer/PropertyContainer/MarginContainer2/VBoxContainer/secondary_move_grid"]
+custom_minimum_size = Vector2(0, 35)
+layout_mode = 2
+text = "Name"
+vertical_alignment = 1
+
+[node name="Name" type="LineEdit" parent="VBoxContainer/MainEditor/Panel/VBoxContainer/PropertyContainer/MarginContainer2/VBoxContainer/secondary_move_grid"]
+custom_minimum_size = Vector2(0, 25)
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("2_ea765")
+
+[node name="DamageLabel" type="Label" parent="VBoxContainer/MainEditor/Panel/VBoxContainer/PropertyContainer/MarginContainer2/VBoxContainer/secondary_move_grid"]
+custom_minimum_size = Vector2(0, 35)
+layout_mode = 2
+text = "Damage"
+vertical_alignment = 1
+
+[node name="Damage" type="SpinBox" parent="VBoxContainer/MainEditor/Panel/VBoxContainer/PropertyContainer/MarginContainer2/VBoxContainer/secondary_move_grid"]
+layout_mode = 2
+max_value = 999.0
+
+[node name="TypedCostLabel" type="Label" parent="VBoxContainer/MainEditor/Panel/VBoxContainer/PropertyContainer/MarginContainer2/VBoxContainer/secondary_move_grid"]
+custom_minimum_size = Vector2(0, 35)
+layout_mode = 2
+text = "Typed Cost"
+vertical_alignment = 1
+
+[node name="TypedCost" type="SpinBox" parent="VBoxContainer/MainEditor/Panel/VBoxContainer/PropertyContainer/MarginContainer2/VBoxContainer/secondary_move_grid"]
+layout_mode = 2
+max_value = 3.0
+
+[node name="UntypedCostLabel" type="Label" parent="VBoxContainer/MainEditor/Panel/VBoxContainer/PropertyContainer/MarginContainer2/VBoxContainer/secondary_move_grid"]
+custom_minimum_size = Vector2(0, 35)
+layout_mode = 2
+text = "Untyped Cost"
+vertical_alignment = 1
+
+[node name="UntypedCost" type="SpinBox" parent="VBoxContainer/MainEditor/Panel/VBoxContainer/PropertyContainer/MarginContainer2/VBoxContainer/secondary_move_grid"]
+layout_mode = 2
+max_value = 3.0
+
+[node name="AbilityLabel" type="Label" parent="VBoxContainer/MainEditor/Panel/VBoxContainer/PropertyContainer/MarginContainer2/VBoxContainer/secondary_move_grid"]
+custom_minimum_size = Vector2(0, 35)
+layout_mode = 2
+text = "Ability"
+vertical_alignment = 1
+
+[node name="Ability" type="LineEdit" parent="VBoxContainer/MainEditor/Panel/VBoxContainer/PropertyContainer/MarginContainer2/VBoxContainer/secondary_move_grid"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[connection signal="text_changed" from="VBoxContainer/MainEditor/Panel/VBoxContainer/PropertyContainer/MarginContainer2/VBoxContainer/GridContainer/Name" to="VBoxContainer/MainEditor/Panel/VBoxContainer/card_container" method="_on_name_text_changed"]
+[connection signal="item_selected" from="VBoxContainer/MainEditor/Panel/VBoxContainer/PropertyContainer/MarginContainer2/VBoxContainer/GridContainer/Type" to="VBoxContainer/MainEditor/Panel/VBoxContainer/card_container" method="_on_type_item_selected"]
+[connection signal="value_changed" from="VBoxContainer/MainEditor/Panel/VBoxContainer/PropertyContainer/MarginContainer2/VBoxContainer/GridContainer/Health" to="VBoxContainer/MainEditor/Panel/VBoxContainer/card_container" method="_on_health_value_changed"]
+[connection signal="file_selected" from="VBoxContainer/MainEditor/Panel/VBoxContainer/PropertyContainer/MarginContainer2/VBoxContainer/GridContainer/FileDialog" to="VBoxContainer/MainEditor/Panel/VBoxContainer/card_container" method="_on_file_dialog_file_selected"]
+[connection signal="text_changed" from="VBoxContainer/MainEditor/Panel/VBoxContainer/PropertyContainer/MarginContainer2/VBoxContainer/primary_move_grid/Name" to="VBoxContainer/MainEditor/Panel/VBoxContainer/card_container" method="_on_primary_name_text_changed"]
+[connection signal="value_changed" from="VBoxContainer/MainEditor/Panel/VBoxContainer/PropertyContainer/MarginContainer2/VBoxContainer/primary_move_grid/Damage" to="VBoxContainer/MainEditor/Panel/VBoxContainer/card_container" method="_on_primary_damage_value_changed"]
+[connection signal="value_changed" from="VBoxContainer/MainEditor/Panel/VBoxContainer/PropertyContainer/MarginContainer2/VBoxContainer/primary_move_grid/TypedCost" to="VBoxContainer/MainEditor/Panel/VBoxContainer/card_container" method="_on_primary_typed_value_changed"]
+[connection signal="value_changed" from="VBoxContainer/MainEditor/Panel/VBoxContainer/PropertyContainer/MarginContainer2/VBoxContainer/primary_move_grid/UntypedCost" to="VBoxContainer/MainEditor/Panel/VBoxContainer/card_container" method="_on_primary_untyped_value_changed"]
+[connection signal="text_changed" from="VBoxContainer/MainEditor/Panel/VBoxContainer/PropertyContainer/MarginContainer2/VBoxContainer/primary_move_grid/Ability" to="VBoxContainer/MainEditor/Panel/VBoxContainer/card_container" method="_on_primary_ability_text_changed"]
+[connection signal="text_changed" from="VBoxContainer/MainEditor/Panel/VBoxContainer/PropertyContainer/MarginContainer2/VBoxContainer/secondary_move_grid/Name" to="VBoxContainer/MainEditor/Panel/VBoxContainer/card_container" method="_on_secondary_name_text_changed"]
+[connection signal="value_changed" from="VBoxContainer/MainEditor/Panel/VBoxContainer/PropertyContainer/MarginContainer2/VBoxContainer/secondary_move_grid/Damage" to="VBoxContainer/MainEditor/Panel/VBoxContainer/card_container" method="_on_secondary_damage_value_changed"]
+[connection signal="value_changed" from="VBoxContainer/MainEditor/Panel/VBoxContainer/PropertyContainer/MarginContainer2/VBoxContainer/secondary_move_grid/TypedCost" to="VBoxContainer/MainEditor/Panel/VBoxContainer/card_container" method="_on_secondary_typed_value_changed"]
+[connection signal="value_changed" from="VBoxContainer/MainEditor/Panel/VBoxContainer/PropertyContainer/MarginContainer2/VBoxContainer/secondary_move_grid/UntypedCost" to="VBoxContainer/MainEditor/Panel/VBoxContainer/card_container" method="_on_secondary_untyped_value_changed"]
+[connection signal="text_changed" from="VBoxContainer/MainEditor/Panel/VBoxContainer/PropertyContainer/MarginContainer2/VBoxContainer/secondary_move_grid/Ability" to="VBoxContainer/MainEditor/Panel/VBoxContainer/card_container" method="_on_secondary_ability_text_changed"]
