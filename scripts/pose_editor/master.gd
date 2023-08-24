@@ -115,7 +115,11 @@ func save():
 
 func load_pose(path:String):
 	var packed_pose_scene:PackedScene = load(path)
+	if not packed_pose_scene is PackedScene and packed_pose_scene:
+		return
 	var loading_pose = packed_pose_scene.instantiate()
+	if not loading_pose.name in ["player_full", "player_slim"]:
+		return #TODO: More advanced checks on scene we are importing
 	_on_skintype_item_selected(0 if loading_pose.name == "player_full" else 1)
 	get_node(loading_pose.name as String).queue_free()
 	add_child(loading_pose)
