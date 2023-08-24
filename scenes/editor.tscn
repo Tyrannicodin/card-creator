@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://c1ogyiok588hj"]
+[gd_scene load_steps=16 format=3 uid="uid://c1ogyiok588hj"]
 
 [ext_resource type="Theme" uid="uid://dde7m6q5cfe1u" path="res://assets/themes/main_theme.tres" id="1_ajqyn"]
 [ext_resource type="Theme" uid="uid://behexnarv56jn" path="res://assets/themes/main_theme_light.tres" id="2_ea765"]
@@ -13,6 +13,7 @@
 [ext_resource type="Texture2D" uid="uid://cus8tonht43hc" path="res://assets/sprites/color_bars/keys.png" id="10_rxs24"]
 [ext_resource type="Script" path="res://scripts/editor/blocks/events/get_attacks.gd" id="12_7tr6f"]
 [ext_resource type="Script" path="res://scripts/editor/blocks/codespace.gd" id="13_5cq6c"]
+[ext_resource type="Script" path="res://scripts/editor/blocks/basic_block.gd" id="15_yusfm"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_icv28"]
 bg_color = Color(0.227451, 0.227451, 0.227451, 1)
@@ -212,6 +213,10 @@ layout_mode = 2
 [node name="Actions" type="VBoxContainer" parent="VBoxContainer/MainEditor/TabContainer/Code blocks/Blocks"]
 visible = false
 layout_mode = 2
+
+[node name="Control" type="Control" parent="VBoxContainer/MainEditor/TabContainer/Code blocks/Blocks/Actions"]
+layout_mode = 2
+script = ExtResource("15_yusfm")
 
 [node name="Control" type="VBoxContainer" parent="VBoxContainer/MainEditor/TabContainer/Code blocks/Blocks"]
 visible = false

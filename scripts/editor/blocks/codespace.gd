@@ -26,6 +26,7 @@ func _can_drop_data(at_position, data):
 	return true
 
 func _drop_data(at_position, data):
+	data["node"].show()
 	clear_highlight.emit()
 	var closest:Array[Array] = []
 	for node in available_connections:
@@ -35,8 +36,9 @@ func _drop_data(at_position, data):
 		func(item1:Array, item2:Array):
 			return item1[1].distance_to(at_position - data["offset"]) < item2[1].distance_to(at_position - data["offset"])
 	)
-	available_connections.append(data["node"])
-	clear_highlight.connect(data["node"].unhighlight)
+	if data["new"]:
+		available_connections.append(data["node"])
+		clear_highlight.connect(data["node"].unhighlight)
 	var snap_to
 	for connection in closest:
 		if connection[1].distance_to(at_position - data["offset"]) < snap_distance and connection[0].connect_at(data["node"], connection[2]):
@@ -46,4 +48,5 @@ func _drop_data(at_position, data):
 		return
 	data["node"].position = at_position - data["offset"]
 	data["node"].placed = true
-	add_child(data["node"])
+	if data["new"]:
+		add_child(data["node"])

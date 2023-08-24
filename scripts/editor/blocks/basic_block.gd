@@ -9,7 +9,7 @@ var initial_connections := [Vector2(35, 50)]
 
 var block_template_middle = preload("res://assets/sprites/base_blocks/block_template.tres")
 
-var is_copy := false
+var block_generated := false
 var fields:Array[String] = ["Pick", "INPUT_SPACE"]
 var color := Color.RED
 
@@ -23,20 +23,32 @@ const BlockColors = {
 }
 
 func _ready():
-	if is_copy == false:
+	if not block_generated:
 		_generate_block(fields)
+		block_generated = true
 
 func _get_drag_data(at_position):
 	if placed:
-		return
+		while get_parent().name != "Codespace":
+			reparent(get_parent().get_parent())
+		position = Vector2(-100, -100)
+		var preview = Control.new()
+		var copy = duplicate()
+		preview.add_child(copy)
+		copy.position = -at_position
+		set_drag_preview(preview)
+		hide()
+		return {
+			"node": self,
+			"offset": at_position,
+			"new": false
+		}
 	var preview = Control.new()
 	var copy = duplicate()
-	copy.is_copy = true
 	preview.add_child(copy)
-	copy.position -= at_position
+	copy.position = -at_position
 	set_drag_preview(preview)
 	var to_place = duplicate()
-	to_place.is_copy = true
 	return {
 		"node": to_place,
 		"offset": at_position,
@@ -47,9 +59,11 @@ func _generate_block(block_fields: Array[String]):
 	var mdt = MeshDataTool.new()
 	var m = MeshInstance2D.new()
 	m.mesh = block_template_middle.duplicate()
+	m.use_parent_material = true
 	
 	var panel = Panel.new()
 	panel.mouse_filter = Control.MOUSE_FILTER_PASS
+	panel.use_parent_material = true
 	add_child(panel)
 	panel.add_child(m)
 	mdt.create_from_surface(m.mesh, 0)
@@ -102,7 +116,7 @@ func available_connections(offset:Vector2 = Vector2()) -> Array:
 	return current_available_connections
 
 func can_connect(block:BasicBlock) -> bool:
-	if not block.upper_connection or block.placed:
+	if not block.upper_connection or block == self:
 		return false
 	return true
 
@@ -110,9 +124,12 @@ func can_connect(block:BasicBlock) -> bool:
 func connect_at(block:BasicBlock, connection:Vector2) -> bool:
 	if not can_connect(block):
 		return false
-	block.placed = true
 	block.name = str(connection.x) + "_" + str(connection.y)
-	add_child(block)
+	if block.placed:
+		block.reparent(self)
+	else:
+		block.placed = true
+		add_child(block)
 	block.position = connection - block.upper_connection
 	return true
 
