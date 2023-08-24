@@ -128,8 +128,8 @@ size = Vector2i(400, 400)
 render_target_update_mode = 4
 
 [node name="Camera3D" type="Camera3D" parent="HBoxContainer/RightContainer/PanelContainer/SubViewportContainer2/SubViewport"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.24388, -0.756171)
-fov = 76.7756
+transform = Transform3D(1, 0, 0, 0, 0.999667, 0.0257931, 0, -0.0257931, 0.999667, 0, 2.2686, 1.26064)
+fov = 38.3
 
 [node name="GridContainer" type="GridContainer" parent="HBoxContainer/RightContainer"]
 layout_mode = 2
