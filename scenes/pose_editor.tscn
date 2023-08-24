@@ -1,8 +1,13 @@
-[gd_scene load_steps=6 format=3 uid="uid://bgpbvjwjyab2g"]
+[gd_scene load_steps=10 format=3 uid="uid://bgpbvjwjyab2g"]
 
-[ext_resource type="PackedScene" path="res://scenes/player_full.tscn" id="1_7077t"]
+[ext_resource type="PackedScene" uid="uid://bwwax6ypmwh3q" path="res://scenes/player_full.tscn" id="1_7077t"]
+[ext_resource type="Script" path="res://scripts/pose_editor/master.gd" id="1_vqpyv"]
 [ext_resource type="Script" path="res://scripts/pose_editor/pose_editor_camera.gd" id="2_84yji"]
-[ext_resource type="Script" path="res://scripts/pose_editor/rotation_editor.gd" id="3_oypvs"]
+[ext_resource type="Script" path="res://scripts/pose_editor/main_viewport_size.gd" id="3_1epss"]
+[ext_resource type="PackedScene" uid="uid://s0qousks114p" path="res://scenes/player_slim.tscn" id="3_e0nhy"]
+[ext_resource type="Script" path="res://scripts/pose_editor/skin_selector.gd" id="5_v6e1j"]
+
+[sub_resource type="Theme" id="Theme_ng688"]
 
 [sub_resource type="Environment" id="Environment_vfflu"]
 background_mode = 1
@@ -14,70 +19,165 @@ ambient_light_energy = 0.53
 [sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_h6q85"]
 
 [node name="pose_editor" type="Node2D"]
+script = ExtResource("1_vqpyv")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, -0.916481, 0.400077, 0, -0.400077, -0.916481, 0, 2.52991, -2.47674)
+transform = Transform3D(-0.965926, -0.103548, -0.237203, 0, -0.916481, 0.400077, -0.258819, 0.386445, 0.885253, 0, 3.65154, -1.89555)
 light_energy = 0.543
 
+[node name="player_full" parent="." instance=ExtResource("1_7077t")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 1.20628, -2.34576)
+
+[node name="player_slim" parent="." instance=ExtResource("3_e0nhy")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 1.20832, -2.34686)
+visible = false
+
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
-offset_right = 40.0
-offset_bottom = 40.0
+offset_right = 1920.0
+offset_bottom = 1080.0
+theme_override_constants/separation = 0
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="HBoxContainer"]
-environment = SubResource("Environment_vfflu")
-camera_attributes = SubResource("CameraAttributesPractical_h6q85")
-
-[node name="FreeLookCamera" type="Camera3D" parent="HBoxContainer"]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 1.20628, -2.34576)
-current = true
-script = ExtResource("2_84yji")
-
-[node name="player_full" parent="HBoxContainer" instance=ExtResource("1_7077t")]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 1.20628, -2.34576)
-
-[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer"]
+[node name="LeftContainer" type="VBoxContainer" parent="HBoxContainer"]
 custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
-script = ExtResource("3_oypvs")
+theme = SubResource("Theme_ng688")
+theme_override_constants/separation = 0
 
-[node name="items" type="ItemList" parent="HBoxContainer/VBoxContainer"]
+[node name="items" type="ItemList" parent="HBoxContainer/LeftContainer"]
 custom_minimum_size = Vector2(0, 200)
 layout_mode = 2
 
-[node name="x_label" type="Label" parent="HBoxContainer/VBoxContainer"]
+[node name="GridContainer" type="GridContainer" parent="HBoxContainer/LeftContainer"]
 layout_mode = 2
-text = "X Value"
+columns = 2
 
-[node name="x" type="HSlider" parent="HBoxContainer/VBoxContainer"]
+[node name="x_label" type="Label" parent="HBoxContainer/LeftContainer/GridContainer"]
 layout_mode = 2
+text = "X Rot"
+
+[node name="x" type="HSlider" parent="HBoxContainer/LeftContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
 max_value = 360.0
 
-[node name="y_label" type="Label" parent="HBoxContainer/VBoxContainer"]
+[node name="y_label" type="Label" parent="HBoxContainer/LeftContainer/GridContainer"]
 layout_mode = 2
-text = "Y Value"
+text = "Y Rot"
 
-[node name="y" type="HSlider" parent="HBoxContainer/VBoxContainer"]
+[node name="y" type="HSlider" parent="HBoxContainer/LeftContainer/GridContainer"]
 layout_mode = 2
+size_flags_vertical = 1
 max_value = 360.0
 
-[node name="z_label" type="Label" parent="HBoxContainer/VBoxContainer"]
+[node name="z_label" type="Label" parent="HBoxContainer/LeftContainer/GridContainer"]
 layout_mode = 2
-text = "Z Value"
+text = "Z Rot"
 
-[node name="z" type="HSlider" parent="HBoxContainer/VBoxContainer"]
+[node name="z" type="HSlider" parent="HBoxContainer/LeftContainer/GridContainer"]
 layout_mode = 2
+size_flags_vertical = 1
 max_value = 360.0
 
-[node name="bend_label" type="Label" parent="HBoxContainer/VBoxContainer"]
+[node name="bend_label" type="Label" parent="HBoxContainer/LeftContainer/GridContainer"]
 layout_mode = 2
-text = "Bend Value"
+text = "Bend"
 
-[node name="bend" type="HSlider" parent="HBoxContainer/VBoxContainer"]
+[node name="bend" type="HSlider" parent="HBoxContainer/LeftContainer/GridContainer"]
 layout_mode = 2
+size_flags_vertical = 1
 max_value = 50.0
 
-[connection signal="item_selected" from="HBoxContainer/VBoxContainer/items" to="HBoxContainer/VBoxContainer" method="_on_items_item_selected"]
-[connection signal="value_changed" from="HBoxContainer/VBoxContainer/x" to="HBoxContainer/VBoxContainer" method="_on_x_value_changed"]
-[connection signal="value_changed" from="HBoxContainer/VBoxContainer/y" to="HBoxContainer/VBoxContainer" method="_on_y_value_changed"]
-[connection signal="value_changed" from="HBoxContainer/VBoxContainer/z" to="HBoxContainer/VBoxContainer" method="_on_z_value_changed"]
-[connection signal="value_changed" from="HBoxContainer/VBoxContainer/bend" to="HBoxContainer/VBoxContainer" method="_on_bend_value_changed"]
+[node name="SubViewportContainer" type="SubViewportContainer" parent="HBoxContainer"]
+layout_mode = 2
+
+[node name="SubViewport" type="SubViewport" parent="HBoxContainer/SubViewportContainer"]
+handle_input_locally = false
+size = Vector2i(1300, 1080)
+render_target_update_mode = 4
+script = ExtResource("3_1epss")
+
+[node name="FreeLookCamera" type="Camera3D" parent="HBoxContainer/SubViewportContainer/SubViewport"]
+transform = Transform3D(1, 0, 1.74846e-07, 0, 1, 0, -1.74846e-07, 0, 1, 0, 2.33276, 0.666622)
+current = true
+script = ExtResource("2_84yji")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="HBoxContainer/SubViewportContainer/SubViewport"]
+environment = SubResource("Environment_vfflu")
+camera_attributes = SubResource("CameraAttributesPractical_h6q85")
+
+[node name="RightContainer" type="VBoxContainer" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+
+[node name="Label" type="Label" parent="HBoxContainer/RightContainer"]
+layout_mode = 2
+text = "Pose Render Preview"
+vertical_alignment = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="HBoxContainer/RightContainer"]
+layout_mode = 2
+
+[node name="SubViewportContainer2" type="SubViewportContainer" parent="HBoxContainer/RightContainer/PanelContainer"]
+layout_mode = 2
+
+[node name="SubViewport" type="SubViewport" parent="HBoxContainer/RightContainer/PanelContainer/SubViewportContainer2"]
+transparent_bg = true
+handle_input_locally = false
+size = Vector2i(400, 400)
+render_target_update_mode = 4
+
+[node name="Camera3D" type="Camera3D" parent="HBoxContainer/RightContainer/PanelContainer/SubViewportContainer2/SubViewport"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.24388, -0.756171)
+fov = 76.7756
+
+[node name="GridContainer" type="GridContainer" parent="HBoxContainer/RightContainer"]
+layout_mode = 2
+size_flags_vertical = 0
+columns = 2
+
+[node name="Label" type="Label" parent="HBoxContainer/RightContainer/GridContainer"]
+layout_mode = 2
+text = "Player Skin"
+vertical_alignment = 2
+
+[node name="Button" type="Button" parent="HBoxContainer/RightContainer/GridContainer"]
+layout_mode = 2
+text = "Select File..."
+script = ExtResource("5_v6e1j")
+
+[node name="Label2" type="Label" parent="HBoxContainer/RightContainer/GridContainer"]
+layout_mode = 2
+text = "Type"
+vertical_alignment = 2
+
+[node name="skin+type" type="OptionButton" parent="HBoxContainer/RightContainer/GridContainer"]
+layout_mode = 2
+item_count = 2
+selected = 0
+popup/item_0/text = "Wide"
+popup/item_0/id = 0
+popup/item_1/text = "Slim"
+popup/item_1/id = 1
+
+[node name="skin_image" type="TextureRect" parent="HBoxContainer/RightContainer"]
+layout_mode = 2
+expand_mode = 1
+stretch_mode = 2
+
+[node name="FileDialog" type="FileDialog" parent="HBoxContainer/RightContainer"]
+title = "Open a File"
+initial_position = 2
+size = Vector2i(500, 500)
+ok_button_text = "Open"
+file_mode = 0
+access = 2
+filters = PackedStringArray("*.png ; PNG Images")
+
+[connection signal="item_selected" from="HBoxContainer/LeftContainer/items" to="." method="_on_items_item_selected"]
+[connection signal="value_changed" from="HBoxContainer/LeftContainer/GridContainer/x" to="." method="_on_x_value_changed"]
+[connection signal="value_changed" from="HBoxContainer/LeftContainer/GridContainer/y" to="." method="_on_y_value_changed"]
+[connection signal="value_changed" from="HBoxContainer/LeftContainer/GridContainer/z" to="." method="_on_z_value_changed"]
+[connection signal="value_changed" from="HBoxContainer/LeftContainer/GridContainer/bend" to="." method="_on_bend_value_changed"]
+[connection signal="item_selected" from="HBoxContainer/RightContainer/GridContainer/skin+type" to="." method="_on_skintype_item_selected"]
+[connection signal="file_selected" from="HBoxContainer/RightContainer/FileDialog" to="." method="_on_file_dialog_file_selected"]

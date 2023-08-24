@@ -6,9 +6,6 @@ class_name FreeLookCamera extends Camera3D
 const SHIFT_MULTIPLIER = 2.5
 const ALT_MULTIPLIER = 1.0 / SHIFT_MULTIPLIER
 
-#@onready var main_camera = $"../../../main_viewport/SubViewport/main_camera"
-@onready var r_arm_collision = $"../../../r_arm/arm/static_body/collision"
-
 @export_range(0.0, 1.0) var sensitivity: float = 0.25
 
 # Mouse state
