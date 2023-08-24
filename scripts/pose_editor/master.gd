@@ -129,6 +129,8 @@ func _on_items_item_selected(index):
 	bend_slider.visible = true
 	
 	selected_item = player_mesh[type_selected][items.get_item_text(index)]
+	selected_item.underlay.set_layer_mask_value(2, true)
+	selected_item.overlay.set_layer_mask_value(2, true)
 	x_slider.value = selected_item.base.rotation_degrees.x
 	y_slider.value = selected_item.base.rotation_degrees.y
 	z_slider.value = selected_item.base.rotation_degrees.z

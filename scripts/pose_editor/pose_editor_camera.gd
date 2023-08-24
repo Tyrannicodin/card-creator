@@ -101,8 +101,6 @@ func _update_movement(delta):
 		_velocity.z = clamp(_velocity.z + offset.z, -_vel_multiplier, _vel_multiplier)
 	
 		translate(_velocity * delta * speed_multi)
-		
-	#main_camera.position = position
 
 # Updates mouse look 
 func _update_mouselook():
@@ -119,8 +117,6 @@ func _update_mouselook():
 	
 		rotate_y(deg_to_rad(-yaw))
 		rotate_object_local(Vector3(1,0,0), deg_to_rad(-pitch))
-		
-	#main_camera.rotation = rotation
 	
 func _select_object():
 	var space_state = get_world_3d().direct_space_state
