@@ -7,8 +7,6 @@
 [ext_resource type="PackedScene" uid="uid://s0qousks114p" path="res://scenes/player_slim.tscn" id="3_e0nhy"]
 [ext_resource type="Script" path="res://scripts/pose_editor/skin_selector.gd" id="5_v6e1j"]
 
-[sub_resource type="Theme" id="Theme_ng688"]
-
 [sub_resource type="Environment" id="Environment_vfflu"]
 background_mode = 1
 background_color = Color(0.529412, 0.647059, 1, 1)
@@ -17,6 +15,8 @@ ambient_light_color = Color(1, 1, 1, 1)
 ambient_light_energy = 0.53
 
 [sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_h6q85"]
+
+[sub_resource type="Theme" id="Theme_ng688"]
 
 [node name="pose_editor" type="Node2D"]
 script = ExtResource("1_vqpyv")
@@ -32,9 +32,30 @@ transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 1.2
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 1.20832, -2.34686)
 visible = false
 
+[node name="SubViewportContainer" type="SubViewportContainer" parent="."]
+offset_right = 1300.0
+offset_bottom = 1080.0
+
+[node name="SubViewport" type="SubViewport" parent="SubViewportContainer"]
+handle_input_locally = false
+size = Vector2i(1300, 1080)
+render_target_update_mode = 4
+script = ExtResource("3_1epss")
+
+[node name="FreeLookCamera" type="Camera3D" parent="SubViewportContainer/SubViewport"]
+transform = Transform3D(1, 0, 1.74846e-07, 0, 1, 0, -1.74846e-07, 0, 1, 0, 2.33276, 0.666622)
+cull_mask = 1047553
+current = true
+script = ExtResource("2_84yji")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="SubViewportContainer/SubViewport"]
+environment = SubResource("Environment_vfflu")
+camera_attributes = SubResource("CameraAttributesPractical_h6q85")
+
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
 offset_right = 1920.0
 offset_bottom = 1080.0
+mouse_filter = 2
 theme_override_constants/separation = 0
 
 [node name="LeftContainer" type="VBoxContainer" parent="HBoxContainer"]
@@ -88,27 +109,9 @@ layout_mode = 2
 size_flags_vertical = 1
 max_value = 50.0
 
-[node name="SubViewportContainer" type="SubViewportContainer" parent="HBoxContainer"]
-layout_mode = 2
-
-[node name="SubViewport" type="SubViewport" parent="HBoxContainer/SubViewportContainer"]
-handle_input_locally = false
-size = Vector2i(1300, 1080)
-render_target_update_mode = 4
-script = ExtResource("3_1epss")
-
-[node name="FreeLookCamera" type="Camera3D" parent="HBoxContainer/SubViewportContainer/SubViewport"]
-transform = Transform3D(1, 0, 1.74846e-07, 0, 1, 0, -1.74846e-07, 0, 1, 0, 2.33276, 0.666622)
-current = true
-script = ExtResource("2_84yji")
-
-[node name="WorldEnvironment" type="WorldEnvironment" parent="HBoxContainer/SubViewportContainer/SubViewport"]
-environment = SubResource("Environment_vfflu")
-camera_attributes = SubResource("CameraAttributesPractical_h6q85")
-
 [node name="RightContainer" type="VBoxContainer" parent="HBoxContainer"]
 layout_mode = 2
-size_flags_horizontal = 8
+size_flags_horizontal = 10
 
 [node name="Label" type="Label" parent="HBoxContainer/RightContainer"]
 layout_mode = 2
@@ -128,8 +131,9 @@ size = Vector2i(400, 400)
 render_target_update_mode = 4
 
 [node name="Camera3D" type="Camera3D" parent="HBoxContainer/RightContainer/PanelContainer/SubViewportContainer2/SubViewport"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.24388, -0.756171)
-fov = 76.7756
+transform = Transform3D(1, 0, 0, 0, 0.999667, 0.0257931, 0, -0.0257931, 0.999667, 0, 2.32649, 1.88387)
+cull_mask = 1047553
+fov = 30.0
 
 [node name="GridContainer" type="GridContainer" parent="HBoxContainer/RightContainer"]
 layout_mode = 2
@@ -173,6 +177,9 @@ ok_button_text = "Open"
 file_mode = 0
 access = 2
 filters = PackedStringArray("*.png ; PNG Images")
+
+[node name="Panel" type="Panel" parent="HBoxContainer"]
+layout_mode = 2
 
 [connection signal="item_selected" from="HBoxContainer/LeftContainer/items" to="." method="_on_items_item_selected"]
 [connection signal="value_changed" from="HBoxContainer/LeftContainer/GridContainer/x" to="." method="_on_x_value_changed"]

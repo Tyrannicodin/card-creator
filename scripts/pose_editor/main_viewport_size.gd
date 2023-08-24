@@ -1,7 +1,7 @@
 extends SubViewport
 
-@onready var left = $"../../LeftContainer"
-@onready var right = $"../../RightContainer"
+@onready var left = $"../../../LeftContainer"
+@onready var right = $"../../../RightContainer"
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -10,5 +10,4 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	size.x = get_window().size.x - (left.size.x + right.size.x)
-	size.y = get_window().size.y
+	size = get_window().size
