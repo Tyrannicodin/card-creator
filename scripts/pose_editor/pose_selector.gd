@@ -1,6 +1,6 @@
 extends Button
 
-@onready var file_dialog = $"../../SkinFileDialog"
+@onready var file_dialog = $"../../LoadPoseFileDialog"
 
 
 func _pressed():
