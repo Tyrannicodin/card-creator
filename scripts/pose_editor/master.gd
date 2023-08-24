@@ -19,12 +19,12 @@ var alex_texture = preload("res://assets/models/alex.png")
 @onready var z_slider = $HBoxContainer/LeftContainer/GridContainer/z
 @onready var pickup_changes = false
 
-enum TypeSelected {WIDE, SLIM}
-var type_selected = TypeSelected.WIDE
+enum SkinType {WIDE, SLIM}
+var type_selected = SkinType.WIDE
 
 # Body parts
 @onready var player_mesh = {
-	TypeSelected.WIDE : {
+	SkinType.WIDE : {
 		"Head" : {
 			"base" : player_wide.get_node("Node/Head/"),
 			"underlay": player_wide.get_node("Node/Head/Head_001"),
@@ -56,7 +56,7 @@ var type_selected = TypeSelected.WIDE
 			"overlay": player_wide.get_node("Node/LeftLeg/Left Leg Layer")
 		}
 	},
-	TypeSelected.SLIM : {
+	SkinType.SLIM : {
 		"Head" : {
 			"base" : player_slim.get_node("Node/Head/"),
 			"underlay": player_slim.get_node("Node/Head/Head_001"),
@@ -92,11 +92,11 @@ var type_selected = TypeSelected.WIDE
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	type_selected = TypeSelected.WIDE
+	type_selected = SkinType.WIDE
 	for key in player_mesh[type_selected]:
 		items.add_item(key)
-	_apply_skin(steve_texture, player_mesh[TypeSelected.WIDE])
-	_apply_skin(alex_texture, player_mesh[TypeSelected.SLIM])
+	_apply_skin(steve_texture, player_mesh[SkinType.WIDE])
+	_apply_skin(alex_texture, player_mesh[SkinType.SLIM])
 
 func _on_x_value_changed(value):
 	if not pickup_changes:
@@ -157,7 +157,7 @@ func _on_file_dialog_file_selected(path):
 	texture.set_image(image)
 	_apply_skin(texture, player_mesh[type_selected])
 	
-func _carry_info(from_mesh: TypeSelected, to_mesh: TypeSelected):
+func _carry_info(from_mesh: SkinType, to_mesh: SkinType):
 	var parts_dict = player_mesh[from_mesh]
 	for key in parts_dict:
 		if parts_dict[key] == selected_item:
@@ -177,10 +177,10 @@ func _on_skintype_item_selected(index):
 	if index == 0:
 		player_slim.visible = false
 		player_wide.visible = true
-		type_selected = TypeSelected.WIDE
-		_carry_info(TypeSelected.SLIM, TypeSelected.WIDE)
+		type_selected = SkinType.WIDE
+		_carry_info(SkinType.SLIM, SkinType.WIDE)
 	if index == 1:
 		player_wide.visible = false
 		player_slim.visible = true
-		type_selected = TypeSelected.SLIM
-		_carry_info(TypeSelected.WIDE, TypeSelected.SLIM)
+		type_selected = SkinType.SLIM
+		_carry_info(SkinType.WIDE, SkinType.SLIM)
