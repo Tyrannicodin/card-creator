@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://c1ogyiok588hj"]
+[gd_scene load_steps=15 format=3 uid="uid://c1ogyiok588hj"]
 
 [ext_resource type="Theme" uid="uid://dde7m6q5cfe1u" path="res://assets/themes/main_theme.tres" id="1_ajqyn"]
 [ext_resource type="Theme" uid="uid://behexnarv56jn" path="res://assets/themes/main_theme_light.tres" id="2_ea765"]
@@ -11,9 +11,8 @@
 [ext_resource type="Texture2D" uid="uid://bs1heiwd16u5c" path="res://assets/sprites/color_bars/control.png" id="8_ax7sr"]
 [ext_resource type="Texture2D" uid="uid://bpo1quln8eda7" path="res://assets/sprites/color_bars/variables.png" id="9_uqwbt"]
 [ext_resource type="Texture2D" uid="uid://cus8tonht43hc" path="res://assets/sprites/color_bars/keys.png" id="10_rxs24"]
-[ext_resource type="Script" path="res://scripts/editor/blocks/header_block.gd" id="12_iq7yc"]
+[ext_resource type="Script" path="res://scripts/editor/blocks/events/get_attacks.gd" id="12_7tr6f"]
 [ext_resource type="Script" path="res://scripts/editor/blocks/codespace.gd" id="13_5cq6c"]
-[ext_resource type="Script" path="res://scripts/editor/blocks/basic_block.gd" id="15_yusfm"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_icv28"]
 bg_color = Color(0.227451, 0.227451, 0.227451, 1)
@@ -170,6 +169,16 @@ text = "Control"
 icon = ExtResource("8_ax7sr")
 metadata/tab = 3
 
+[node name="ConstantsButton" type="Button" parent="VBoxContainer/MainEditor/TabContainer/Code blocks/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("3_hvyfh")
+toggle_mode = true
+button_group = ExtResource("3_yf862")
+text = "Constants"
+icon = ExtResource("9_uqwbt")
+metadata/tab = 4
+
 [node name="VariablesButton" type="Button" parent="VBoxContainer/MainEditor/TabContainer/Code blocks/GridContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
@@ -177,16 +186,6 @@ theme = ExtResource("3_hvyfh")
 toggle_mode = true
 button_group = ExtResource("3_yf862")
 text = "Variables"
-icon = ExtResource("9_uqwbt")
-metadata/tab = 4
-
-[node name="KeysButton" type="Button" parent="VBoxContainer/MainEditor/TabContainer/Code blocks/GridContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-theme = ExtResource("3_hvyfh")
-toggle_mode = true
-button_group = ExtResource("3_yf862")
-text = "Keys"
 icon = ExtResource("10_rxs24")
 metadata/tab = 5
 
@@ -204,11 +203,7 @@ layout_mode = 2
 
 [node name="Control" type="Control" parent="VBoxContainer/MainEditor/TabContainer/Code blocks/Blocks/Events"]
 layout_mode = 2
-script = ExtResource("12_iq7yc")
-
-[node name="Control2" type="Control" parent="VBoxContainer/MainEditor/TabContainer/Code blocks/Blocks/Events"]
-layout_mode = 2
-script = ExtResource("15_yusfm")
+script = ExtResource("12_7tr6f")
 
 [node name="Operators" type="VBoxContainer" parent="VBoxContainer/MainEditor/TabContainer/Code blocks/Blocks"]
 visible = false
@@ -222,11 +217,11 @@ layout_mode = 2
 visible = false
 layout_mode = 2
 
-[node name="Variables" type="VBoxContainer" parent="VBoxContainer/MainEditor/TabContainer/Code blocks/Blocks"]
+[node name="Constants" type="VBoxContainer" parent="VBoxContainer/MainEditor/TabContainer/Code blocks/Blocks"]
 visible = false
 layout_mode = 2
 
-[node name="Keys" type="VBoxContainer" parent="VBoxContainer/MainEditor/TabContainer/Code blocks/Blocks"]
+[node name="Variables" type="VBoxContainer" parent="VBoxContainer/MainEditor/TabContainer/Code blocks/Blocks"]
 visible = false
 layout_mode = 2
 
