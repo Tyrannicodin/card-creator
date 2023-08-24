@@ -7,7 +7,7 @@ var mdt = MeshDataTool.new()
 @onready var player_slim = $player_slim
 @onready var items = $HBoxContainer/LeftContainer/items
 @onready var selected_item
-@onready var skin_image = $HBoxContainer/RightContainer/skin_image
+@onready var skin_image = $HBoxContainer/RightContainer/GridContainer/skin_image
 
 var steve_texture = preload("res://assets/models/steve.png")
 var alex_texture = preload("res://assets/models/alex.png")

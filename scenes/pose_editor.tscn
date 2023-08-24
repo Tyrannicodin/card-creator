@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://bgpbvjwjyab2g"]
+[gd_scene load_steps=11 format=3 uid="uid://bgpbvjwjyab2g"]
 
 [ext_resource type="PackedScene" uid="uid://bwwax6ypmwh3q" path="res://scenes/player_full.tscn" id="1_7077t"]
 [ext_resource type="Script" path="res://scripts/pose_editor/master.gd" id="1_vqpyv"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" path="res://scripts/pose_editor/main_viewport_size.gd" id="3_1epss"]
 [ext_resource type="PackedScene" path="res://scenes/player_slim.tscn" id="3_e0nhy"]
 [ext_resource type="Script" path="res://scripts/pose_editor/skin_selector.gd" id="5_v6e1j"]
+[ext_resource type="Texture2D" uid="uid://gsabiyxrelo3" path="res://assets/models/alex.png" id="6_har6l"]
 
 [sub_resource type="Environment" id="Environment_vfflu"]
 background_mode = 1
@@ -150,6 +151,14 @@ layout_mode = 2
 text = "Select File..."
 script = ExtResource("5_v6e1j")
 
+[node name="skin_image" type="TextureRect" parent="HBoxContainer/RightContainer/GridContainer"]
+layout_mode = 2
+texture = ExtResource("6_har6l")
+stretch_mode = 2
+
+[node name="Spacer" type="Control" parent="HBoxContainer/RightContainer/GridContainer"]
+layout_mode = 2
+
 [node name="Label2" type="Label" parent="HBoxContainer/RightContainer/GridContainer"]
 layout_mode = 2
 text = "Type"
@@ -163,11 +172,6 @@ popup/item_0/text = "Wide"
 popup/item_0/id = 0
 popup/item_1/text = "Slim"
 popup/item_1/id = 1
-
-[node name="skin_image" type="TextureRect" parent="HBoxContainer/RightContainer"]
-layout_mode = 2
-expand_mode = 1
-stretch_mode = 2
 
 [node name="FileDialog" type="FileDialog" parent="HBoxContainer/RightContainer"]
 title = "Open a File"

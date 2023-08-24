@@ -19,16 +19,6 @@ var _acceleration = 30
 var _deceleration = -10
 var _vel_multiplier = 4
 
-# Keyboard state
-var _w = false
-var _s = false
-var _a = false
-var _d = false
-var _q = false
-var _e = false
-var _shift = false
-var _alt = false
-
 func _input(event):
 	# Receives mouse motion
 	if event is InputEventMouseMotion:
@@ -46,26 +36,6 @@ func _input(event):
 			MOUSE_BUTTON_LEFT:
 				_select_object()
 
-	# Receives key input
-	if event is InputEventKey:
-		match event.keycode:
-			KEY_W:
-				_w = event.pressed
-			KEY_S:
-				_s = event.pressed
-			KEY_A:
-				_a = event.pressed
-			KEY_D:
-				_d = event.pressed
-			KEY_Q:
-				_q = event.pressed
-			KEY_E:
-				_e = event.pressed
-			KEY_SHIFT:
-				_shift = event.pressed
-			KEY_ALT:
-				_alt = event.pressed
-
 # Updates mouselook and movement every frame
 func _process(delta):
 	_update_mouselook()
@@ -75,9 +45,9 @@ func _process(delta):
 func _update_movement(delta):
 	# Computes desired direction from key states
 	_direction = Vector3(
-		(_d as float) - (_a as float), 
-		(_e as float) - (_q as float),
-		(_s as float) - (_w as float)
+		Input.get_axis("pose_camera_left", "pose_camera_right"),
+		Input.get_axis("pose_camera_down", "pose_camera_up"),
+		Input.get_axis("pose_camera_forward", "pose_camera_back")
 	)
 	
 	# Computes the change in velocity due to desired direction and "drag"
@@ -87,8 +57,7 @@ func _update_movement(delta):
 	
 	# Compute modifiers' speed multiplier
 	var speed_multi = 1
-	if _shift: speed_multi *= SHIFT_MULTIPLIER
-	if _alt: speed_multi *= ALT_MULTIPLIER
+	speed_multi *= (ALT_MULTIPLIER if Input.get_axis("pose_camera_slow", "pose_camera_fast") < 1 else SHIFT_MULTIPLIER)
 	
 	# Checks if we should bother translating the camera
 	if _direction == Vector3.ZERO and offset.length_squared() > _velocity.length_squared():
