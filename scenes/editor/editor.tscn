@@ -1,0 +1,104 @@
+[gd_scene load_steps=3 format=3 uid="uid://c1ogyiok588hj"]
+
+[ext_resource type="Theme" uid="uid://dde7m6q5cfe1u" path="res://assets/themes/main_theme.tres" id="1_ajqyn"]
+[ext_resource type="PackedScene" uid="uid://c257rq015cepw" path="res://scenes/editor/card_editor/codespace.tscn" id="2_qutdm"]
+
+[node name="main" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_ajqyn")
+metadata/_edit_use_anchors_ = true
+
+[node name="Background" type="ColorRect" parent="."]
+z_index = -1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.266667, 0.266667, 0.266667, 1)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MenuBar" type="MenuBar" parent="VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("1_ajqyn")
+flat = true
+
+[node name="Panel" type="Panel" parent="VBoxContainer/MenuBar"]
+z_index = -1
+z_as_relative = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+
+[node name="File" type="PopupMenu" parent="VBoxContainer/MenuBar"]
+
+[node name="Edit" type="PopupMenu" parent="VBoxContainer/MenuBar"]
+
+[node name="Project" type="PopupMenu" parent="VBoxContainer/MenuBar"]
+
+[node name="Build" type="PopupMenu" parent="VBoxContainer/MenuBar"]
+
+[node name="Help" type="PopupMenu" parent="VBoxContainer/MenuBar"]
+
+[node name="MainEditor" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.5
+theme_override_constants/separation = 0
+
+[node name="TabList" type="TabContainer" parent="VBoxContainer/MainEditor"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.1
+theme = ExtResource("1_ajqyn")
+clip_tabs = false
+use_hidden_tabs_for_min_size = true
+
+[node name="Cards" type="Label" parent="VBoxContainer/MainEditor/TabList"]
+layout_mode = 2
+theme = ExtResource("1_ajqyn")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/MainEditor/TabList/Cards"]
+layout_mode = 0
+offset_right = 240.0
+offset_bottom = 40.0
+
+[node name="Label" type="Label" parent="VBoxContainer/MainEditor/TabList/Cards/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("1_ajqyn")
+text = "Test Thing"
+
+[node name="Status effects" type="Label" parent="VBoxContainer/MainEditor/TabList"]
+visible = false
+layout_mode = 2
+theme = ExtResource("1_ajqyn")
+
+[node name="Packs" type="Label" parent="VBoxContainer/MainEditor/TabList"]
+visible = false
+layout_mode = 2
+theme = ExtResource("1_ajqyn")
+
+[node name="Tabs" type="Control" parent="VBoxContainer/MainEditor"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="CardEditor" parent="VBoxContainer/MainEditor/Tabs" instance=ExtResource("2_qutdm")]
+layout_mode = 0
+anchors_preset = 0
