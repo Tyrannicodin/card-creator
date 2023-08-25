@@ -1,0 +1,26 @@
+[gd_resource type="Theme" load_steps=4 format=3 uid="uid://byp2d4agnuqu"]
+
+[ext_resource type="FontFile" uid="uid://d035n1wjbsuc6" path="res://assets/fonts/BangersRegular.otf" id="1_jsy0q"]
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_rlmci"]
+color = Color(1, 1, 1, 1)
+thickness = 12
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vrxsa"]
+bg_color = Color(1, 1, 1, 1)
+border_width_left = 12
+border_width_top = 12
+border_width_right = 12
+border_width_bottom = 12
+border_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+
+[resource]
+default_font = ExtResource("1_jsy0q")
+HSeparator/styles/separator = SubResource("StyleBoxLine_rlmci")
+Label/colors/font_color = Color(0, 0, 0, 1)
+Label/font_sizes/font_size = 50
+Panel/styles/panel = SubResource("StyleBoxFlat_vrxsa")
