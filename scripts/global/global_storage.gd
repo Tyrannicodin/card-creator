@@ -1,4 +1,4 @@
 extends Node
 
 var path := ""
-var project_name := ""
+var pack_name := ""

@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://bgpbvjwjyab2g"]
+[gd_scene load_steps=10 format=3 uid="uid://bgpbvjwjyab2g"]
 
 [ext_resource type="PackedScene" uid="uid://bwwax6ypmwh3q" path="res://scenes/editor/pose_editor/player_full.tscn" id="1_7077t"]
 [ext_resource type="Script" path="res://scripts/pose_editor/master.gd" id="1_vqpyv"]
@@ -6,7 +6,6 @@
 [ext_resource type="PackedScene" uid="uid://s0qousks114p" path="res://scenes/editor/pose_editor/player_slim.tscn" id="3_e0nhy"]
 [ext_resource type="Script" path="res://scripts/pose_editor/skin_selector.gd" id="5_v6e1j"]
 [ext_resource type="Texture2D" uid="uid://gsabiyxrelo3" path="res://assets/models/alex.png" id="6_har6l"]
-[ext_resource type="Script" path="res://scripts/pose_editor/pose_selector.gd" id="8_dqgyy"]
 
 [sub_resource type="Environment" id="Environment_vfflu"]
 background_mode = 1
@@ -197,23 +196,6 @@ popup/item_0/id = 0
 popup/item_1/text = "Slim"
 popup/item_1/id = 1
 
-[node name="PoseName" type="LineEdit" parent="HBoxContainer/RightContainer/GridContainer"]
-layout_mode = 2
-
-[node name="Save" type="Button" parent="HBoxContainer/RightContainer/GridContainer"]
-layout_mode = 2
-text = "Save pose"
-
-[node name="LoadPoseLabel" type="Label" parent="HBoxContainer/RightContainer/GridContainer"]
-layout_mode = 2
-text = "Load pose"
-vertical_alignment = 2
-
-[node name="LoadPose" type="Button" parent="HBoxContainer/RightContainer/GridContainer"]
-layout_mode = 2
-text = "Select file..."
-script = ExtResource("8_dqgyy")
-
 [node name="SkinFileDialog" type="FileDialog" parent="HBoxContainer/RightContainer"]
 title = "Open a File"
 initial_position = 2
@@ -238,6 +220,5 @@ filters = PackedStringArray("*.tscn")
 [connection signal="value_changed" from="HBoxContainer/LeftContainer/GridContainer/z" to="." method="_on_z_value_changed"]
 [connection signal="value_changed" from="HBoxContainer/LeftContainer/GridContainer/bend" to="." method="_on_bend_value_changed"]
 [connection signal="item_selected" from="HBoxContainer/RightContainer/GridContainer/SkinType" to="." method="_on_skintype_item_selected"]
-[connection signal="pressed" from="HBoxContainer/RightContainer/GridContainer/Save" to="." method="save"]
 [connection signal="file_selected" from="HBoxContainer/RightContainer/SkinFileDialog" to="." method="_on_file_dialog_file_selected"]
 [connection signal="file_selected" from="HBoxContainer/RightContainer/LoadPoseFileDialog" to="." method="load_pose"]

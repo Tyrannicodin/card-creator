@@ -19,8 +19,6 @@ var selected_item
 @onready var z_slider = $HBoxContainer/LeftContainer/GridContainer/z
 @onready var pickup_changes = false
 
-@onready var pose_name = $HBoxContainer/RightContainer/GridContainer/PoseName
-
 enum SkinType {WIDE, SLIM}
 var type_selected = SkinType.WIDE
 
@@ -103,15 +101,12 @@ func _ready():
 	_apply_skin(steve_texture, player_mesh[SkinType.WIDE])
 	_apply_skin(alex_texture, player_mesh[SkinType.SLIM])
 
-func save():
-	if not pose_name.text.is_valid_filename():
-		return
+func save(path:String):
 	var saved_player = PackedScene.new()
 	for child in player_wide.get_children():
 		pack_children(player_wide, child)
 	saved_player.pack(player_wide)
-	var pose_path = "user://poses/" + pose_name.text + ".tscn"
-	ResourceSaver.save(saved_player, pose_path)
+	ResourceSaver.save(saved_player, path)
 
 func load_pose(path:String):
 	var packed_pose_scene:PackedScene = load(path)

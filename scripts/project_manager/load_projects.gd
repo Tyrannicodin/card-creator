@@ -13,7 +13,7 @@ func reload_packs():
 	"""Load all packs and put them in a list"""
 	
 	GlobalStorage.path = ""
-	GlobalStorage.project_name = ""
+	GlobalStorage.pack_name = ""
 	reset_buttons.emit()
 	
 	# Remove all old children

@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://c1ogyiok588hj"]
+[gd_scene load_steps=10 format=3 uid="uid://c1ogyiok588hj"]
 
 [ext_resource type="Theme" uid="uid://dde7m6q5cfe1u" path="res://assets/themes/main_theme.tres" id="1_ajqyn"]
 [ext_resource type="Script" path="res://scripts/menu_bar/help.gd" id="2_5jdoa"]
@@ -7,6 +7,7 @@
 [ext_resource type="Script" path="res://scripts/editor/tab_changer.gd" id="3_1njq7"]
 [ext_resource type="PackedScene" uid="uid://bgpbvjwjyab2g" path="res://scenes/editor/pose_editor/pose_editor.tscn" id="3_c172i"]
 [ext_resource type="Script" path="res://scripts/menu_bar/run.gd" id="3_op3et"]
+[ext_resource type="Script" path="res://scripts/editor/file_managers/pose_file_manager.gd" id="5_1jcyr"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_66bq0"]
 bg_color = Color(0, 0, 0, 0)
@@ -129,20 +130,34 @@ theme_override_styles/separator = SubResource("StyleBoxFlat_66bq0")
 visible = false
 layout_mode = 2
 
-[node name="ScrollContainer" type="ScrollContainer" parent="VBoxContainer/MainEditor/TabList/Poses"]
+[node name="HSeparator" type="HSeparator" parent="VBoxContainer/MainEditor/TabList/Poses"]
 layout_mode = 2
-size_flags_vertical = 3
-
-[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/MainEditor/TabList/Poses/ScrollContainer"]
-layout_mode = 2
+theme_override_styles/separator = SubResource("StyleBoxFlat_66bq0")
 
 [node name="Button" type="Button" parent="VBoxContainer/MainEditor/TabList/Poses"]
 layout_mode = 2
 text = "Create new"
 
-[node name="HSeparator" type="HSeparator" parent="VBoxContainer/MainEditor/TabList/Poses"]
+[node name="ScrollContainer" type="ScrollContainer" parent="VBoxContainer/MainEditor/TabList/Poses"]
 layout_mode = 2
-theme_override_styles/separator = SubResource("StyleBoxFlat_66bq0")
+size_flags_vertical = 3
+
+[node name="PoseContainer" type="VBoxContainer" parent="VBoxContainer/MainEditor/TabList/Poses/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource("5_1jcyr")
+
+[node name="PoseCreationDialog" type="ConfirmationDialog" parent="VBoxContainer/MainEditor/TabList/Poses/ScrollContainer/PoseContainer"]
+title = "Create new pose"
+ok_button_text = "Create pose"
+
+[node name="PoseName" type="LineEdit" parent="VBoxContainer/MainEditor/TabList/Poses/ScrollContainer/PoseContainer/PoseCreationDialog"]
+offset_left = 8.0
+offset_top = 8.0
+offset_right = 192.0
+offset_bottom = 57.0
+placeholder_text = "Pose name"
 
 [node name="Tabs" type="Control" parent="VBoxContainer/MainEditor"]
 layout_mode = 2
@@ -163,3 +178,4 @@ visible = false
 layout_mode = 1
 
 [connection signal="tab_changed" from="VBoxContainer/MainEditor/TabList" to="VBoxContainer/MainEditor/Tabs" method="_tab_changed"]
+[connection signal="pressed" from="VBoxContainer/MainEditor/TabList/Poses/Button" to="VBoxContainer/MainEditor/TabList/Poses/ScrollContainer/PoseContainer" method="_new_pose_pressed"]

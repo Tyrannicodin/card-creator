@@ -17,7 +17,7 @@ func _id_pressed(id:int):
 	match id:
 		2:
 			if OS.get_name() == "Windows":
-				var save_path = OS.get_user_data_dir() + "/exports/" + GlobalStorage.project_name + ".tar.gz"
+				var save_path = OS.get_user_data_dir() + "/exports/" + GlobalStorage.pack_name + ".tar.gz"
 				var os_path = GlobalStorage.path.replace("user:/", OS.get_user_data_dir())
 				OS.execute(
 					"CMD.exe",
@@ -30,7 +30,7 @@ func _id_pressed(id:int):
 			get_tree().quit()
 		4:
 			GlobalStorage.path = ""
-			GlobalStorage.project_name = ""
+			GlobalStorage.pack_name = ""
 			get_tree().change_scene_to_file("res://scenes/project_manager.tscn")
 
 func _on_save():

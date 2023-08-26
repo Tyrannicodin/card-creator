@@ -31,7 +31,7 @@ func project_selected(button):
 			child.disabled = false
 	chosen_button = button
 	GlobalStorage.path = "user://packs/" + chosen_button.name.replace("\\", "/")
-	GlobalStorage.project_name = chosen_button.text.lstrip(" ")
+	GlobalStorage.pack_name = chosen_button.text.lstrip(" ")
 
 func edit():
 	get_tree().change_scene_to_file("res://scenes/editor/editor.tscn")
