@@ -1,4 +1,4 @@
 extends Node
 
 var path := ""
-var current_card := ""
+var project_name := ""

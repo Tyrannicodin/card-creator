@@ -13,18 +13,19 @@ func reload_projects():
 	"""Load all projects and put them in a list"""
 	
 	GlobalStorage.path = ""
+	GlobalStorage.project_name = ""
 	reset_buttons.emit()
 	
 	# Remove all old children
 	for child in get_children():
 		child.queue_free()
 	
-	# No versions made yet
-	if not DirAccess.dir_exists_absolute("user://versions"):
+	# No projects made yet
+	if not DirAccess.dir_exists_absolute("user://projects"):
 		return
 	
 	# Iterate through each version and create a section for their projects
-	var base_dir = DirAccess.open("user://versions")
+	var base_dir = DirAccess.open("user://projects")
 	var dir_container
 	var version_label
 	for dir in base_dir.get_directories():
@@ -40,7 +41,7 @@ func reload_projects():
 		
 		base_dir.change_dir(dir)
 		for project in base_dir.get_directories():
-			dir_container.add_child(generate_project_button("user://versions/" + dir + "/" + project))
+			dir_container.add_child(generate_project_button("user://projects/" + dir + "/" + project))
 		base_dir.change_dir("..")
 		
 		dir_container.add_child(HSeparator.new())

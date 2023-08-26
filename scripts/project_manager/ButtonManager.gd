@@ -4,7 +4,6 @@ extends VBoxContainer
 signal reload_projects()
 
 var project_button_group = preload("res://assets/button_groups/project_button.tres")
-var runner = preload("res://scripts/global/server_runner.gd")
 var chosen_button
 
 @onready var EditButton = $EditButton
@@ -32,14 +31,13 @@ func project_selected(button):
 			child.disabled = false
 	chosen_button = button
 	GlobalStorage.path = "user://projects/" + chosen_button.name.replace("\\", "/")
+	GlobalStorage.project_name = chosen_button.text.lstrip(" ")
 
 func edit():
-	get_tree().change_scene_to_file("res://scenes/editor.tscn")
+	get_tree().change_scene_to_file("res://scenes/editor/editor.tscn")
 
 func run():
-	var current = runner.new()
-	$"/root".add_child(current)
-	current.run(GlobalStorage.path)
+	ServerRunner.new(GlobalStorage.path).run_server()
 
 func duplicate_project():
 	"""Would duplicate a project, no way to so yet so will be done whenever it is provided"""

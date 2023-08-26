@@ -114,7 +114,7 @@ func create_new():
 	if OS.get_name() == "Windows":
 		OS.execute(
 			"CMD.exe",
-			["/C", "cd " + version_dir_path + " && tar -xf " + chosen_version + ".zip"]
+			["/C", "cd \"" + version_dir_path + "\" && tar -xf \"" + chosen_version + ".zip\""]
 		)
 	else:
 		set_status("Error: Couldn't unzip file on your operating system")

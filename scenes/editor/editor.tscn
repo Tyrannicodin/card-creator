@@ -1,8 +1,15 @@
-[gd_scene load_steps=4 format=3 uid="uid://c1ogyiok588hj"]
+[gd_scene load_steps=9 format=3 uid="uid://c1ogyiok588hj"]
 
 [ext_resource type="Theme" uid="uid://dde7m6q5cfe1u" path="res://assets/themes/main_theme.tres" id="1_ajqyn"]
+[ext_resource type="Script" path="res://scripts/menu_bar/help.gd" id="2_5jdoa"]
+[ext_resource type="Script" path="res://scripts/menu_bar/project.gd" id="2_gnyxg"]
 [ext_resource type="PackedScene" uid="uid://c257rq015cepw" path="res://scenes/editor/card_editor/codespace.tscn" id="2_qutdm"]
+[ext_resource type="Script" path="res://scripts/editor/tab_changer.gd" id="3_1njq7"]
 [ext_resource type="PackedScene" uid="uid://bgpbvjwjyab2g" path="res://scenes/editor/pose_editor/pose_editor.tscn" id="3_c172i"]
+[ext_resource type="Script" path="res://scripts/menu_bar/run.gd" id="3_op3et"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_66bq0"]
+bg_color = Color(0, 0, 0, 0)
 
 [node name="main" type="Control"]
 layout_mode = 3
@@ -48,15 +55,39 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 1
 
-[node name="File" type="PopupMenu" parent="VBoxContainer/MenuBar"]
-
-[node name="Edit" type="PopupMenu" parent="VBoxContainer/MenuBar"]
-
 [node name="Project" type="PopupMenu" parent="VBoxContainer/MenuBar"]
+item_count = 5
+item_0/text = "Save"
+item_0/id = 1
+item_1/text = "Export"
+item_1/id = 2
+item_2/text = ""
+item_2/id = 0
+item_2/separator = true
+item_3/text = "Quit"
+item_3/id = 3
+item_4/text = "Quit to project list"
+item_4/id = 4
+script = ExtResource("2_gnyxg")
 
-[node name="Build" type="PopupMenu" parent="VBoxContainer/MenuBar"]
+[node name="Run" type="PopupMenu" parent="VBoxContainer/MenuBar"]
+size = Vector2i(107, 100)
+item_count = 3
+item_0/text = "Build and run"
+item_0/id = 1
+item_1/text = "Build"
+item_1/id = 2
+item_2/text = "Update packages"
+item_2/id = 3
+script = ExtResource("3_op3et")
 
 [node name="Help" type="PopupMenu" parent="VBoxContainer/MenuBar"]
+item_count = 2
+item_0/text = "Help forum"
+item_0/id = 1
+item_1/text = "hc-tcg discord"
+item_1/id = 2
+script = ExtResource("2_5jdoa")
 
 [node name="MainEditor" type="HBoxContainer" parent="VBoxContainer"]
 layout_mode = 2
@@ -67,47 +98,77 @@ theme_override_constants/separation = 0
 [node name="TabList" type="TabContainer" parent="VBoxContainer/MainEditor"]
 layout_mode = 2
 size_flags_horizontal = 3
-size_flags_stretch_ratio = 0.1
+size_flags_stretch_ratio = 0.15
 theme = ExtResource("1_ajqyn")
 clip_tabs = false
 use_hidden_tabs_for_min_size = true
 
-[node name="Cards" type="Label" parent="VBoxContainer/MainEditor/TabList"]
+[node name="Cards" type="VBoxContainer" parent="VBoxContainer/MainEditor/TabList"]
 layout_mode = 2
-theme = ExtResource("1_ajqyn")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/MainEditor/TabList/Cards"]
-layout_mode = 0
-offset_right = 240.0
-offset_bottom = 40.0
-
-[node name="Label" type="Label" parent="VBoxContainer/MainEditor/TabList/Cards/VBoxContainer"]
+[node name="ScrollContainer" type="ScrollContainer" parent="VBoxContainer/MainEditor/TabList/Cards"]
 layout_mode = 2
-theme = ExtResource("1_ajqyn")
-text = "Test Thing"
+size_flags_vertical = 3
 
-[node name="Status effects" type="Label" parent="VBoxContainer/MainEditor/TabList"]
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/MainEditor/TabList/Cards/ScrollContainer"]
+layout_mode = 2
+
+[node name="Button" type="Button" parent="VBoxContainer/MainEditor/TabList/Cards"]
+layout_mode = 2
+text = "Create new"
+
+[node name="HSeparator" type="HSeparator" parent="VBoxContainer/MainEditor/TabList/Cards"]
+layout_mode = 2
+theme_override_styles/separator = SubResource("StyleBoxFlat_66bq0")
+
+[node name="Poses" type="VBoxContainer" parent="VBoxContainer/MainEditor/TabList"]
 visible = false
 layout_mode = 2
-theme = ExtResource("1_ajqyn")
 
-[node name="Packs" type="Label" parent="VBoxContainer/MainEditor/TabList"]
+[node name="ScrollContainer" type="ScrollContainer" parent="VBoxContainer/MainEditor/TabList/Poses"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/MainEditor/TabList/Poses/ScrollContainer"]
+layout_mode = 2
+
+[node name="Button" type="Button" parent="VBoxContainer/MainEditor/TabList/Poses"]
+layout_mode = 2
+text = "Create new"
+
+[node name="HSeparator" type="HSeparator" parent="VBoxContainer/MainEditor/TabList/Poses"]
+layout_mode = 2
+theme_override_styles/separator = SubResource("StyleBoxFlat_66bq0")
+
+[node name="Packs" type="VBoxContainer" parent="VBoxContainer/MainEditor/TabList"]
 visible = false
 layout_mode = 2
-theme = ExtResource("1_ajqyn")
+
+[node name="ScrollContainer" type="ScrollContainer" parent="VBoxContainer/MainEditor/TabList/Packs"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/MainEditor/TabList/Packs/ScrollContainer"]
+layout_mode = 2
+
+[node name="Button" type="Button" parent="VBoxContainer/MainEditor/TabList/Packs"]
+layout_mode = 2
+text = "Create new"
+
+[node name="HSeparator" type="HSeparator" parent="VBoxContainer/MainEditor/TabList/Packs"]
+layout_mode = 2
+theme_override_styles/separator = SubResource("StyleBoxFlat_66bq0")
 
 [node name="Tabs" type="Control" parent="VBoxContainer/MainEditor"]
 layout_mode = 2
 size_flags_horizontal = 3
+script = ExtResource("3_1njq7")
 
 [node name="CardEditor" parent="VBoxContainer/MainEditor/Tabs" instance=ExtResource("2_qutdm")]
-visible = false
 layout_mode = 1
 
 [node name="pose_editor" parent="VBoxContainer/MainEditor/Tabs" instance=ExtResource("3_c172i")]
+visible = false
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+
+[connection signal="tab_changed" from="VBoxContainer/MainEditor/TabList" to="VBoxContainer/MainEditor/Tabs" method="_tab_changed"]
