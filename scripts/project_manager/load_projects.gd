@@ -7,10 +7,10 @@ var project_button_group = preload("res://assets/button_groups/project_button.tr
 var project_button_theme = preload("res://assets/themes/project_selector.tres")
 
 func _ready():
-	reload_projects()
+	reload_packs()
 
-func reload_projects():
-	"""Load all projects and put them in a list"""
+func reload_packs():
+	"""Load all packs and put them in a list"""
 	
 	GlobalStorage.path = ""
 	GlobalStorage.project_name = ""
@@ -20,12 +20,12 @@ func reload_projects():
 	for child in get_children():
 		child.queue_free()
 	
-	# No projects made yet
-	if not DirAccess.dir_exists_absolute("user://projects"):
+	# No packs made yet
+	if not DirAccess.dir_exists_absolute("user://packs"):
 		return
 	
-	# Iterate through each version and create a section for their projects
-	var base_dir = DirAccess.open("user://projects")
+	# Iterate through each version and create a section for their version
+	var base_dir = DirAccess.open("user://packs")
 	var dir_container
 	var version_label
 	for dir in base_dir.get_directories():
@@ -41,7 +41,7 @@ func reload_projects():
 		
 		base_dir.change_dir(dir)
 		for project in base_dir.get_directories():
-			dir_container.add_child(generate_project_button("user://projects/" + dir + "/" + project))
+			dir_container.add_child(generate_project_button("user://packs/" + dir + "/" + project))
 		base_dir.change_dir("..")
 		
 		dir_container.add_child(HSeparator.new())
@@ -76,7 +76,7 @@ func generate_project_button(path:String):
 	var sub_label = Label.new()
 	sub_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_RIGHT
 	sub_label.vertical_alignment = VERTICAL_ALIGNMENT_BOTTOM
-	sub_label.text = str(meta["cards"]) + " card(s) | " + str(meta["packs"]) + " pack(s) "
+	sub_label.text = str(meta["cards"]) + " card(s)"
 	sub_label.add_theme_color_override("font_color", Color("808080"))
 	sub_label.add_theme_font_size_override("font_size", 10)
 	

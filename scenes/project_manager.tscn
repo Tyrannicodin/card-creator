@@ -200,5 +200,5 @@ disabled = true
 text = "Remove"
 
 [connection signal="reset_buttons" from="MainContainer/VBoxContainer/ProjectSidebar/MarginContainer/Projects" to="MainContainer/DownloadContainer/ProjectManageButtons" method="disable_buttons"]
-[connection signal="reload_projects" from="MainContainer/DownloadContainer/VersionContainer/Button" to="MainContainer/VBoxContainer/ProjectSidebar/MarginContainer/Projects" method="reload_projects"]
-[connection signal="reload_projects" from="MainContainer/DownloadContainer/ProjectManageButtons" to="MainContainer/VBoxContainer/ProjectSidebar/MarginContainer/Projects" method="reload_projects"]
+[connection signal="reload_packs" from="MainContainer/DownloadContainer/VersionContainer/Button" to="MainContainer/VBoxContainer/ProjectSidebar/MarginContainer/Projects" method="reload_packs"]
+[connection signal="reload_packs" from="MainContainer/DownloadContainer/ProjectManageButtons" to="MainContainer/VBoxContainer/ProjectSidebar/MarginContainer/Projects" method="reload_packs"]

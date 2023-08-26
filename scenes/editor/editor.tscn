@@ -55,7 +55,7 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 1
 
-[node name="Project" type="PopupMenu" parent="VBoxContainer/MenuBar"]
+[node name="Pack" type="PopupMenu" parent="VBoxContainer/MenuBar"]
 item_count = 5
 item_0/text = "Save"
 item_0/id = 1
@@ -103,7 +103,11 @@ theme = ExtResource("1_ajqyn")
 clip_tabs = false
 use_hidden_tabs_for_min_size = true
 
+[node name="Pack" type="VBoxContainer" parent="VBoxContainer/MainEditor/TabList"]
+layout_mode = 2
+
 [node name="Cards" type="VBoxContainer" parent="VBoxContainer/MainEditor/TabList"]
+visible = false
 layout_mode = 2
 
 [node name="ScrollContainer" type="ScrollContainer" parent="VBoxContainer/MainEditor/TabList/Cards"]
@@ -140,31 +144,18 @@ text = "Create new"
 layout_mode = 2
 theme_override_styles/separator = SubResource("StyleBoxFlat_66bq0")
 
-[node name="Packs" type="VBoxContainer" parent="VBoxContainer/MainEditor/TabList"]
-visible = false
-layout_mode = 2
-
-[node name="ScrollContainer" type="ScrollContainer" parent="VBoxContainer/MainEditor/TabList/Packs"]
-layout_mode = 2
-size_flags_vertical = 3
-
-[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/MainEditor/TabList/Packs/ScrollContainer"]
-layout_mode = 2
-
-[node name="Button" type="Button" parent="VBoxContainer/MainEditor/TabList/Packs"]
-layout_mode = 2
-text = "Create new"
-
-[node name="HSeparator" type="HSeparator" parent="VBoxContainer/MainEditor/TabList/Packs"]
-layout_mode = 2
-theme_override_styles/separator = SubResource("StyleBoxFlat_66bq0")
-
 [node name="Tabs" type="Control" parent="VBoxContainer/MainEditor"]
 layout_mode = 2
 size_flags_horizontal = 3
 script = ExtResource("3_1njq7")
 
+[node name="Pack" type="Control" parent="VBoxContainer/MainEditor/Tabs"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
 [node name="CardEditor" parent="VBoxContainer/MainEditor/Tabs" instance=ExtResource("2_qutdm")]
+visible = false
 layout_mode = 1
 
 [node name="pose_editor" parent="VBoxContainer/MainEditor/Tabs" instance=ExtResource("3_c172i")]

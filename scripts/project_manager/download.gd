@@ -1,7 +1,7 @@
 extends Button
 
 
-signal reload_projects()
+signal reload_packs()
 
 var repository = "https://github.com/martinkadlec0/hc-tcg/archive/"
 
@@ -38,8 +38,8 @@ func _ready():
 	
 	VersionSelector.item_selected.connect(_version_selected)
 	
-	if not DirAccess.dir_exists_absolute("user://projects/"):
-		DirAccess.make_dir_absolute("user://projects/")
+	if not DirAccess.dir_exists_absolute("user://packs/"):
+		DirAccess.make_dir_absolute("user://packs/")
 	
 	load_versions()
 
@@ -87,14 +87,14 @@ func _pressed():
 	else:
 		try_download()
 	
-	reload_projects.emit()
+	reload_packs.emit()
 
 func create_new():
 	"""Create a new project by extracting the version file"""
 	
 	# Get version and path to the version folder
 	var chosen_version = versions.keys()[VersionSelector.get_selected_id()]
-	var version_dir_path = OS.get_user_data_dir() + "/projects/" + chosen_version
+	var version_dir_path = OS.get_user_data_dir() + "/packs/" + chosen_version
 	
 	# Check if we can name a folder the given name
 	if not ProjectName.text.is_valid_filename():
@@ -129,10 +129,9 @@ func create_new():
 		version_dir.make_dir("hc-tcg-cc")
 		version_dir.change_dir("hc-tcg-cc")
 		version_dir.make_dir("cards")
-		version_dir.make_dir("status effects")
-		version_dir.make_dir("packs")
+		version_dir.make_dir("poses")
 		var meta_file = FileAccess.open(
-			"user://projects/" + chosen_version + "/" + unique_name + "/hc-tcg-cc/meta.json",
+			"user://packs/" + chosen_version + "/" + unique_name + "/hc-tcg-cc/meta.json",
 			FileAccess.WRITE
 		)
 		meta_file.store_string(JSON.stringify({
@@ -144,7 +143,7 @@ func create_new():
 			"packs": 0
 		}))
 		meta_file.close()
-		reload_projects.emit()
+		reload_packs.emit()
 		set_status("Project created", colors.success)
 	else:
 		set_status("Error: Couldn't unzip file")
@@ -163,16 +162,16 @@ func try_download():
 		return
 	
 	# Dont need to tell user the file exists, just ensure it switches to create 
-	if FileAccess.file_exists("user://projects/" + chosen_version + "/" + chosen_version + ".zip"):
+	if FileAccess.file_exists("user://packs/" + chosen_version + "/" + chosen_version + ".zip"):
 		_version_selected(VersionSelector.get_selected_id())
 		return
 	
 	# Make required directories
-	if not DirAccess.dir_exists_absolute("user://projects/" + chosen_version):
-		DirAccess.make_dir_absolute("user://projects/" + chosen_version)
+	if not DirAccess.dir_exists_absolute("user://packs/" + chosen_version):
+		DirAccess.make_dir_absolute("user://packs/" + chosen_version)
 	
 	# Set download location and make request
-	version_request.download_file = "user://projects/" + chosen_version + "/" + chosen_version + ".zip"
+	version_request.download_file = "user://packs/" + chosen_version + "/" + chosen_version + ".zip"
 	var error = version_request.request(repository + versions[chosen_version] + ".zip")
 	
 	# Check for any errors
@@ -190,7 +189,7 @@ func _version_selected(idx:int):
 	"""Set button text and show name input depending on what version selected"""
 	
 	var chosen_version = versions.keys()[idx]
-	if FileAccess.file_exists("user://projects/" + chosen_version + "/" + chosen_version + ".zip"):
+	if FileAccess.file_exists("user://packs/" + chosen_version + "/" + chosen_version + ".zip"):
 		text = "Create"
 		ProjectName.show()
 	else:

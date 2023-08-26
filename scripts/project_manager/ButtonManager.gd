@@ -1,7 +1,7 @@
 extends VBoxContainer
 
 
-signal reload_projects()
+signal reload_packs()
 
 var project_button_group = preload("res://assets/button_groups/project_button.tres")
 var chosen_button
@@ -30,7 +30,7 @@ func project_selected(button):
 		for child in get_children():
 			child.disabled = false
 	chosen_button = button
-	GlobalStorage.path = "user://projects/" + chosen_button.name.replace("\\", "/")
+	GlobalStorage.path = "user://packs/" + chosen_button.name.replace("\\", "/")
 	GlobalStorage.project_name = chosen_button.text.lstrip(" ")
 
 func edit():
@@ -72,7 +72,7 @@ func duplicate_project():
 	)
 	new_meta.store_string(JSON.stringify(meta))
 	new_meta.close()
-	reload_projects.emit()
+	reload_packs.emit()
 
 func rename():
 	var meta_file = FileAccess.open(GlobalStorage.path + "/hc-tcg-cc/meta.json", FileAccess.READ)
@@ -121,11 +121,11 @@ func name_chosen(pop, meta, old_name):
 			GlobalStorage.path,
 			GlobalStorage.path.rsplit("/", true, 1)[0] + "/" + unique_name
 		)
-		reload_projects.emit()
+		reload_packs.emit()
 	return inner
 
 func remove():
 	var err = DirAccess.remove_absolute(GlobalStorage.path)
 	print(DirAccess.get_open_error())
 	print(err)
-	reload_projects.emit()
+	reload_packs.emit()
