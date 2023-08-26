@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://c1ogyiok588hj"]
+[gd_scene load_steps=4 format=3 uid="uid://c1ogyiok588hj"]
 
 [ext_resource type="Theme" uid="uid://dde7m6q5cfe1u" path="res://assets/themes/main_theme.tres" id="1_ajqyn"]
 [ext_resource type="PackedScene" uid="uid://c257rq015cepw" path="res://scenes/editor/card_editor/codespace.tscn" id="2_qutdm"]
+[ext_resource type="PackedScene" uid="uid://bgpbvjwjyab2g" path="res://scenes/editor/pose_editor/pose_editor.tscn" id="3_c172i"]
 
 [node name="main" type="Control"]
 layout_mode = 3
@@ -100,5 +101,13 @@ layout_mode = 2
 size_flags_horizontal = 3
 
 [node name="CardEditor" parent="VBoxContainer/MainEditor/Tabs" instance=ExtResource("2_qutdm")]
-layout_mode = 0
-anchors_preset = 0
+visible = false
+layout_mode = 1
+
+[node name="pose_editor" parent="VBoxContainer/MainEditor/Tabs" instance=ExtResource("3_c172i")]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
