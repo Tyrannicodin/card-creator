@@ -5,18 +5,17 @@ var mdt = MeshDataTool.new()
 # Player meshes
 @onready var player_wide = $player_full
 @onready var player_slim = $player_slim
-@onready var items = $HBoxContainer/LeftContainer/items
-@onready var skin_image = $HBoxContainer/RightContainer/GridContainer/SkinImage
+@onready var items
 
 var steve_texture = preload("res://assets/models/steve.png")
 var alex_texture = preload("res://assets/models/alex.png")
 var selected_item
 
 #sliders
-@onready var bend_slider = $HBoxContainer/LeftContainer/GridContainer/bend
-@onready var x_slider = $HBoxContainer/LeftContainer/GridContainer/x
-@onready var y_slider = $HBoxContainer/LeftContainer/GridContainer/y
-@onready var z_slider = $HBoxContainer/LeftContainer/GridContainer/z
+@onready var bend_slider
+@onready var x_slider
+@onready var y_slider
+@onready var z_slider
 @onready var pickup_changes = false
 
 enum SkinType {WIDE, SLIM}
@@ -97,10 +96,16 @@ func _ready():
 	_get_player_mesh()
 	
 	type_selected = SkinType.WIDE
-	for key in player_mesh[type_selected]:
-		items.add_item(key)
+	add_items()
+	
 	_apply_skin(steve_texture, player_mesh[SkinType.WIDE])
 	_apply_skin(alex_texture, player_mesh[SkinType.SLIM])
+	
+func add_items():
+	if player_mesh == null || items == null:
+		return
+	for key in player_mesh[type_selected]:
+		items.add_item(key)
 
 func save(path:String):
 	var saved_player = PackedScene.new()
@@ -172,7 +177,6 @@ func _on_items_item_selected(index):
 	pickup_changes = true
 
 func _apply_skin(skin_texture, parts_dict):
-	skin_image.texture = skin_texture
 	for key in parts_dict:
 		for segment in parts_dict[key]:
 			var m = parts_dict[key][segment]

@@ -44,7 +44,8 @@ func _set_bg(value: String) -> void:
 
 func _set_img(value: String) -> void:
 	image = value
-	_card_bg_node.texture = _imageGenerator.load_texture(value)
+	var viewport_texture = get_node(image).get_texture()
+	_card_img_node.texture = viewport_texture
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
