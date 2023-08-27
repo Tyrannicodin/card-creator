@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://c1ogyiok588hj"]
+[gd_scene load_steps=13 format=3 uid="uid://c1ogyiok588hj"]
 
 [ext_resource type="Theme" uid="uid://dde7m6q5cfe1u" path="res://assets/themes/main_theme.tres" id="1_ajqyn"]
 [ext_resource type="Script" path="res://scripts/menu_bar/help.gd" id="2_5jdoa"]
@@ -8,6 +8,10 @@
 [ext_resource type="PackedScene" uid="uid://bgpbvjwjyab2g" path="res://scenes/editor/pose_editor/pose_editor.tscn" id="3_c172i"]
 [ext_resource type="Script" path="res://scripts/menu_bar/run.gd" id="3_op3et"]
 [ext_resource type="Script" path="res://scripts/editor/file_managers/pose_file_manager.gd" id="5_1jcyr"]
+[ext_resource type="Script" path="res://scripts/editor/file_managers/pack_file_manger.gd" id="5_s5xbg"]
+[ext_resource type="Script" path="res://scripts/editor/pack_palette.gd" id="6_h0bw7"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_b54cx"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_66bq0"]
 bg_color = Color(0, 0, 0, 0)
@@ -106,6 +110,231 @@ use_hidden_tabs_for_min_size = true
 
 [node name="Pack" type="VBoxContainer" parent="VBoxContainer/MainEditor/TabList"]
 layout_mode = 2
+script = ExtResource("5_s5xbg")
+
+[node name="HSeparator" type="HSeparator" parent="VBoxContainer/MainEditor/TabList/Pack"]
+layout_mode = 2
+theme_override_styles/separator = SubResource("StyleBoxFlat_b54cx")
+
+[node name="Name" type="LineEdit" parent="VBoxContainer/MainEditor/TabList/Pack"]
+layout_mode = 2
+editable = false
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/MainEditor/TabList/Pack"]
+layout_mode = 2
+
+[node name="UploadPack" type="Button" parent="VBoxContainer/MainEditor/TabList/Pack/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Select pack icon"
+
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer/MainEditor/TabList/Pack/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="HermitPalette" type="VBoxContainer" parent="VBoxContainer/MainEditor/TabList/Pack"]
+layout_mode = 2
+script = ExtResource("6_h0bw7")
+
+[node name="HSeparator2" type="HSeparator" parent="VBoxContainer/MainEditor/TabList/Pack/HermitPalette"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/MainEditor/TabList/Pack/HermitPalette"]
+layout_mode = 2
+text = "Hermit palette"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="GridContainer" type="GridContainer" parent="VBoxContainer/MainEditor/TabList/Pack/HermitPalette"]
+layout_mode = 2
+columns = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/MainEditor/TabList/Pack/HermitPalette/GridContainer"]
+layout_mode = 2
+text = "Background"
+
+[node name="ColorPickerButton" type="ColorPickerButton" parent="VBoxContainer/MainEditor/TabList/Pack/HermitPalette/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+tooltip_text = "Background"
+text = "Background"
+edit_alpha = false
+
+[node name="Label2" type="Label" parent="VBoxContainer/MainEditor/TabList/Pack/HermitPalette/GridContainer"]
+layout_mode = 2
+text = "Foreground"
+
+[node name="ColorPickerButton2" type="ColorPickerButton" parent="VBoxContainer/MainEditor/TabList/Pack/HermitPalette/GridContainer"]
+layout_mode = 2
+tooltip_text = "Foreground"
+text = "Foreground"
+edit_alpha = false
+
+[node name="Label3" type="Label" parent="VBoxContainer/MainEditor/TabList/Pack/HermitPalette/GridContainer"]
+layout_mode = 2
+text = "Text"
+
+[node name="ColorPickerButton3" type="ColorPickerButton" parent="VBoxContainer/MainEditor/TabList/Pack/HermitPalette/GridContainer"]
+layout_mode = 2
+tooltip_text = "Text"
+text = "Text"
+edit_alpha = false
+
+[node name="Label4" type="Label" parent="VBoxContainer/MainEditor/TabList/Pack/HermitPalette/GridContainer"]
+layout_mode = 2
+text = "Normal attack"
+
+[node name="ColorPickerButton4" type="ColorPickerButton" parent="VBoxContainer/MainEditor/TabList/Pack/HermitPalette/GridContainer"]
+layout_mode = 2
+tooltip_text = "Normal attack"
+text = "Normal attack"
+edit_alpha = false
+
+[node name="Label5" type="Label" parent="VBoxContainer/MainEditor/TabList/Pack/HermitPalette/GridContainer"]
+layout_mode = 2
+text = "Special attack"
+
+[node name="ColorPickerButton5" type="ColorPickerButton" parent="VBoxContainer/MainEditor/TabList/Pack/HermitPalette/GridContainer"]
+layout_mode = 2
+tooltip_text = "Special attack"
+text = "Special attack"
+edit_alpha = false
+
+[node name="EffectPalette" type="VBoxContainer" parent="VBoxContainer/MainEditor/TabList/Pack"]
+layout_mode = 2
+script = ExtResource("6_h0bw7")
+
+[node name="HSeparator2" type="HSeparator" parent="VBoxContainer/MainEditor/TabList/Pack/EffectPalette"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/MainEditor/TabList/Pack/EffectPalette"]
+layout_mode = 2
+text = "Effect palette"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="GridContainer" type="GridContainer" parent="VBoxContainer/MainEditor/TabList/Pack/EffectPalette"]
+layout_mode = 2
+columns = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/MainEditor/TabList/Pack/EffectPalette/GridContainer"]
+layout_mode = 2
+text = "Background"
+
+[node name="ColorPickerButton" type="ColorPickerButton" parent="VBoxContainer/MainEditor/TabList/Pack/EffectPalette/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+tooltip_text = "Background"
+text = "Background"
+edit_alpha = false
+
+[node name="Label2" type="Label" parent="VBoxContainer/MainEditor/TabList/Pack/EffectPalette/GridContainer"]
+layout_mode = 2
+text = "Foreground"
+
+[node name="ColorPickerButton2" type="ColorPickerButton" parent="VBoxContainer/MainEditor/TabList/Pack/EffectPalette/GridContainer"]
+layout_mode = 2
+tooltip_text = "Foreground"
+text = "Foreground"
+edit_alpha = false
+
+[node name="Label3" type="Label" parent="VBoxContainer/MainEditor/TabList/Pack/EffectPalette/GridContainer"]
+layout_mode = 2
+text = "Text"
+
+[node name="ColorPickerButton3" type="ColorPickerButton" parent="VBoxContainer/MainEditor/TabList/Pack/EffectPalette/GridContainer"]
+layout_mode = 2
+tooltip_text = "Text"
+text = "Text"
+edit_alpha = false
+
+[node name="Label4" type="Label" parent="VBoxContainer/MainEditor/TabList/Pack/EffectPalette/GridContainer"]
+layout_mode = 2
+text = "Normal attack"
+
+[node name="ColorPickerButton4" type="ColorPickerButton" parent="VBoxContainer/MainEditor/TabList/Pack/EffectPalette/GridContainer"]
+layout_mode = 2
+tooltip_text = "Normal attack"
+text = "Normal attack"
+edit_alpha = false
+
+[node name="Label5" type="Label" parent="VBoxContainer/MainEditor/TabList/Pack/EffectPalette/GridContainer"]
+layout_mode = 2
+text = "Special attack"
+
+[node name="ColorPickerButton5" type="ColorPickerButton" parent="VBoxContainer/MainEditor/TabList/Pack/EffectPalette/GridContainer"]
+layout_mode = 2
+tooltip_text = "Special attack"
+text = "Special attack"
+edit_alpha = false
+
+[node name="SingleUsePalette" type="VBoxContainer" parent="VBoxContainer/MainEditor/TabList/Pack"]
+layout_mode = 2
+script = ExtResource("6_h0bw7")
+
+[node name="HSeparator2" type="HSeparator" parent="VBoxContainer/MainEditor/TabList/Pack/SingleUsePalette"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/MainEditor/TabList/Pack/SingleUsePalette"]
+layout_mode = 2
+text = "Single use palette"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="GridContainer" type="GridContainer" parent="VBoxContainer/MainEditor/TabList/Pack/SingleUsePalette"]
+layout_mode = 2
+columns = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/MainEditor/TabList/Pack/SingleUsePalette/GridContainer"]
+layout_mode = 2
+text = "Background"
+
+[node name="ColorPickerButton" type="ColorPickerButton" parent="VBoxContainer/MainEditor/TabList/Pack/SingleUsePalette/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+tooltip_text = "Background"
+text = "Background"
+edit_alpha = false
+
+[node name="Label2" type="Label" parent="VBoxContainer/MainEditor/TabList/Pack/SingleUsePalette/GridContainer"]
+layout_mode = 2
+text = "Foreground"
+
+[node name="ColorPickerButton2" type="ColorPickerButton" parent="VBoxContainer/MainEditor/TabList/Pack/SingleUsePalette/GridContainer"]
+layout_mode = 2
+tooltip_text = "Foreground"
+text = "Foreground"
+edit_alpha = false
+
+[node name="Label3" type="Label" parent="VBoxContainer/MainEditor/TabList/Pack/SingleUsePalette/GridContainer"]
+layout_mode = 2
+text = "Text"
+
+[node name="ColorPickerButton3" type="ColorPickerButton" parent="VBoxContainer/MainEditor/TabList/Pack/SingleUsePalette/GridContainer"]
+layout_mode = 2
+tooltip_text = "Text"
+text = "Text"
+edit_alpha = false
+
+[node name="Label4" type="Label" parent="VBoxContainer/MainEditor/TabList/Pack/SingleUsePalette/GridContainer"]
+layout_mode = 2
+text = "Normal attack"
+
+[node name="ColorPickerButton4" type="ColorPickerButton" parent="VBoxContainer/MainEditor/TabList/Pack/SingleUsePalette/GridContainer"]
+layout_mode = 2
+tooltip_text = "Normal attack"
+text = "Normal attack"
+edit_alpha = false
+
+[node name="Label5" type="Label" parent="VBoxContainer/MainEditor/TabList/Pack/SingleUsePalette/GridContainer"]
+layout_mode = 2
+text = "Special attack"
+
+[node name="ColorPickerButton5" type="ColorPickerButton" parent="VBoxContainer/MainEditor/TabList/Pack/SingleUsePalette/GridContainer"]
+layout_mode = 2
+tooltip_text = "Special attack"
+text = "Special attack"
+edit_alpha = false
 
 [node name="Cards" type="VBoxContainer" parent="VBoxContainer/MainEditor/TabList"]
 visible = false
@@ -182,4 +411,22 @@ visible = false
 layout_mode = 1
 
 [connection signal="tab_changed" from="VBoxContainer/MainEditor/TabList" to="VBoxContainer/MainEditor/Tabs" method="_tab_changed"]
+[connection signal="change_palette" from="VBoxContainer/MainEditor/TabList/Pack/HermitPalette" to="VBoxContainer/MainEditor/TabList/Pack" method="hermit_palette_changed"]
+[connection signal="color_changed" from="VBoxContainer/MainEditor/TabList/Pack/HermitPalette/GridContainer/ColorPickerButton" to="VBoxContainer/MainEditor/TabList/Pack/HermitPalette" method="foreground"]
+[connection signal="color_changed" from="VBoxContainer/MainEditor/TabList/Pack/HermitPalette/GridContainer/ColorPickerButton2" to="VBoxContainer/MainEditor/TabList/Pack/HermitPalette" method="background"]
+[connection signal="color_changed" from="VBoxContainer/MainEditor/TabList/Pack/HermitPalette/GridContainer/ColorPickerButton3" to="VBoxContainer/MainEditor/TabList/Pack/HermitPalette" method="text"]
+[connection signal="color_changed" from="VBoxContainer/MainEditor/TabList/Pack/HermitPalette/GridContainer/ColorPickerButton4" to="VBoxContainer/MainEditor/TabList/Pack/HermitPalette" method="normal_attack"]
+[connection signal="color_changed" from="VBoxContainer/MainEditor/TabList/Pack/HermitPalette/GridContainer/ColorPickerButton5" to="VBoxContainer/MainEditor/TabList/Pack/HermitPalette" method="special_attack"]
+[connection signal="change_palette" from="VBoxContainer/MainEditor/TabList/Pack/EffectPalette" to="VBoxContainer/MainEditor/TabList/Pack" method="effect_palette_changed"]
+[connection signal="color_changed" from="VBoxContainer/MainEditor/TabList/Pack/EffectPalette/GridContainer/ColorPickerButton" to="VBoxContainer/MainEditor/TabList/Pack/EffectPalette" method="foreground"]
+[connection signal="color_changed" from="VBoxContainer/MainEditor/TabList/Pack/EffectPalette/GridContainer/ColorPickerButton2" to="VBoxContainer/MainEditor/TabList/Pack/EffectPalette" method="background"]
+[connection signal="color_changed" from="VBoxContainer/MainEditor/TabList/Pack/EffectPalette/GridContainer/ColorPickerButton3" to="VBoxContainer/MainEditor/TabList/Pack/EffectPalette" method="text"]
+[connection signal="color_changed" from="VBoxContainer/MainEditor/TabList/Pack/EffectPalette/GridContainer/ColorPickerButton4" to="VBoxContainer/MainEditor/TabList/Pack/EffectPalette" method="normal_attack"]
+[connection signal="color_changed" from="VBoxContainer/MainEditor/TabList/Pack/EffectPalette/GridContainer/ColorPickerButton5" to="VBoxContainer/MainEditor/TabList/Pack/EffectPalette" method="special_attack"]
+[connection signal="change_palette" from="VBoxContainer/MainEditor/TabList/Pack/SingleUsePalette" to="VBoxContainer/MainEditor/TabList/Pack" method="single_use_palette_changed"]
+[connection signal="color_changed" from="VBoxContainer/MainEditor/TabList/Pack/SingleUsePalette/GridContainer/ColorPickerButton" to="VBoxContainer/MainEditor/TabList/Pack/SingleUsePalette" method="foreground"]
+[connection signal="color_changed" from="VBoxContainer/MainEditor/TabList/Pack/SingleUsePalette/GridContainer/ColorPickerButton2" to="VBoxContainer/MainEditor/TabList/Pack/SingleUsePalette" method="background"]
+[connection signal="color_changed" from="VBoxContainer/MainEditor/TabList/Pack/SingleUsePalette/GridContainer/ColorPickerButton3" to="VBoxContainer/MainEditor/TabList/Pack/SingleUsePalette" method="text"]
+[connection signal="color_changed" from="VBoxContainer/MainEditor/TabList/Pack/SingleUsePalette/GridContainer/ColorPickerButton4" to="VBoxContainer/MainEditor/TabList/Pack/SingleUsePalette" method="normal_attack"]
+[connection signal="color_changed" from="VBoxContainer/MainEditor/TabList/Pack/SingleUsePalette/GridContainer/ColorPickerButton5" to="VBoxContainer/MainEditor/TabList/Pack/SingleUsePalette" method="special_attack"]
 [connection signal="pressed" from="VBoxContainer/MainEditor/TabList/Poses/Button" to="VBoxContainer/MainEditor/TabList/Poses/ScrollContainer/PoseContainer" method="_new_pose_pressed"]

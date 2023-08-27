@@ -8,3 +8,4 @@ extends Button
 func _pressed():
 	#var current = $"../../../../player_full"
 	#master.save()
+	pass
