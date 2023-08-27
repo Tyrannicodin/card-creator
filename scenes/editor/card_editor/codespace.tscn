@@ -1,5 +1,6 @@
-[gd_scene load_steps=18 format=3 uid="uid://c257rq015cepw"]
+[gd_scene load_steps=21 format=3 uid="uid://c257rq015cepw"]
 
+[ext_resource type="Script" path="res://scripts/editor/code_editor_view.gd" id="1_hnx2u"]
 [ext_resource type="Theme" uid="uid://behexnarv56jn" path="res://assets/themes/main_theme_light.tres" id="1_wdhwm"]
 [ext_resource type="Script" path="res://scripts/editor/blocks/tab_container.gd" id="2_x8bks"]
 [ext_resource type="Theme" uid="uid://dg0qmxc8vjun0" path="res://assets/themes/project_selector.tres" id="3_3jp86"]
@@ -13,7 +14,9 @@
 [ext_resource type="Script" path="res://scripts/editor/blocks/events/get_attacks.gd" id="11_j1h1o"]
 [ext_resource type="Script" path="res://scripts/editor/blocks/basic_block.gd" id="12_qyva2"]
 [ext_resource type="Script" path="res://scripts/editor/blocks/codespace.gd" id="13_1j210"]
+[ext_resource type="PackedScene" uid="uid://bgpbvjwjyab2g" path="res://scenes/editor/pose_editor/pose_editor.tscn" id="13_wwxf5"]
 [ext_resource type="Script" path="res://scripts/editor/card_container.gd" id="14_41l7f"]
+[ext_resource type="Script" path="res://scripts/editor/create_pose_editor_nodes.gd" id="14_xm7iq"]
 [ext_resource type="PackedScene" uid="uid://b845nyhds8jwb" path="res://scenes/editor/card_editor/card.tscn" id="15_hr5jm"]
 [ext_resource type="Script" path="res://scripts/editor/bg_button.gd" id="16_4um7i"]
 
@@ -26,6 +29,8 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_constants/separation = 0
+script = ExtResource("1_hnx2u")
 
 [node name="TabContainer" type="TabContainer" parent="."]
 custom_minimum_size = Vector2(0, 90)
@@ -147,6 +152,16 @@ layout_mode = 2
 visible = false
 layout_mode = 2
 
+[node name="Poses" type="VBoxContainer" parent="TabContainer"]
+visible = false
+layout_mode = 2
+script = ExtResource("14_xm7iq")
+
+[node name="pose_editor" parent="." instance=ExtResource("13_wwxf5")]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 3
+
 [node name="Codespace" type="Control" parent="."]
 layout_mode = 2
 size_flags_horizontal = 3
@@ -154,6 +169,7 @@ size_flags_stretch_ratio = 0.6
 script = ExtResource("13_1j210")
 
 [node name="Panel" type="Panel" parent="."]
+custom_minimum_size = Vector2(310, 0)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -175,7 +191,7 @@ layout_mode = 2
 script = ExtResource("14_41l7f")
 
 [node name="card" parent="Panel/VBoxContainer/card_container" instance=ExtResource("15_hr5jm")]
-position = Vector2(28, 34)
+position = Vector2(48, 30)
 scale = Vector2(0.45, 0.45)
 
 [node name="PropertyContainer" type="VBoxContainer" parent="Panel/VBoxContainer"]
@@ -409,6 +425,7 @@ vertical_alignment = 1
 layout_mode = 2
 size_flags_vertical = 3
 
+[connection signal="tab_changed" from="TabContainer" to="." method="_on_tab_container_tab_changed"]
 [connection signal="text_changed" from="Panel/VBoxContainer/PropertyContainer/MarginContainer2/VBoxContainer/GridContainer/Name" to="Panel/VBoxContainer/card_container" method="_on_name_text_changed"]
 [connection signal="item_selected" from="Panel/VBoxContainer/PropertyContainer/MarginContainer2/VBoxContainer/GridContainer/Type" to="Panel/VBoxContainer/card_container" method="_on_type_item_selected"]
 [connection signal="value_changed" from="Panel/VBoxContainer/PropertyContainer/MarginContainer2/VBoxContainer/GridContainer/Health" to="Panel/VBoxContainer/card_container" method="_on_health_value_changed"]

@@ -21,7 +21,7 @@ var card_name: String : set = _set_card_name
 var health: int : set = _set_health
 
 var background: String : set = _set_bg
-var image: String : set = _set_img
+var image: NodePath : set = _set_img
 
 # Getters and setters
 func _set_type(value: String) -> void:
@@ -44,7 +44,7 @@ func _set_bg(value: String) -> void:
 
 func _set_img(value: String) -> void:
 	image = value
-	_card_bg_node.texture = _imageGenerator.load_texture(value)
+	_card_img_node.texture.viewport_path = image
 
 # Called when the node enters the scene tree for the first time.
 func _ready():

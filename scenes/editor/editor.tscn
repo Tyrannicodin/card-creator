@@ -1,17 +1,23 @@
+<<<<<<< Updated upstream
 [gd_scene load_steps=13 format=3 uid="uid://c1ogyiok588hj"]
+=======
+[gd_scene load_steps=8 format=3 uid="uid://c1ogyiok588hj"]
+>>>>>>> Stashed changes
 
 [ext_resource type="Theme" uid="uid://dde7m6q5cfe1u" path="res://assets/themes/main_theme.tres" id="1_ajqyn"]
 [ext_resource type="Script" path="res://scripts/menu_bar/help.gd" id="2_5jdoa"]
 [ext_resource type="Script" path="res://scripts/menu_bar/project.gd" id="2_gnyxg"]
 [ext_resource type="PackedScene" uid="uid://c257rq015cepw" path="res://scenes/editor/card_editor/codespace.tscn" id="2_qutdm"]
 [ext_resource type="Script" path="res://scripts/editor/tab_changer.gd" id="3_1njq7"]
-[ext_resource type="PackedScene" uid="uid://bgpbvjwjyab2g" path="res://scenes/editor/pose_editor/pose_editor.tscn" id="3_c172i"]
 [ext_resource type="Script" path="res://scripts/menu_bar/run.gd" id="3_op3et"]
+<<<<<<< Updated upstream
 [ext_resource type="Script" path="res://scripts/editor/file_managers/pose_file_manager.gd" id="5_1jcyr"]
 [ext_resource type="Script" path="res://scripts/editor/file_managers/pack_file_manger.gd" id="5_s5xbg"]
 [ext_resource type="Script" path="res://scripts/editor/pack_palette.gd" id="6_h0bw7"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_b54cx"]
+=======
+>>>>>>> Stashed changes
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_66bq0"]
 bg_color = Color(0, 0, 0, 0)
@@ -355,6 +361,7 @@ text = "Create new"
 layout_mode = 2
 theme_override_styles/separator = SubResource("StyleBoxFlat_66bq0")
 
+<<<<<<< Updated upstream
 [node name="Poses" type="VBoxContainer" parent="VBoxContainer/MainEditor/TabList"]
 visible = false
 layout_mode = 2
@@ -392,6 +399,8 @@ offset_right = 192.0
 offset_bottom = 57.0
 placeholder_text = "Pose name"
 
+=======
+>>>>>>> Stashed changes
 [node name="Tabs" type="Control" parent="VBoxContainer/MainEditor"]
 layout_mode = 2
 size_flags_horizontal = 3
@@ -406,11 +415,8 @@ offset_bottom = 40.0
 visible = false
 layout_mode = 1
 
-[node name="pose_editor" parent="VBoxContainer/MainEditor/Tabs" instance=ExtResource("3_c172i")]
-visible = false
-layout_mode = 1
-
 [connection signal="tab_changed" from="VBoxContainer/MainEditor/TabList" to="VBoxContainer/MainEditor/Tabs" method="_tab_changed"]
+<<<<<<< Updated upstream
 [connection signal="change_palette" from="VBoxContainer/MainEditor/TabList/Pack/HermitPalette" to="VBoxContainer/MainEditor/TabList/Pack" method="hermit_palette_changed"]
 [connection signal="color_changed" from="VBoxContainer/MainEditor/TabList/Pack/HermitPalette/GridContainer/ColorPickerButton" to="VBoxContainer/MainEditor/TabList/Pack/HermitPalette" method="foreground"]
 [connection signal="color_changed" from="VBoxContainer/MainEditor/TabList/Pack/HermitPalette/GridContainer/ColorPickerButton2" to="VBoxContainer/MainEditor/TabList/Pack/HermitPalette" method="background"]
@@ -430,3 +436,5 @@ layout_mode = 1
 [connection signal="color_changed" from="VBoxContainer/MainEditor/TabList/Pack/SingleUsePalette/GridContainer/ColorPickerButton4" to="VBoxContainer/MainEditor/TabList/Pack/SingleUsePalette" method="normal_attack"]
 [connection signal="color_changed" from="VBoxContainer/MainEditor/TabList/Pack/SingleUsePalette/GridContainer/ColorPickerButton5" to="VBoxContainer/MainEditor/TabList/Pack/SingleUsePalette" method="special_attack"]
 [connection signal="pressed" from="VBoxContainer/MainEditor/TabList/Poses/Button" to="VBoxContainer/MainEditor/TabList/Poses/ScrollContainer/PoseContainer" method="_new_pose_pressed"]
+=======
+>>>>>>> Stashed changes

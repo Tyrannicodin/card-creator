@@ -3,10 +3,11 @@ extends Panel
 @onready var card = $card
 @onready var types = $"../PropertyContainer/MarginContainer2/VBoxContainer/GridContainer/Type"
 
+@onready var preview_viewport = $"../../../pose_editor".get_node("PreviewViewport")
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
-
+	card.image = preview_viewport.get_path()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
