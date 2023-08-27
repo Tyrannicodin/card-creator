@@ -138,6 +138,10 @@ theme_override_styles/separator = SubResource("StyleBoxFlat_66bq0")
 layout_mode = 2
 text = "Create new"
 
+[node name="HSeparator2" type="HSeparator" parent="VBoxContainer/MainEditor/TabList/Poses"]
+layout_mode = 2
+theme_override_styles/separator = SubResource("StyleBoxFlat_66bq0")
+
 [node name="ScrollContainer" type="ScrollContainer" parent="VBoxContainer/MainEditor/TabList/Poses"]
 layout_mode = 2
 size_flags_vertical = 3

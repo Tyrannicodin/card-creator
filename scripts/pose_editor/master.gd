@@ -23,77 +23,78 @@ enum SkinType {WIDE, SLIM}
 var type_selected = SkinType.WIDE
 
 # Body parts
-@onready var player_mesh = {
-	SkinType.WIDE : {
-		"Head" : {
-			"base" : player_wide.get_node("Node/Head/"),
-			"underlay": player_wide.get_node("Node/Head/Head_001"),
-			"overlay": player_wide.get_node("Node/Head/Hat Layer")
+var player_mesh
+func _get_player_mesh():
+	player_mesh = {
+		SkinType.WIDE : {
+			"Head" : {
+				"base" : player_wide.get_node("Node/Head/"),
+				"underlay": player_wide.get_node("Node/Head/Head_001"),
+				"overlay": player_wide.get_node("Node/Head/Hat Layer")
+			},
+			"Right Arm" : {
+				"base" : player_wide.get_node("Node/RightArm/"),
+				"underlay": player_wide.get_node("Node/RightArm/Right Arm"),
+				"overlay": player_wide.get_node("Node/RightArm/Right Arm Layer")
+			},
+			"Left Arm" : {
+				"base" : player_wide.get_node("Node/LeftArm/"),
+				"underlay": player_wide.get_node("Node/LeftArm/Left Arm"),
+				"overlay": player_wide.get_node("Node/LeftArm/Left Arm Layer")
+			},
+			"Body" : {
+				"base" : player_wide.get_node("Node"),
+				"underlay": player_wide.get_node("Node/Body/Body_001"),
+				"overlay": player_wide.get_node("Node/Body/Body Layer")
+			},
+			"Right Leg" : {
+				"base" : player_wide.get_node("Node/RightLeg/"),
+				"underlay": player_wide.get_node("Node/RightLeg/Right Leg"),
+				"overlay": player_wide.get_node("Node/RightLeg/Right Leg Layer")
+			},
+			"Left Leg" : {
+				"base" : player_wide.get_node("Node/LeftLeg/"),
+				"underlay": player_wide.get_node("Node/LeftLeg/Left Leg"),
+				"overlay": player_wide.get_node("Node/LeftLeg/Left Leg Layer")
+			}
 		},
-		"Right Arm" : {
-			"base" : player_wide.get_node("Node/RightArm/"),
-			"underlay": player_wide.get_node("Node/RightArm/Right Arm"),
-			"overlay": player_wide.get_node("Node/RightArm/Right Arm Layer")
-		},
-		"Left Arm" : {
-			"base" : player_wide.get_node("Node/LeftArm/"),
-			"underlay": player_wide.get_node("Node/LeftArm/Left Arm"),
-			"overlay": player_wide.get_node("Node/LeftArm/Left Arm Layer")
-		},
-		"Body" : {
-			"base" : player_wide.get_node("Node"),
-			"underlay": player_wide.get_node("Node/Body/Body_001"),
-			"overlay": player_wide.get_node("Node/Body/Body Layer")
-		},
-		"Right Leg" : {
-			"base" : player_wide.get_node("Node/RightLeg/"),
-			"underlay": player_wide.get_node("Node/RightLeg/Right Leg"),
-			"overlay": player_wide.get_node("Node/RightLeg/Right Leg Layer")
-		},
-		"Left Leg" : {
-			"base" : player_wide.get_node("Node/LeftLeg/"),
-			"underlay": player_wide.get_node("Node/LeftLeg/Left Leg"),
-			"overlay": player_wide.get_node("Node/LeftLeg/Left Leg Layer")
-		}
-	},
-	SkinType.SLIM : {
-		"Head" : {
-			"base" : player_slim.get_node("Node/Head/"),
-			"underlay": player_slim.get_node("Node/Head/Head_001"),
-			"overlay": player_slim.get_node("Node/Head/Hat Layer")
-		},
-		"Right Arm" : {
-			"base" : player_slim.get_node("Node/RightArm/"),
-			"underlay": player_slim.get_node("Node/RightArm/Right Arm"),
-			"overlay": player_slim.get_node("Node/RightArm/Right Arm Layer")
-		},
-		"Left Arm" : {
-			"base" : player_slim.get_node("Node/LeftArm/"),
-			"underlay": player_slim.get_node("Node/LeftArm/Left Arm"),
-			"overlay": player_slim.get_node("Node/LeftArm/Left Arm Layer")
-		},
-		"Body" : {
-			"base" : player_slim.get_node("Node"),
-			"underlay": player_slim.get_node("Node/Body/Body_001"),
-			"overlay": player_slim.get_node("Node/Body/Body Layer")
-		},
-		"Right Leg" : {
-			"base" : player_slim.get_node("Node/RightLeg/"),
-			"underlay": player_slim.get_node("Node/RightLeg/Right Leg"),
-			"overlay": player_slim.get_node("Node/RightLeg/Right Leg Layer")
-		},
-		"Left Leg" : {
-			"base" : player_slim.get_node("Node/LeftLeg/"),
-			"underlay": player_slim.get_node("Node/LeftLeg/Left Leg"),
-			"overlay": player_slim.get_node("Node/LeftLeg/Left Leg Layer")
+		SkinType.SLIM : {
+			"Head" : {
+				"base" : player_slim.get_node("Node/Head/"),
+				"underlay": player_slim.get_node("Node/Head/Head_001"),
+				"overlay": player_slim.get_node("Node/Head/Hat Layer")
+			},
+			"Right Arm" : {
+				"base" : player_slim.get_node("Node/RightArm/"),
+				"underlay": player_slim.get_node("Node/RightArm/Right Arm"),
+				"overlay": player_slim.get_node("Node/RightArm/Right Arm Layer")
+			},
+			"Left Arm" : {
+				"base" : player_slim.get_node("Node/LeftArm/"),
+				"underlay": player_slim.get_node("Node/LeftArm/Left Arm"),
+				"overlay": player_slim.get_node("Node/LeftArm/Left Arm Layer")
+			},
+			"Body" : {
+				"base" : player_slim.get_node("Node"),
+				"underlay": player_slim.get_node("Node/Body/Body_001"),
+				"overlay": player_slim.get_node("Node/Body/Body Layer")
+			},
+			"Right Leg" : {
+				"base" : player_slim.get_node("Node/RightLeg/"),
+				"underlay": player_slim.get_node("Node/RightLeg/Right Leg"),
+				"overlay": player_slim.get_node("Node/RightLeg/Right Leg Layer")
+			},
+			"Left Leg" : {
+				"base" : player_slim.get_node("Node/LeftLeg/"),
+				"underlay": player_slim.get_node("Node/LeftLeg/Left Leg"),
+				"overlay": player_slim.get_node("Node/LeftLeg/Left Leg Layer")
+			}
 		}
 	}
-}
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	if not DirAccess.dir_exists_absolute("user://poses"):
-		DirAccess.make_dir_absolute("user://poses")
+	_get_player_mesh()
 	
 	type_selected = SkinType.WIDE
 	for key in player_mesh[type_selected]:
@@ -110,18 +111,21 @@ func save(path:String):
 
 func load_pose(path:String):
 	var packed_pose_scene:PackedScene = load(path)
-	if not packed_pose_scene is PackedScene and packed_pose_scene:
+	if not (packed_pose_scene and packed_pose_scene is PackedScene):
 		return
 	var loading_pose = packed_pose_scene.instantiate()
 	if not loading_pose.name in ["player_full", "player_slim"]:
 		return #TODO: More advanced checks on scene we are importing
+	loading_pose.set_meta("filename", path.get_file())
 	_on_skintype_item_selected(0 if loading_pose.name == "player_full" else 1)
 	get_node(loading_pose.name as String).queue_free()
+	await get_tree().process_frame
 	add_child(loading_pose)
 	if loading_pose.name == "player_full":
 		player_wide = loading_pose
 	else:
 		player_slim = loading_pose
+	_get_player_mesh()
 
 func pack_children(root:Node, current_node:Node):
 	current_node.set_owner(root)
@@ -150,6 +154,7 @@ func _on_bend_value_changed(value):
 	selected_item.overlay.bend(value)
 
 func _on_items_item_selected(index):
+	_get_player_mesh()
 	pickup_changes = false
 	bend_slider.visible = true
 	
