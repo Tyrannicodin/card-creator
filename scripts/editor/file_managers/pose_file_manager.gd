@@ -2,7 +2,7 @@ extends VBoxContainer
 
 
 @onready var new_pose_dialog := $PoseCreationDialog
-@onready var pose_editor := $"../../../../Tabs/pose_editor"
+@onready var pose_editor := $"../../../../../Tabs/CardEditor/pose_editor"
 
 func _ready():
 	_reload_poses()
