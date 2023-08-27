@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://bgpbvjwjyab2g"]
+[gd_scene load_steps=10 format=3 uid="uid://bgpbvjwjyab2g"]
 
 [ext_resource type="PackedScene" uid="uid://bwwax6ypmwh3q" path="res://scenes/editor/pose_editor/player_full.tscn" id="1_7077t"]
 [ext_resource type="Script" path="res://scripts/pose_editor/master.gd" id="1_vqpyv"]
@@ -6,7 +6,6 @@
 [ext_resource type="PackedScene" uid="uid://s0qousks114p" path="res://scenes/editor/pose_editor/player_slim.tscn" id="3_e0nhy"]
 [ext_resource type="Script" path="res://scripts/pose_editor/skin_selector.gd" id="5_v6e1j"]
 [ext_resource type="Texture2D" uid="uid://gsabiyxrelo3" path="res://assets/models/alex.png" id="6_har6l"]
-[ext_resource type="Script" path="res://scripts/pose_editor/save_button.gd" id="7_4nlvo"]
 
 [sub_resource type="Environment" id="Environment_vfflu"]
 background_mode = 1
@@ -157,19 +156,7 @@ popup/item_0/id = 0
 popup/item_1/text = "Slim"
 popup/item_1/id = 1
 
-<<<<<<< Updated upstream
-[node name="SaveButton" type="Button" parent="HBoxContainer/RightContainer/GridContainer"]
-layout_mode = 2
-text = "Save pose"
-script = ExtResource("7_4nlvo")
-
-[node name="Spacer2" type="Control" parent="HBoxContainer/RightContainer/GridContainer"]
-layout_mode = 2
-
-[node name="SkinFileDialog" type="FileDialog" parent="HBoxContainer/RightContainer"]
-=======
 [node name="SkinFileDialog" type="FileDialog" parent="LeftContainer"]
->>>>>>> Stashed changes
 title = "Open a File"
 initial_position = 2
 size = Vector2i(500, 500)

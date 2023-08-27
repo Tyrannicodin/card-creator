@@ -1,8 +1,4 @@
-<<<<<<< Updated upstream
-[gd_scene load_steps=13 format=3 uid="uid://c1ogyiok588hj"]
-=======
-[gd_scene load_steps=8 format=3 uid="uid://c1ogyiok588hj"]
->>>>>>> Stashed changes
+[gd_scene load_steps=11 format=3 uid="uid://741vrk1hetwo"]
 
 [ext_resource type="Theme" uid="uid://dde7m6q5cfe1u" path="res://assets/themes/main_theme.tres" id="1_ajqyn"]
 [ext_resource type="Script" path="res://scripts/menu_bar/help.gd" id="2_5jdoa"]
@@ -10,14 +6,10 @@
 [ext_resource type="PackedScene" uid="uid://c257rq015cepw" path="res://scenes/editor/card_editor/codespace.tscn" id="2_qutdm"]
 [ext_resource type="Script" path="res://scripts/editor/tab_changer.gd" id="3_1njq7"]
 [ext_resource type="Script" path="res://scripts/menu_bar/run.gd" id="3_op3et"]
-<<<<<<< Updated upstream
-[ext_resource type="Script" path="res://scripts/editor/file_managers/pose_file_manager.gd" id="5_1jcyr"]
 [ext_resource type="Script" path="res://scripts/editor/file_managers/pack_file_manger.gd" id="5_s5xbg"]
 [ext_resource type="Script" path="res://scripts/editor/pack_palette.gd" id="6_h0bw7"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_b54cx"]
-=======
->>>>>>> Stashed changes
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_66bq0"]
 bg_color = Color(0, 0, 0, 0)
@@ -361,46 +353,6 @@ text = "Create new"
 layout_mode = 2
 theme_override_styles/separator = SubResource("StyleBoxFlat_66bq0")
 
-<<<<<<< Updated upstream
-[node name="Poses" type="VBoxContainer" parent="VBoxContainer/MainEditor/TabList"]
-visible = false
-layout_mode = 2
-
-[node name="HSeparator" type="HSeparator" parent="VBoxContainer/MainEditor/TabList/Poses"]
-layout_mode = 2
-theme_override_styles/separator = SubResource("StyleBoxFlat_66bq0")
-
-[node name="Button" type="Button" parent="VBoxContainer/MainEditor/TabList/Poses"]
-layout_mode = 2
-text = "Create new"
-
-[node name="HSeparator2" type="HSeparator" parent="VBoxContainer/MainEditor/TabList/Poses"]
-layout_mode = 2
-theme_override_styles/separator = SubResource("StyleBoxFlat_66bq0")
-
-[node name="ScrollContainer" type="ScrollContainer" parent="VBoxContainer/MainEditor/TabList/Poses"]
-layout_mode = 2
-size_flags_vertical = 3
-
-[node name="PoseContainer" type="VBoxContainer" parent="VBoxContainer/MainEditor/TabList/Poses/ScrollContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-script = ExtResource("5_1jcyr")
-
-[node name="PoseCreationDialog" type="ConfirmationDialog" parent="VBoxContainer/MainEditor/TabList/Poses/ScrollContainer/PoseContainer"]
-title = "Create new pose"
-ok_button_text = "Create pose"
-
-[node name="PoseName" type="LineEdit" parent="VBoxContainer/MainEditor/TabList/Poses/ScrollContainer/PoseContainer/PoseCreationDialog"]
-offset_left = 8.0
-offset_top = 8.0
-offset_right = 192.0
-offset_bottom = 57.0
-placeholder_text = "Pose name"
-
-=======
->>>>>>> Stashed changes
 [node name="Tabs" type="Control" parent="VBoxContainer/MainEditor"]
 layout_mode = 2
 size_flags_horizontal = 3
@@ -416,7 +368,6 @@ visible = false
 layout_mode = 1
 
 [connection signal="tab_changed" from="VBoxContainer/MainEditor/TabList" to="VBoxContainer/MainEditor/Tabs" method="_tab_changed"]
-<<<<<<< Updated upstream
 [connection signal="change_palette" from="VBoxContainer/MainEditor/TabList/Pack/HermitPalette" to="VBoxContainer/MainEditor/TabList/Pack" method="hermit_palette_changed"]
 [connection signal="color_changed" from="VBoxContainer/MainEditor/TabList/Pack/HermitPalette/GridContainer/ColorPickerButton" to="VBoxContainer/MainEditor/TabList/Pack/HermitPalette" method="foreground"]
 [connection signal="color_changed" from="VBoxContainer/MainEditor/TabList/Pack/HermitPalette/GridContainer/ColorPickerButton2" to="VBoxContainer/MainEditor/TabList/Pack/HermitPalette" method="background"]
@@ -435,6 +386,3 @@ layout_mode = 1
 [connection signal="color_changed" from="VBoxContainer/MainEditor/TabList/Pack/SingleUsePalette/GridContainer/ColorPickerButton3" to="VBoxContainer/MainEditor/TabList/Pack/SingleUsePalette" method="text"]
 [connection signal="color_changed" from="VBoxContainer/MainEditor/TabList/Pack/SingleUsePalette/GridContainer/ColorPickerButton4" to="VBoxContainer/MainEditor/TabList/Pack/SingleUsePalette" method="normal_attack"]
 [connection signal="color_changed" from="VBoxContainer/MainEditor/TabList/Pack/SingleUsePalette/GridContainer/ColorPickerButton5" to="VBoxContainer/MainEditor/TabList/Pack/SingleUsePalette" method="special_attack"]
-[connection signal="pressed" from="VBoxContainer/MainEditor/TabList/Poses/Button" to="VBoxContainer/MainEditor/TabList/Poses/ScrollContainer/PoseContainer" method="_new_pose_pressed"]
-=======
->>>>>>> Stashed changes

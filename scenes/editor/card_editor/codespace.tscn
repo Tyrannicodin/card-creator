@@ -225,6 +225,18 @@ layout_mode = 2
 size_flags_horizontal = 3
 theme = ExtResource("1_wdhwm")
 
+[node name="PackLabel" type="Label" parent="Panel/VBoxContainer/PropertyContainer/MarginContainer2/VBoxContainer/GridContainer"]
+custom_minimum_size = Vector2(0, 35)
+layout_mode = 2
+text = "Pack"
+vertical_alignment = 1
+
+[node name="Pack" type="LineEdit" parent="Panel/VBoxContainer/PropertyContainer/MarginContainer2/VBoxContainer/GridContainer"]
+custom_minimum_size = Vector2(0, 25)
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("1_wdhwm")
+
 [node name="TypeLabel" type="Label" parent="Panel/VBoxContainer/PropertyContainer/MarginContainer2/VBoxContainer/GridContainer"]
 custom_minimum_size = Vector2(0, 35)
 layout_mode = 2

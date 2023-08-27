@@ -30,7 +30,10 @@ func _reload_poses():
 			child.queue_free()
 	await get_tree().process_frame
 	var pose_path := GlobalStorage.path + "/hc-tcg-cc/poses/"
-	for file in DirAccess.open(pose_path).get_files():
+	var files = DirAccess.open(pose_path)
+	if !files:
+		return
+	for file in files.get_files():
 		var poseButton := preload("res://scripts/pose_editor/pose_button.gd").new()
 		poseButton.name = "file_" + file.get_basename()
 		poseButton.text = file.get_basename()
