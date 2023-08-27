@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://b845nyhds8jwb"]
+[gd_scene load_steps=8 format=3 uid="uid://b845nyhds8jwb"]
 
 [ext_resource type="Script" path="res://scripts/card/card.gd" id="1_fm0xn"]
 [ext_resource type="Theme" uid="uid://cvdjyyecboo5u" path="res://assets/themes/card.tres" id="2_bwdc5"]
@@ -7,8 +7,6 @@
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_o30ka"]
 bg_color = Color(1, 1, 1, 1)
 border_color = Color(1, 1, 1, 1)
-
-[sub_resource type="ViewportTexture" id="ViewportTexture_dhlbf"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_iio3t"]
 bg_color = Color(0.6, 0.6, 0.6, 0)
@@ -128,7 +126,6 @@ offset_top = 110.0
 offset_bottom = 110.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = SubResource("ViewportTexture_dhlbf")
 
 [node name="border_overlay" type="Panel" parent="Control/bg/BoxContainer/MarginContainer/card_info/img_margin/image_panel"]
 clip_contents = true

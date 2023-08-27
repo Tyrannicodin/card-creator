@@ -6,7 +6,6 @@ var mdt = MeshDataTool.new()
 @onready var player_wide = $player_full
 @onready var player_slim = $player_slim
 @onready var items
-@onready var skin_image = $LeftContainer/GridContainer2/SkinImage
 
 var steve_texture = preload("res://assets/models/steve.png")
 var alex_texture = preload("res://assets/models/alex.png")
@@ -178,7 +177,6 @@ func _on_items_item_selected(index):
 	pickup_changes = true
 
 func _apply_skin(skin_texture, parts_dict):
-	skin_image.texture = skin_texture
 	for key in parts_dict:
 		for segment in parts_dict[key]:
 			var m = parts_dict[key][segment]
