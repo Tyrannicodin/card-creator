@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://741vrk1hetwo"]
+[gd_scene load_steps=11 format=3 uid="uid://741vrk1hetwo"]
 
 [ext_resource type="Theme" uid="uid://dde7m6q5cfe1u" path="res://assets/themes/main_theme.tres" id="1_ajqyn"]
 [ext_resource type="Script" path="res://scripts/menu_bar/help.gd" id="2_5jdoa"]
@@ -8,6 +8,7 @@
 [ext_resource type="Script" path="res://scripts/menu_bar/run.gd" id="3_op3et"]
 [ext_resource type="Script" path="res://scripts/editor/file_managers/pack_file_manger.gd" id="5_s5xbg"]
 [ext_resource type="Script" path="res://scripts/editor/pack_palette.gd" id="6_h0bw7"]
+[ext_resource type="Script" path="res://scripts/editor/file_managers/card_file_manager.gd" id="7_f4tkk"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_b54cx"]
 
@@ -334,6 +335,7 @@ edit_alpha = false
 [node name="Cards" type="VBoxContainer" parent="VBoxContainer/MainEditor/TabList"]
 visible = false
 layout_mode = 2
+script = ExtResource("7_f4tkk")
 
 [node name="Tabs" type="Control" parent="VBoxContainer/MainEditor"]
 layout_mode = 2

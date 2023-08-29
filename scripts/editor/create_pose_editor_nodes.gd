@@ -14,8 +14,3 @@ func _ready():
 	pose_editor.x_slider = node.get_node("GridContainer/x")
 	pose_editor.y_slider = node.get_node("GridContainer/y")
 	pose_editor.z_slider = node.get_node("GridContainer/z")
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass

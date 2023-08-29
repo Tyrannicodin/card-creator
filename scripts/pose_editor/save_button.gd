@@ -1,11 +1,10 @@
 extends Button
 
 
-@onready var master := $"../../../../../pose_editor"
-@onready var player_wide := $"../../../../player_full"
-@onready var player_slim := $"../../../../player_slim"
+@onready var master_editor := $"../../../../../pose_editor"
+
+func _ready():
+	print(master_editor)
 
 func _pressed():
-	#var current = $"../../../../player_full"
-	#master.save()
-	pass
+	master_editor.save_current_pose()

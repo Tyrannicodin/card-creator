@@ -13,6 +13,7 @@ var selected_slim
 
 # Saving stuff
 var skin:Image
+var current_pose_path:String
 
 #sliders
 @onready var bend_slider:Slider
@@ -96,41 +97,57 @@ func _ready():
 	add_items()
 	
 	_apply_skin(steve_texture)
-	
+
 func add_items():
 	if player_mesh == null || items == null:
 		return
 	for key in player_mesh[SkinType.WIDE]:
 		items.add_item(key)
 
-#func save(path:String):
-#	var saved_player = PackedScene.new()
-#	for child in player_wide.get_children():
-#		pack_children(player_wide, child)
-#	saved_player.pack(player_wide)
-#	ResourceSaver.save(saved_player, path)
-#
-#func load_pose(path:String):
-#	var packed_pose_scene:PackedScene = load(path)
-#	if not (packed_pose_scene and packed_pose_scene is PackedScene):
-#		return
-#	var loading_pose = packed_pose_scene.instantiate()
-#	if not loading_pose.name in ["player_full", "player_slim"]:
-#		return #TODO: More advanced checks on scene we are importing
-#	loading_pose.set_meta("filename", path.get_file())
-#	_on_skintype_item_selected(0 if loading_pose.name == "player_full" else 1)
-#	get_node(loading_pose.name as String).queue_free()
-#	await get_tree().process_frame
-#	add_child(loading_pose)
-#	if loading_pose.name == "player_full":
-#		player_wide = loading_pose
-#	else:
-#		player_slim = loading_pose
-#
-#func pack_children(root:Node, current_node:Node):
-#	current_node.set_owner(root)
-#	for child in current_node.get_children():
-#		pack_children(root, child)
+func load_pose_from_path(path:String):
+	current_pose_path = path
+	var save_file = FileAccess.open(path, FileAccess.READ)
+	var save_data:Dictionary = save_file.get_var()
+	save_file.close()
+	load_pose(save_data)
+
+func load_pose(save_data:Dictionary):
+	for skin_mesh in player_mesh.values():
+		for part in skin_mesh:
+			if not save_data.has(part): continue
+			for segment in skin_mesh[part]:
+				if not save_data[part].has(segment): continue
+				var current_segment:Node3D = skin_mesh[part][segment]
+				var current_segment_values:Dictionary = save_data[part][segment]
+				if current_segment is PlayerLimb:
+					current_segment.bend(current_segment_values["bend"])
+				current_segment.rotation_degrees.x = current_segment_values["x"]
+				current_segment.rotation_degrees.y = current_segment_values["y"]
+				current_segment.rotation_degrees.z = current_segment_values["z"]
+
+func save_current_pose():
+	if not current_pose_path: return
+	var save_dict = parse_dict(player_mesh[SkinType.WIDE])
+	save_dict["skin"] = skin
+	var save_file = FileAccess.open(current_pose_path, FileAccess.WRITE)
+	save_file.store_var(save_dict)
+	save_file.close()
+
+func parse_dict(dict:Dictionary):
+	var output = {}
+	for key in dict:
+		if dict[key] is Dictionary:
+			output[key] = parse_dict(dict[key])
+		elif dict[key] is Node3D:
+			var limb:Node3D = dict[key]
+			output[key] = {
+				"x": limb.rotation_degrees.x,
+				"y": limb.rotation_degrees.y,
+				"z": limb.rotation_degrees.z,
+			}
+		if dict[key] is PlayerLimb:
+			output[key]["bend"] = dict[key].get_current_bend()
+	return output
 
 func _on_x_value_changed(value):
 	if not pickup_changes:
@@ -181,8 +198,8 @@ func _on_items_item_selected(index):
 	pickup_changes = true
 
 func _apply_skin(skin_texture):
-	for skin in player_mesh.values():
-		for part in skin.values():
+	for skin_mesh in player_mesh.values():
+		for part in skin_mesh.values():
 			for segment in part.values():
 				if segment is MeshInstance3D:
 					mdt.create_from_surface(segment.mesh, 0)
@@ -198,6 +215,7 @@ func _on_file_dialog_file_selected(path):
 	var image = Image.new()
 	image.load(path)
 	texture.set_image(image)
+	skin = image
 	_apply_skin(texture)
 
 func _on_skintype_item_selected(index):
