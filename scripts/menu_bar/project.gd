@@ -4,7 +4,7 @@ extends PopupMenu
 signal save()
 signal save_complete()
 
-var saved = 0
+var saved := 0
 
 func _ready():
 	save.connect(_on_save)
