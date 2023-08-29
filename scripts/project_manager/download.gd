@@ -6,11 +6,13 @@ signal reload_packs()
 var repository = "https://github.com/martinkadlec0/hc-tcg/archive/"
 
 var sizes = {
-	"v0_6_0": 39709080.0
+	"v0_6_19": 39709089.0,
+	"v0_6_18": 39709080.0
 }
 
 var versions = {
-	"v0_6_0": "f6517bba8a9e00a0188ba23ac572c7e00c13a72b"
+	"v0_6_19": "a71f079ea18a6079b1cafeb333a09c42fa3f3cbc",
+	"v0_6_18": "f6517bba8a9e00a0188ba23ac572c7e00c13a72b"
 }
 
 class colors:
@@ -93,17 +95,15 @@ func create_new():
 	"""Create a new project by extracting the version file"""
 	
 	# Get version and path to the version folder
-	var chosen_version = versions.keys()[VersionSelector.get_selected_id()]
-	var version_dir_path = OS.get_user_data_dir() + "/packs/" + chosen_version
+	var chosen_version:String = versions.keys()[VersionSelector.get_selected_id()]
+	var version_dir_path := OS.get_user_data_dir() + "/packs/" + chosen_version
 	
 	# Check if we can name a folder the given name
-	if not ProjectName.text.is_valid_filename():
-		set_status("Error: Invalid project name")
-		return
-	var version_dir = DirAccess.open(version_dir_path)
+	var file_name:String = ProjectName.text.validate_filename()
+	var version_dir := DirAccess.open(version_dir_path)
 	
 	# Don't overwite other projects
-	var unique_name = ProjectName.text
+	var unique_name = file_name
 	if version_dir.dir_exists(unique_name):
 		var i = 2
 		while version_dir.dir_exists(unique_name + "_" + str(i)):
@@ -131,17 +131,15 @@ func create_new():
 		version_dir.make_dir("cards")
 		version_dir.make_dir("poses")
 		var meta_file = FileAccess.open(
-			"user://packs/" + chosen_version + "/" + unique_name + "/hc-tcg-cc/meta.json",
+			"user://packs/" + chosen_version + "/" + unique_name + "/hc-tcg-cc/pack.meta",
 			FileAccess.WRITE
 		)
-		meta_file.store_string(JSON.stringify({
+		meta_file.store_var({
 			"name": ProjectName.text,
 			"uid": unique_name,
 			"game_version": chosen_version,
-			"editor_version": ProjectSettings.get_setting("application/config/version"),
-			"cards": 0,
-			"packs": 0
-		}))
+			"editor_version": ProjectSettings.get_setting("application/config/version")
+		})
 		meta_file.close()
 		reload_packs.emit()
 		set_status("Project created", colors.success)

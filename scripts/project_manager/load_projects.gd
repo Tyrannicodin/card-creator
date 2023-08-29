@@ -59,12 +59,12 @@ func generate_project_button(path:String):
 	button.custom_minimum_size = Vector2(0, 40)
 	button.theme = project_button_theme
 	
-	if not FileAccess.file_exists(path + "/hc-tcg-cc/meta.json"):
+	if not FileAccess.file_exists(path + "/hc-tcg-cc/pack.meta"):
 		override_button_font_color(button, Color(1, 0, 0))
 		button.tooltip_text = "Couldn't find custom files"
 		return button
-	var meta_file = FileAccess.open(path + "/hc-tcg-cc/meta.json", FileAccess.READ)
-	var meta = JSON.parse_string(meta_file.get_as_text())
+	var meta_file = FileAccess.open(path + "/hc-tcg-cc/pack.meta", FileAccess.READ)
+	var meta = meta_file.get_var()
 	meta_file.close()
 	if meta["editor_version"] != ProjectSettings.get_setting("application/config/version"):
 		override_button_font_color(button, Color(.5, .5, 0))
@@ -76,7 +76,7 @@ func generate_project_button(path:String):
 	var sub_label = Label.new()
 	sub_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_RIGHT
 	sub_label.vertical_alignment = VERTICAL_ALIGNMENT_BOTTOM
-	sub_label.text = str(meta["cards"]) + " card(s)"
+	sub_label.text = meta["uid"]
 	sub_label.add_theme_color_override("font_color", Color("808080"))
 	sub_label.add_theme_font_size_override("font_size", 10)
 	

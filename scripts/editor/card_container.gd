@@ -9,10 +9,6 @@ extends Panel
 func _ready():
 	card.image = preview_viewport.get_path()
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
-
 
 func _on_name_text_changed(new_text):
 	card.card_name = new_text
