@@ -16,6 +16,8 @@ func disable_buttons():
 			child.disabled = true
 
 func project_selected(button):
+	if button == chosen_button:
+		edit()
 	if not chosen_button:
 		for child in get_children():
 			child.disabled = false
