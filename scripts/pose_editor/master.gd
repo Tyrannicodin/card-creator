@@ -1,5 +1,8 @@
 extends Control
 
+
+signal save_complete()
+
 var mdt = MeshDataTool.new()
 
 # Player meshes
@@ -126,6 +129,10 @@ func load_pose(save_data:Dictionary):
 				current_segment.rotation_degrees.x = current_segment_values["x"]
 				current_segment.rotation_degrees.y = current_segment_values["y"]
 				current_segment.rotation_degrees.z = current_segment_values["z"]
+
+func save():
+	save_current_pose()
+	save_complete.emit()
 
 func save_current_pose():
 	if not current_pose_path: return

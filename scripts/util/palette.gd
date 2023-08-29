@@ -1,12 +1,10 @@
 class_name Palette
 
-var background := Color()
-var foreground := Color()
-var text := Color()
-var normal_attack := Color()
-var special_attack := Color()
+var background := Color("E2CA8B")
+var foreground := Color("FFFFFF")
+var text := Color("000000")
 	
-func set_property(property:String, col:Color):
+func set_property(property:String, col:Color) -> void:
 	match property:
 		"background":
 			background = col
@@ -14,16 +12,17 @@ func set_property(property:String, col:Color):
 			foreground = col
 		"text":
 			text = col
-		"normal_attack":
-			normal_attack = col
-		"special_attack":
-			special_attack = col
-	
-func as_dict():
+
+func as_dict() -> Dictionary:
 	return {
-		"background": [background.r, background.g, background.b],
-		"foreground": [foreground.r, foreground.g, foreground.b],
-		"text": [text.r, text.g, text.b],
-		"normal_attack": [normal_attack.r, normal_attack.g, normal_attack.b],
-		"special_attack": [special_attack.r, special_attack.g, special_attack.b]
+		"background": background,
+		"foreground": foreground,
+		"text": text
 	}
+
+static func from_dict(dict:Dictionary):
+	var new_palette = Palette.new()
+	new_palette.background = dict["background"]
+	new_palette.foreground = dict["foreground"]
+	new_palette.text = dict["text"]
+	return new_palette

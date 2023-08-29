@@ -202,3 +202,8 @@ text = "Remove"
 [connection signal="reset_buttons" from="MainContainer/VBoxContainer/ProjectSidebar/MarginContainer/Projects" to="MainContainer/DownloadContainer/ProjectManageButtons" method="disable_buttons"]
 [connection signal="reload_packs" from="MainContainer/DownloadContainer/VersionContainer/Button" to="MainContainer/VBoxContainer/ProjectSidebar/MarginContainer/Projects" method="reload_packs"]
 [connection signal="reload_packs" from="MainContainer/DownloadContainer/ProjectManageButtons" to="MainContainer/VBoxContainer/ProjectSidebar/MarginContainer/Projects" method="reload_packs"]
+[connection signal="pressed" from="MainContainer/DownloadContainer/ProjectManageButtons/EditButton" to="MainContainer/DownloadContainer/ProjectManageButtons" method="edit"]
+[connection signal="pressed" from="MainContainer/DownloadContainer/ProjectManageButtons/RunButton" to="MainContainer/DownloadContainer/ProjectManageButtons" method="run"]
+[connection signal="pressed" from="MainContainer/DownloadContainer/ProjectManageButtons/DuplicateButton" to="MainContainer/DownloadContainer/ProjectManageButtons" method="duplicate_project"]
+[connection signal="pressed" from="MainContainer/DownloadContainer/ProjectManageButtons/RenameButton" to="MainContainer/DownloadContainer/ProjectManageButtons" method="rename"]
+[connection signal="pressed" from="MainContainer/DownloadContainer/ProjectManageButtons/RemoveButton" to="MainContainer/DownloadContainer/ProjectManageButtons" method="remove"]
