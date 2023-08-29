@@ -105,6 +105,7 @@ func add_items():
 		items.add_item(key)
 
 func load_pose_from_path(path:String):
+	save_current_pose()
 	current_pose_path = path
 	var save_file = FileAccess.open(path, FileAccess.READ)
 	var save_data:Dictionary = save_file.get_var()
@@ -112,6 +113,7 @@ func load_pose_from_path(path:String):
 	load_pose(save_data)
 
 func load_pose(save_data:Dictionary):
+	pickup_changes = false
 	for skin_mesh in player_mesh.values():
 		for part in skin_mesh:
 			if not save_data.has(part): continue

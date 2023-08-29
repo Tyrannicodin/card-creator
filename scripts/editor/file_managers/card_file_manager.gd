@@ -44,10 +44,19 @@ func _load_poses():
 	var pose_dir := DirAccess.open(GlobalStorage.path + "/hc-tcg-cc/poses")
 	for file in pose_dir.get_files():
 		if not file.ends_with(".pose"): continue
-		var pose_button := Button.new()
+		var pose_button := RightClickButton.new()
+		var pose_popup := preload("res://scripts/editor/file_managers/pose_button_popup.gd").new()
+		pose_popup.reload_poses.connect(_load_poses)
+		pose_popup.load_pose.connect(func(pose:String): editor.load_pose_from_path(pose))
+		pose_button.add_child(pose_popup)
+		
 		pose_button.text = file.get_basename()
-		pose_button.pressed.connect(func():
+		pose_button.left_click.connect(func():
 			editor.load_pose_from_path(GlobalStorage.path + "/hc-tcg-cc/poses/" + file))
+		pose_button.right_click.connect(func():
+			pose_popup.position = pose_popup.get_mouse_position()
+			pose_popup.popup()
+		)
 		add_child(pose_button)
 	
 	pose_creator = ConfirmationDialog.new()
@@ -56,9 +65,12 @@ func _load_poses():
 	
 	var pose_name := LineEdit.new()
 	pose_name.name = "PoseName"
+	pose_name.placeholder_text = "Pose name"
 	pose_creator.add_child(pose_name)
 	
 	add_child(pose_creator)
+	
+	add_child(HSeparator.new())
 	
 	var new_pose_button := Button.new()
 	new_pose_button.text = "Create new"
@@ -67,6 +79,7 @@ func _load_poses():
 
 func _create_pose():
 	var pose_name:String = pose_creator.get_node("PoseName").text.validate_filename()
+	editor.save_current_pose()
 	editor.load_pose(default_pose)
 	editor.current_pose_path = GlobalStorage.path + "/hc-tcg-cc/poses/" + pose_name + ".pose"
 	editor.save_current_pose()
