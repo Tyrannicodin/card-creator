@@ -72,6 +72,9 @@ func generate_project_button(path:String):
 		return button
 	
 	button.text = " " + meta["name"]
+	if FileAccess.file_exists(path + "/hc-tcg-cc/assets/icon.png"):
+		button.icon = ImageTexture.create_from_image(
+			Image.load_from_file(path + "/hc-tcg-cc/assets/icon.png"))
 	
 	var sub_label = Label.new()
 	sub_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_RIGHT

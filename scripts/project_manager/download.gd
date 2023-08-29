@@ -130,6 +130,7 @@ func create_new():
 		version_dir.change_dir("hc-tcg-cc")
 		version_dir.make_dir("cards")
 		version_dir.make_dir("poses")
+		version_dir.make_dir("assets")
 		var meta_file = FileAccess.open(
 			"user://packs/" + chosen_version + "/" + unique_name + "/hc-tcg-cc/pack.meta",
 			FileAccess.WRITE
@@ -138,7 +139,11 @@ func create_new():
 			"name": ProjectName.text,
 			"uid": unique_name,
 			"game_version": chosen_version,
-			"editor_version": ProjectSettings.get_setting("application/config/version")
+			"editor_version": ProjectSettings.get_setting("application/config/version"),
+			"icon": null,
+			"hermit_palette": null,
+			"effect_palette": null,
+			"single_use_palette": null
 		})
 		meta_file.close()
 		reload_packs.emit()
