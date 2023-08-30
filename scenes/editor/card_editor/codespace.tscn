@@ -195,40 +195,40 @@ script = ExtResource("14_41l7f")
 position = Vector2(48, 30)
 scale = Vector2(0.45, 0.45)
 
-[node name="MarginContainer2" type="MarginContainer" parent="Panel/VBoxContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="Panel/VBoxContainer"]
 layout_mode = 2
 theme_override_constants/margin_left = 10
 theme_override_constants/margin_top = 5
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 5
 
-[node name="CardPropertyContainer" type="VBoxContainer" parent="Panel/VBoxContainer/MarginContainer2"]
+[node name="CardPropertyContainer" type="VBoxContainer" parent="Panel/VBoxContainer/MarginContainer"]
 layout_mode = 2
 script = ExtResource("19_ub54l")
 
-[node name="all" type="GridContainer" parent="Panel/VBoxContainer/MarginContainer2/CardPropertyContainer"]
+[node name="all" type="GridContainer" parent="Panel/VBoxContainer/MarginContainer/CardPropertyContainer"]
 layout_mode = 2
 columns = 2
 
-[node name="NameLabel" type="Label" parent="Panel/VBoxContainer/MarginContainer2/CardPropertyContainer/all"]
+[node name="NameLabel" type="Label" parent="Panel/VBoxContainer/MarginContainer/CardPropertyContainer/all"]
 custom_minimum_size = Vector2(0, 35)
 layout_mode = 2
 text = "Name"
 vertical_alignment = 1
 
-[node name="Name" type="LineEdit" parent="Panel/VBoxContainer/MarginContainer2/CardPropertyContainer/all"]
+[node name="Name" type="LineEdit" parent="Panel/VBoxContainer/MarginContainer/CardPropertyContainer/all"]
 custom_minimum_size = Vector2(0, 25)
 layout_mode = 2
 size_flags_horizontal = 3
 theme = ExtResource("1_wdhwm")
 
-[node name="RarityLabel" type="Label" parent="Panel/VBoxContainer/MarginContainer2/CardPropertyContainer/all"]
+[node name="RarityLabel" type="Label" parent="Panel/VBoxContainer/MarginContainer/CardPropertyContainer/all"]
 custom_minimum_size = Vector2(0, 35)
 layout_mode = 2
 text = "Rarity"
 vertical_alignment = 1
 
-[node name="Rarity" type="OptionButton" parent="Panel/VBoxContainer/MarginContainer2/CardPropertyContainer/all"]
+[node name="Rarity" type="OptionButton" parent="Panel/VBoxContainer/MarginContainer/CardPropertyContainer/all"]
 custom_minimum_size = Vector2(0, 25)
 layout_mode = 2
 size_flags_horizontal = 3
@@ -241,13 +241,13 @@ popup/item_1/id = 1
 popup/item_2/text = "Ultra rare"
 popup/item_2/id = 2
 
-[node name="TypeLabel" type="Label" parent="Panel/VBoxContainer/MarginContainer2/CardPropertyContainer/all"]
+[node name="TypeLabel" type="Label" parent="Panel/VBoxContainer/MarginContainer/CardPropertyContainer/all"]
 custom_minimum_size = Vector2(0, 35)
 layout_mode = 2
 text = "Type"
 vertical_alignment = 1
 
-[node name="Type" type="OptionButton" parent="Panel/VBoxContainer/MarginContainer2/CardPropertyContainer/all"]
+[node name="Type" type="OptionButton" parent="Panel/VBoxContainer/MarginContainer/CardPropertyContainer/all"]
 custom_minimum_size = Vector2(0, 25)
 layout_mode = 2
 theme = ExtResource("1_wdhwm")
@@ -273,40 +273,40 @@ popup/item_8/id = 8
 popup/item_9/text = "Terraform"
 popup/item_9/id = 9
 
-[node name="HealthLabel" type="Label" parent="Panel/VBoxContainer/MarginContainer2/CardPropertyContainer/all"]
+[node name="HealthLabel" type="Label" parent="Panel/VBoxContainer/MarginContainer/CardPropertyContainer/all"]
 custom_minimum_size = Vector2(0, 35)
 layout_mode = 2
 text = "Health"
 vertical_alignment = 1
 
-[node name="Health" type="SpinBox" parent="Panel/VBoxContainer/MarginContainer2/CardPropertyContainer/all"]
+[node name="Health" type="SpinBox" parent="Panel/VBoxContainer/MarginContainer/CardPropertyContainer/all"]
 layout_mode = 2
 min_value = 50.0
 max_value = 999.0
 value = 50.0
 
-[node name="TokenLabel" type="Label" parent="Panel/VBoxContainer/MarginContainer2/CardPropertyContainer/all"]
+[node name="TokenLabel" type="Label" parent="Panel/VBoxContainer/MarginContainer/CardPropertyContainer/all"]
 custom_minimum_size = Vector2(0, 35)
 layout_mode = 2
 text = "Token Cost"
 vertical_alignment = 1
 
-[node name="Token" type="SpinBox" parent="Panel/VBoxContainer/MarginContainer2/CardPropertyContainer/all"]
+[node name="Token" type="SpinBox" parent="Panel/VBoxContainer/MarginContainer/CardPropertyContainer/all"]
 layout_mode = 2
 max_value = 4.0
 
-[node name="BackgroundLabel" type="Label" parent="Panel/VBoxContainer/MarginContainer2/CardPropertyContainer/all"]
+[node name="BackgroundLabel" type="Label" parent="Panel/VBoxContainer/MarginContainer/CardPropertyContainer/all"]
 custom_minimum_size = Vector2(0, 35)
 layout_mode = 2
 text = "Background"
 vertical_alignment = 1
 
-[node name="Background" type="Button" parent="Panel/VBoxContainer/MarginContainer2/CardPropertyContainer/all"]
+[node name="Background" type="Button" parent="Panel/VBoxContainer/MarginContainer/CardPropertyContainer/all"]
 layout_mode = 2
 text = "Select file"
 script = ExtResource("16_4um7i")
 
-[node name="FileDialog" type="FileDialog" parent="Panel/VBoxContainer/MarginContainer2/CardPropertyContainer/all"]
+[node name="FileDialog" type="FileDialog" parent="Panel/VBoxContainer/MarginContainer/CardPropertyContainer/all"]
 title = "Open a File"
 initial_position = 2
 size = Vector2i(500, 500)
@@ -315,165 +315,165 @@ file_mode = 0
 access = 2
 filters = PackedStringArray("*.png ; PNG Images")
 
-[node name="hermit" type="VBoxContainer" parent="Panel/VBoxContainer/MarginContainer2/CardPropertyContainer"]
+[node name="hermit" type="VBoxContainer" parent="Panel/VBoxContainer/MarginContainer/CardPropertyContainer"]
 layout_mode = 2
 
-[node name="PrimaryMoveLabel" type="Label" parent="Panel/VBoxContainer/MarginContainer2/CardPropertyContainer/hermit"]
+[node name="PrimaryMoveLabel" type="Label" parent="Panel/VBoxContainer/MarginContainer/CardPropertyContainer/hermit"]
 custom_minimum_size = Vector2(0, 35)
 layout_mode = 2
 text = "Primary"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="primaryGroup" type="GridContainer" parent="Panel/VBoxContainer/MarginContainer2/CardPropertyContainer/hermit"]
+[node name="primaryGroup" type="GridContainer" parent="Panel/VBoxContainer/MarginContainer/CardPropertyContainer/hermit"]
 layout_mode = 2
 columns = 2
 
-[node name="NameLabel" type="Label" parent="Panel/VBoxContainer/MarginContainer2/CardPropertyContainer/hermit/primaryGroup"]
+[node name="NameLabel" type="Label" parent="Panel/VBoxContainer/MarginContainer/CardPropertyContainer/hermit/primaryGroup"]
 custom_minimum_size = Vector2(0, 35)
 layout_mode = 2
 text = "Name"
 vertical_alignment = 1
 
-[node name="Name" type="LineEdit" parent="Panel/VBoxContainer/MarginContainer2/CardPropertyContainer/hermit/primaryGroup"]
+[node name="Name" type="LineEdit" parent="Panel/VBoxContainer/MarginContainer/CardPropertyContainer/hermit/primaryGroup"]
 custom_minimum_size = Vector2(0, 25)
 layout_mode = 2
 size_flags_horizontal = 3
 theme = ExtResource("1_wdhwm")
 
-[node name="DamageLabel" type="Label" parent="Panel/VBoxContainer/MarginContainer2/CardPropertyContainer/hermit/primaryGroup"]
+[node name="DamageLabel" type="Label" parent="Panel/VBoxContainer/MarginContainer/CardPropertyContainer/hermit/primaryGroup"]
 custom_minimum_size = Vector2(0, 35)
 layout_mode = 2
 text = "Damage"
 vertical_alignment = 1
 
-[node name="Damage" type="SpinBox" parent="Panel/VBoxContainer/MarginContainer2/CardPropertyContainer/hermit/primaryGroup"]
+[node name="Damage" type="SpinBox" parent="Panel/VBoxContainer/MarginContainer/CardPropertyContainer/hermit/primaryGroup"]
 layout_mode = 2
 max_value = 999.0
 
-[node name="CostLabel" type="VBoxContainer" parent="Panel/VBoxContainer/MarginContainer2/CardPropertyContainer/hermit/primaryGroup"]
+[node name="CostLabel" type="VBoxContainer" parent="Panel/VBoxContainer/MarginContainer/CardPropertyContainer/hermit/primaryGroup"]
 layout_mode = 2
 
-[node name="TypedCostLabel" type="Label" parent="Panel/VBoxContainer/MarginContainer2/CardPropertyContainer/hermit/primaryGroup/CostLabel"]
+[node name="TypedCostLabel" type="Label" parent="Panel/VBoxContainer/MarginContainer/CardPropertyContainer/hermit/primaryGroup/CostLabel"]
 custom_minimum_size = Vector2(0, 35)
 layout_mode = 2
 text = "Typed Cost"
 vertical_alignment = 1
 
-[node name="UntypedCostLabel" type="Label" parent="Panel/VBoxContainer/MarginContainer2/CardPropertyContainer/hermit/primaryGroup/CostLabel"]
+[node name="UntypedCostLabel" type="Label" parent="Panel/VBoxContainer/MarginContainer/CardPropertyContainer/hermit/primaryGroup/CostLabel"]
 custom_minimum_size = Vector2(0, 35)
 layout_mode = 2
 text = "Untyped Cost"
 vertical_alignment = 1
 
-[node name="Cost" type="VBoxContainer" parent="Panel/VBoxContainer/MarginContainer2/CardPropertyContainer/hermit/primaryGroup"]
+[node name="Cost" type="VBoxContainer" parent="Panel/VBoxContainer/MarginContainer/CardPropertyContainer/hermit/primaryGroup"]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="TypedCost" type="SpinBox" parent="Panel/VBoxContainer/MarginContainer2/CardPropertyContainer/hermit/primaryGroup/Cost"]
-layout_mode = 2
-size_flags_vertical = 3
-max_value = 3.0
-
-[node name="UntypedCost" type="SpinBox" parent="Panel/VBoxContainer/MarginContainer2/CardPropertyContainer/hermit/primaryGroup/Cost"]
+[node name="TypedCost" type="SpinBox" parent="Panel/VBoxContainer/MarginContainer/CardPropertyContainer/hermit/primaryGroup/Cost"]
 layout_mode = 2
 size_flags_vertical = 3
 max_value = 3.0
 
-[node name="PowerLabel" type="Label" parent="Panel/VBoxContainer/MarginContainer2/CardPropertyContainer/hermit/primaryGroup"]
+[node name="UntypedCost" type="SpinBox" parent="Panel/VBoxContainer/MarginContainer/CardPropertyContainer/hermit/primaryGroup/Cost"]
+layout_mode = 2
+size_flags_vertical = 3
+max_value = 3.0
+
+[node name="PowerLabel" type="Label" parent="Panel/VBoxContainer/MarginContainer/CardPropertyContainer/hermit/primaryGroup"]
 custom_minimum_size = Vector2(0, 35)
 layout_mode = 2
 text = "Ability"
 vertical_alignment = 1
 
-[node name="Power" type="LineEdit" parent="Panel/VBoxContainer/MarginContainer2/CardPropertyContainer/hermit/primaryGroup"]
+[node name="Power" type="LineEdit" parent="Panel/VBoxContainer/MarginContainer/CardPropertyContainer/hermit/primaryGroup"]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="SecondaryMoveLabel" type="Label" parent="Panel/VBoxContainer/MarginContainer2/CardPropertyContainer/hermit"]
+[node name="SecondaryMoveLabel" type="Label" parent="Panel/VBoxContainer/MarginContainer/CardPropertyContainer/hermit"]
 custom_minimum_size = Vector2(0, 35)
 layout_mode = 2
 text = "Secondary"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="secondaryGroup" type="GridContainer" parent="Panel/VBoxContainer/MarginContainer2/CardPropertyContainer/hermit"]
+[node name="secondaryGroup" type="GridContainer" parent="Panel/VBoxContainer/MarginContainer/CardPropertyContainer/hermit"]
 layout_mode = 2
 columns = 2
 
-[node name="NameLabel" type="Label" parent="Panel/VBoxContainer/MarginContainer2/CardPropertyContainer/hermit/secondaryGroup"]
+[node name="NameLabel" type="Label" parent="Panel/VBoxContainer/MarginContainer/CardPropertyContainer/hermit/secondaryGroup"]
 custom_minimum_size = Vector2(0, 35)
 layout_mode = 2
 text = "Name"
 vertical_alignment = 1
 
-[node name="Name" type="LineEdit" parent="Panel/VBoxContainer/MarginContainer2/CardPropertyContainer/hermit/secondaryGroup"]
+[node name="Name" type="LineEdit" parent="Panel/VBoxContainer/MarginContainer/CardPropertyContainer/hermit/secondaryGroup"]
 custom_minimum_size = Vector2(0, 25)
 layout_mode = 2
 size_flags_horizontal = 3
 theme = ExtResource("1_wdhwm")
 
-[node name="DamageLabel" type="Label" parent="Panel/VBoxContainer/MarginContainer2/CardPropertyContainer/hermit/secondaryGroup"]
+[node name="DamageLabel" type="Label" parent="Panel/VBoxContainer/MarginContainer/CardPropertyContainer/hermit/secondaryGroup"]
 custom_minimum_size = Vector2(0, 35)
 layout_mode = 2
 text = "Damage"
 vertical_alignment = 1
 
-[node name="Damage" type="SpinBox" parent="Panel/VBoxContainer/MarginContainer2/CardPropertyContainer/hermit/secondaryGroup"]
+[node name="Damage" type="SpinBox" parent="Panel/VBoxContainer/MarginContainer/CardPropertyContainer/hermit/secondaryGroup"]
 layout_mode = 2
 max_value = 999.0
 
-[node name="CostLabel" type="VBoxContainer" parent="Panel/VBoxContainer/MarginContainer2/CardPropertyContainer/hermit/secondaryGroup"]
+[node name="CostLabel" type="VBoxContainer" parent="Panel/VBoxContainer/MarginContainer/CardPropertyContainer/hermit/secondaryGroup"]
 layout_mode = 2
 
-[node name="TypedCostLabel" type="Label" parent="Panel/VBoxContainer/MarginContainer2/CardPropertyContainer/hermit/secondaryGroup/CostLabel"]
+[node name="TypedCostLabel" type="Label" parent="Panel/VBoxContainer/MarginContainer/CardPropertyContainer/hermit/secondaryGroup/CostLabel"]
 custom_minimum_size = Vector2(0, 35)
 layout_mode = 2
 text = "Typed Cost"
 vertical_alignment = 1
 
-[node name="UntypedCostLabel" type="Label" parent="Panel/VBoxContainer/MarginContainer2/CardPropertyContainer/hermit/secondaryGroup/CostLabel"]
+[node name="UntypedCostLabel" type="Label" parent="Panel/VBoxContainer/MarginContainer/CardPropertyContainer/hermit/secondaryGroup/CostLabel"]
 custom_minimum_size = Vector2(0, 35)
 layout_mode = 2
 text = "Untyped Cost"
 vertical_alignment = 1
 
-[node name="Cost" type="VBoxContainer" parent="Panel/VBoxContainer/MarginContainer2/CardPropertyContainer/hermit/secondaryGroup"]
+[node name="Cost" type="VBoxContainer" parent="Panel/VBoxContainer/MarginContainer/CardPropertyContainer/hermit/secondaryGroup"]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="TypedCost" type="SpinBox" parent="Panel/VBoxContainer/MarginContainer2/CardPropertyContainer/hermit/secondaryGroup/Cost"]
-layout_mode = 2
-size_flags_vertical = 3
-max_value = 3.0
-
-[node name="UntypedCost" type="SpinBox" parent="Panel/VBoxContainer/MarginContainer2/CardPropertyContainer/hermit/secondaryGroup/Cost"]
+[node name="TypedCost" type="SpinBox" parent="Panel/VBoxContainer/MarginContainer/CardPropertyContainer/hermit/secondaryGroup/Cost"]
 layout_mode = 2
 size_flags_vertical = 3
 max_value = 3.0
 
-[node name="PowerLabel" type="Label" parent="Panel/VBoxContainer/MarginContainer2/CardPropertyContainer/hermit/secondaryGroup"]
+[node name="UntypedCost" type="SpinBox" parent="Panel/VBoxContainer/MarginContainer/CardPropertyContainer/hermit/secondaryGroup/Cost"]
+layout_mode = 2
+size_flags_vertical = 3
+max_value = 3.0
+
+[node name="PowerLabel" type="Label" parent="Panel/VBoxContainer/MarginContainer/CardPropertyContainer/hermit/secondaryGroup"]
 custom_minimum_size = Vector2(0, 35)
 layout_mode = 2
 text = "Ability"
 vertical_alignment = 1
 
-[node name="Power" type="LineEdit" parent="Panel/VBoxContainer/MarginContainer2/CardPropertyContainer/hermit/secondaryGroup"]
+[node name="Power" type="LineEdit" parent="Panel/VBoxContainer/MarginContainer/CardPropertyContainer/hermit/secondaryGroup"]
 layout_mode = 2
 size_flags_vertical = 3
 
 [connection signal="tab_changed" from="TabContainer" to="." method="_on_tab_container_tab_changed"]
-[connection signal="text_changed" from="Panel/VBoxContainer/MarginContainer2/CardPropertyContainer/all/Name" to="Panel/VBoxContainer/card_container" method="_on_name_text_changed"]
-[connection signal="item_selected" from="Panel/VBoxContainer/MarginContainer2/CardPropertyContainer/all/Type" to="Panel/VBoxContainer/card_container" method="_on_type_item_selected"]
-[connection signal="value_changed" from="Panel/VBoxContainer/MarginContainer2/CardPropertyContainer/all/Health" to="Panel/VBoxContainer/card_container" method="_on_health_value_changed"]
-[connection signal="file_selected" from="Panel/VBoxContainer/MarginContainer2/CardPropertyContainer/all/FileDialog" to="Panel/VBoxContainer/card_container" method="_on_file_dialog_file_selected"]
-[connection signal="text_changed" from="Panel/VBoxContainer/MarginContainer2/CardPropertyContainer/hermit/primaryGroup/Name" to="Panel/VBoxContainer/card_container" method="_on_primary_name_text_changed"]
-[connection signal="value_changed" from="Panel/VBoxContainer/MarginContainer2/CardPropertyContainer/hermit/primaryGroup/Damage" to="Panel/VBoxContainer/card_container" method="_on_primary_damage_value_changed"]
-[connection signal="value_changed" from="Panel/VBoxContainer/MarginContainer2/CardPropertyContainer/hermit/primaryGroup/Cost/TypedCost" to="Panel/VBoxContainer/card_container" method="_on_primary_typed_value_changed"]
-[connection signal="value_changed" from="Panel/VBoxContainer/MarginContainer2/CardPropertyContainer/hermit/primaryGroup/Cost/UntypedCost" to="Panel/VBoxContainer/card_container" method="_on_primary_untyped_value_changed"]
-[connection signal="text_changed" from="Panel/VBoxContainer/MarginContainer2/CardPropertyContainer/hermit/primaryGroup/Power" to="Panel/VBoxContainer/card_container" method="_on_primary_ability_text_changed"]
-[connection signal="text_changed" from="Panel/VBoxContainer/MarginContainer2/CardPropertyContainer/hermit/secondaryGroup/Name" to="Panel/VBoxContainer/card_container" method="_on_secondary_name_text_changed"]
-[connection signal="value_changed" from="Panel/VBoxContainer/MarginContainer2/CardPropertyContainer/hermit/secondaryGroup/Damage" to="Panel/VBoxContainer/card_container" method="_on_secondary_damage_value_changed"]
-[connection signal="value_changed" from="Panel/VBoxContainer/MarginContainer2/CardPropertyContainer/hermit/secondaryGroup/Cost/TypedCost" to="Panel/VBoxContainer/card_container" method="_on_secondary_typed_value_changed"]
-[connection signal="value_changed" from="Panel/VBoxContainer/MarginContainer2/CardPropertyContainer/hermit/secondaryGroup/Cost/UntypedCost" to="Panel/VBoxContainer/card_container" method="_on_secondary_untyped_value_changed"]
-[connection signal="text_changed" from="Panel/VBoxContainer/MarginContainer2/CardPropertyContainer/hermit/secondaryGroup/Power" to="Panel/VBoxContainer/card_container" method="_on_secondary_ability_text_changed"]
+[connection signal="text_changed" from="Panel/VBoxContainer/MarginContainer/CardPropertyContainer/all/Name" to="Panel/VBoxContainer/card_container" method="_on_name_text_changed"]
+[connection signal="item_selected" from="Panel/VBoxContainer/MarginContainer/CardPropertyContainer/all/Type" to="Panel/VBoxContainer/card_container" method="_on_type_item_selected"]
+[connection signal="value_changed" from="Panel/VBoxContainer/MarginContainer/CardPropertyContainer/all/Health" to="Panel/VBoxContainer/card_container" method="_on_health_value_changed"]
+[connection signal="file_selected" from="Panel/VBoxContainer/MarginContainer/CardPropertyContainer/all/FileDialog" to="Panel/VBoxContainer/card_container" method="_on_file_dialog_file_selected"]
+[connection signal="text_changed" from="Panel/VBoxContainer/MarginContainer/CardPropertyContainer/hermit/primaryGroup/Name" to="Panel/VBoxContainer/card_container" method="_on_primary_name_text_changed"]
+[connection signal="value_changed" from="Panel/VBoxContainer/MarginContainer/CardPropertyContainer/hermit/primaryGroup/Damage" to="Panel/VBoxContainer/card_container" method="_on_primary_damage_value_changed"]
+[connection signal="value_changed" from="Panel/VBoxContainer/MarginContainer/CardPropertyContainer/hermit/primaryGroup/Cost/TypedCost" to="Panel/VBoxContainer/card_container" method="_on_primary_typed_value_changed"]
+[connection signal="value_changed" from="Panel/VBoxContainer/MarginContainer/CardPropertyContainer/hermit/primaryGroup/Cost/UntypedCost" to="Panel/VBoxContainer/card_container" method="_on_primary_untyped_value_changed"]
+[connection signal="text_changed" from="Panel/VBoxContainer/MarginContainer/CardPropertyContainer/hermit/primaryGroup/Power" to="Panel/VBoxContainer/card_container" method="_on_primary_ability_text_changed"]
+[connection signal="text_changed" from="Panel/VBoxContainer/MarginContainer/CardPropertyContainer/hermit/secondaryGroup/Name" to="Panel/VBoxContainer/card_container" method="_on_secondary_name_text_changed"]
+[connection signal="value_changed" from="Panel/VBoxContainer/MarginContainer/CardPropertyContainer/hermit/secondaryGroup/Damage" to="Panel/VBoxContainer/card_container" method="_on_secondary_damage_value_changed"]
+[connection signal="value_changed" from="Panel/VBoxContainer/MarginContainer/CardPropertyContainer/hermit/secondaryGroup/Cost/TypedCost" to="Panel/VBoxContainer/card_container" method="_on_secondary_typed_value_changed"]
+[connection signal="value_changed" from="Panel/VBoxContainer/MarginContainer/CardPropertyContainer/hermit/secondaryGroup/Cost/UntypedCost" to="Panel/VBoxContainer/card_container" method="_on_secondary_untyped_value_changed"]
+[connection signal="text_changed" from="Panel/VBoxContainer/MarginContainer/CardPropertyContainer/hermit/secondaryGroup/Power" to="Panel/VBoxContainer/card_container" method="_on_secondary_ability_text_changed"]

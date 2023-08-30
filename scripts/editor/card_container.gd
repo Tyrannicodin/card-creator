@@ -1,7 +1,7 @@
 extends Panel
 
 @onready var card = $card
-@onready var types = $"../MarginContainer/VBoxContainer/GridContainer/Type"
+@onready var types = $"../MarginContainer/CardPropertyContainer/all/Type"
 
 @onready var preview_viewport = $"../../../pose_editor".get_node("PreviewViewport")
 
