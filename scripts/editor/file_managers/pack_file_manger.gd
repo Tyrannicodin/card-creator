@@ -5,6 +5,7 @@ signal save_complete()
 
 @onready var icon_rect:TextureRect = $Icons/IconRect
 @onready var icon_file_dialog:FileDialog = $IconFileDialog
+@onready var card = $"../../Tabs/CardEditor/Panel/VBoxContainer/card_container/card"
 
 var palettes = {
 	"hermit_palette": HermitPalette.new(),
@@ -66,4 +67,6 @@ func _icon_chosen(path:String):
 			Image.load_from_file(GlobalStorage.path + "/hc-tcg-cc/assets/icon.png"))
 
 func _palette_changed(palette:String, part:String, col:Color):
+	if palette == "hermit_palette":
+		card.set_palette(palettes[palette])
 	palettes[palette].set_property(part, col)

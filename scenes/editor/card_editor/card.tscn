@@ -1,12 +1,14 @@
-[gd_scene load_steps=8 format=3 uid="uid://b845nyhds8jwb"]
+[gd_scene load_steps=12 format=3 uid="uid://b845nyhds8jwb"]
 
 [ext_resource type="Script" path="res://scripts/card/card.gd" id="1_fm0xn"]
 [ext_resource type="Theme" uid="uid://cvdjyyecboo5u" path="res://assets/themes/card.tres" id="2_bwdc5"]
 [ext_resource type="Theme" uid="uid://byp2d4agnuqu" path="res://assets/themes/card_borders.tres" id="2_c362d"]
+[ext_resource type="Script" path="res://scripts/card/parts/panel.gd" id="3_pqsst"]
+[ext_resource type="Script" path="res://scripts/card/parts/label.gd" id="5_b8bfw"]
+[ext_resource type="Script" path="res://scripts/card/parts/panel_bordered.gd" id="6_r3a2v"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_o30ka"]
 bg_color = Color(1, 1, 1, 1)
-border_color = Color(1, 1, 1, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_iio3t"]
 bg_color = Color(0.6, 0.6, 0.6, 0)
@@ -18,6 +20,14 @@ border_color = Color(1, 1, 1, 1)
 
 [sub_resource type="Theme" id="Theme_7vb3b"]
 Panel/styles/panel = SubResource("StyleBoxFlat_iio3t")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yignp"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+border_width_left = 12
+border_width_top = 12
+border_width_right = 12
+border_width_bottom = 12
+border_color = Color(1, 1, 1, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_b0v0x"]
 bg_color = Color(1, 1, 1, 1)
@@ -35,7 +45,7 @@ anchors_preset = 0
 offset_right = 512.0
 offset_bottom = 512.0
 
-[node name="bg" type="Panel" parent="Control"]
+[node name="bg" type="Panel" parent="Control" groups=["foreground"]]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -44,6 +54,7 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("2_c362d")
 theme_override_styles/panel = SubResource("StyleBoxFlat_o30ka")
+script = ExtResource("3_pqsst")
 
 [node name="BoxContainer" type="BoxContainer" parent="Control/bg"]
 layout_mode = 1
@@ -62,10 +73,11 @@ theme_override_constants/margin_top = 12
 theme_override_constants/margin_right = 12
 theme_override_constants/margin_bottom = 12
 
-[node name="card_bg" type="Panel" parent="Control/bg/BoxContainer/MarginContainer"]
+[node name="card_bg" type="Panel" parent="Control/bg/BoxContainer/MarginContainer" groups=["background"]]
 layout_mode = 2
 size_flags_horizontal = 3
 theme = ExtResource("2_bwdc5")
+script = ExtResource("3_pqsst")
 
 [node name="card_info" type="VBoxContainer" parent="Control/bg/BoxContainer/MarginContainer"]
 layout_mode = 2
@@ -80,10 +92,11 @@ theme_override_constants/separation = 0
 layout_mode = 2
 theme_override_constants/margin_left = 40
 
-[node name="name" type="Label" parent="Control/bg/BoxContainer/MarginContainer/card_info/header"]
+[node name="name" type="Label" parent="Control/bg/BoxContainer/MarginContainer/card_info/header" groups=["text"]]
 layout_mode = 2
 theme = ExtResource("2_bwdc5")
 vertical_alignment = 2
+script = ExtResource("5_b8bfw")
 
 [node name="health" type="Label" parent="Control/bg/BoxContainer/MarginContainer/card_info/header"]
 layout_mode = 2
@@ -104,9 +117,10 @@ theme_override_constants/margin_top = 0
 theme_override_constants/margin_right = 40
 theme_override_constants/margin_bottom = 20
 
-[node name="image_panel" type="Panel" parent="Control/bg/BoxContainer/MarginContainer/card_info/img_margin"]
+[node name="image_panel" type="Panel" parent="Control/bg/BoxContainer/MarginContainer/card_info/img_margin" groups=["background"]]
 clip_contents = true
 layout_mode = 2
+script = ExtResource("3_pqsst")
 
 [node name="background" type="TextureRect" parent="Control/bg/BoxContainer/MarginContainer/card_info/img_margin/image_panel"]
 layout_mode = 1
@@ -127,7 +141,7 @@ offset_bottom = 110.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="border_overlay" type="Panel" parent="Control/bg/BoxContainer/MarginContainer/card_info/img_margin/image_panel"]
+[node name="border_overlay" type="Panel" parent="Control/bg/BoxContainer/MarginContainer/card_info/img_margin/image_panel" groups=["foreground"]]
 clip_contents = true
 layout_mode = 1
 anchors_preset = 15
@@ -136,6 +150,8 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = SubResource("Theme_7vb3b")
+theme_override_styles/panel = SubResource("StyleBoxFlat_yignp")
+script = ExtResource("6_r3a2v")
 
 [node name="moves_margin" type="MarginContainer" parent="Control/bg/BoxContainer/MarginContainer/card_info"]
 layout_mode = 2
@@ -152,7 +168,7 @@ layout_mode = 2
 [node name="name_container" type="NinePatchRect" parent="Control/bg/BoxContainer/MarginContainer/card_info/moves_margin/moves/primary"]
 layout_mode = 2
 
-[node name="name" type="Label" parent="Control/bg/BoxContainer/MarginContainer/card_info/moves_margin/moves/primary/name_container"]
+[node name="name" type="Label" parent="Control/bg/BoxContainer/MarginContainer/card_info/moves_margin/moves/primary/name_container" groups=["text"]]
 layout_mode = 2
 offset_left = -1.0
 offset_right = 444.0
@@ -164,6 +180,7 @@ theme = ExtResource("2_bwdc5")
 theme_override_font_sizes/font_size = 40
 horizontal_alignment = 1
 vertical_alignment = 1
+script = ExtResource("5_b8bfw")
 
 [node name="margin" type="MarginContainer" parent="Control/bg/BoxContainer/MarginContainer/card_info/moves_margin/moves/primary"]
 layout_mode = 2
@@ -197,7 +214,7 @@ layout_mode = 2
 [node name="name_container" type="NinePatchRect" parent="Control/bg/BoxContainer/MarginContainer/card_info/moves_margin/moves/secondary"]
 layout_mode = 2
 
-[node name="name" type="Label" parent="Control/bg/BoxContainer/MarginContainer/card_info/moves_margin/moves/secondary/name_container"]
+[node name="name" type="Label" parent="Control/bg/BoxContainer/MarginContainer/card_info/moves_margin/moves/secondary/name_container" groups=["text"]]
 layout_mode = 2
 offset_left = -1.0
 offset_right = 444.0
@@ -209,6 +226,7 @@ theme = ExtResource("2_bwdc5")
 theme_override_font_sizes/font_size = 40
 horizontal_alignment = 1
 vertical_alignment = 1
+script = ExtResource("5_b8bfw")
 
 [node name="margin" type="MarginContainer" parent="Control/bg/BoxContainer/MarginContainer/card_info/moves_margin/moves/secondary"]
 layout_mode = 2
@@ -229,13 +247,14 @@ theme_override_colors/font_color = Color(0.964706, 0.0156863, 0.00392157, 1)
 theme_override_font_sizes/font_size = 40
 vertical_alignment = 1
 
-[node name="type_circle" type="Panel" parent="Control/bg"]
+[node name="type_circle" type="Panel" parent="Control/bg" groups=["foreground"]]
 custom_minimum_size = Vector2(110, 110)
 layout_mode = 2
 offset_left = 395.0
 offset_right = 512.0
 offset_bottom = 117.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_b0v0x")
+script = ExtResource("3_pqsst")
 
 [node name="type_icon_master" type="Control" parent="Control/bg/type_circle"]
 anchors_preset = 0

@@ -23,6 +23,14 @@ var health: int : set = _set_health
 var background: String : set = _set_bg
 var image: String : set = _set_img
 
+func set_palette(palette:Palette):
+	get_tree().call_group("background", "set_color", palette.background)
+	get_tree().call_group("foreground", "set_color", palette.foreground)
+	get_tree().call_group("text", "set_color", palette.text)
+	if palette is HermitPalette:
+		get_tree().call_group("normal_attack", "set_color", palette.normal_attack)
+		get_tree().call_group("special_attack", "set_color", palette.special_attack)
+
 # Getters and setters
 func _set_type(value: String) -> void:
 	type = value
