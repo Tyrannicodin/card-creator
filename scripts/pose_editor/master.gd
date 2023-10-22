@@ -17,7 +17,7 @@ var selected_slim
 # Saving stuff
 var skin:Image
 var current_pose_path:String
-@onready var viewport:Viewport = $SubViewportContainer/SubViewport
+@onready var viewport:Viewport = $PreviewViewport
 
 #sliders
 @onready var bend_slider:Slider

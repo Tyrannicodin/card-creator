@@ -44,6 +44,8 @@ func _ready():
 	
 	if not DirAccess.dir_exists_absolute("user://packs/"):
 		DirAccess.make_dir_absolute("user://packs/")
+	if not DirAccess.dir_exists_absolute("user://exports/"):
+		DirAccess.make_dir_absolute("user://exports/")
 	
 	load_versions()
 
