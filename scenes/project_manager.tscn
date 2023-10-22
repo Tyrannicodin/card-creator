@@ -1,9 +1,10 @@
-[gd_scene load_steps=9 format=3 uid="uid://b5va7cxsa3mhf"]
+[gd_scene load_steps=10 format=3 uid="uid://b5va7cxsa3mhf"]
 
 [ext_resource type="Script" path="res://scripts/project_manager/load_projects.gd" id="1_q8s7o"]
 [ext_resource type="ButtonGroup" uid="uid://d7aivuku4qo3" path="res://assets/button_groups/project_button.tres" id="2_2ub0v"]
 [ext_resource type="Script" path="res://scripts/project_manager/version_label.gd" id="3_s3g1u"]
 [ext_resource type="Script" path="res://scripts/project_manager/download.gd" id="4_kofl7"]
+[ext_resource type="Script" path="res://scripts/project_manager/import_button.gd" id="5_86xw3"]
 [ext_resource type="Script" path="res://scripts/project_manager/ButtonManager.gd" id="5_mgpcn"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ntu3c"]
@@ -165,6 +166,14 @@ autowrap_mode = 3
 layout_mode = 2
 text = "Import project"
 expand_icon = true
+script = ExtResource("5_86xw3")
+
+[node name="ZipDialog" type="FileDialog" parent="MainContainer/DownloadContainer/ImportButton"]
+title = "Open a File"
+size = Vector2i(500, 500)
+ok_button_text = "Open"
+file_mode = 0
+filters = PackedStringArray("*.zip; Zip files")
 
 [node name="HSeparator" type="HSeparator" parent="MainContainer/DownloadContainer"]
 layout_mode = 2
@@ -201,6 +210,7 @@ text = "Remove"
 
 [connection signal="reset_buttons" from="MainContainer/VBoxContainer/ProjectSidebar/MarginContainer/Projects" to="MainContainer/DownloadContainer/ProjectManageButtons" method="disable_buttons"]
 [connection signal="reload_packs" from="MainContainer/DownloadContainer/VersionContainer/Button" to="MainContainer/VBoxContainer/ProjectSidebar/MarginContainer/Projects" method="reload_packs"]
+[connection signal="file_selected" from="MainContainer/DownloadContainer/ImportButton/ZipDialog" to="MainContainer/DownloadContainer/ImportButton" method="_zip_dialog_selected"]
 [connection signal="reload_packs" from="MainContainer/DownloadContainer/ProjectManageButtons" to="MainContainer/VBoxContainer/ProjectSidebar/MarginContainer/Projects" method="reload_packs"]
 [connection signal="pressed" from="MainContainer/DownloadContainer/ProjectManageButtons/EditButton" to="MainContainer/DownloadContainer/ProjectManageButtons" method="edit"]
 [connection signal="pressed" from="MainContainer/DownloadContainer/ProjectManageButtons/RunButton" to="MainContainer/DownloadContainer/ProjectManageButtons" method="run"]

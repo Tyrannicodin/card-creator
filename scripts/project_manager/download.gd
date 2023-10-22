@@ -6,11 +6,13 @@ signal reload_packs()
 var repository = "https://github.com/martinkadlec0/hc-tcg/archive/"
 
 var sizes = {
+	"v0_6_22": 39661568.0,
 	"v0_6_19": 39709089.0,
 	"v0_6_18": 39709080.0
 }
 
 var versions = {
+	"v0_6_22": "4739986f99ff30f54dfacb09ef2dd07934688a59",
 	"v0_6_19": "a71f079ea18a6079b1cafeb333a09c42fa3f3cbc",
 	"v0_6_18": "f6517bba8a9e00a0188ba23ac572c7e00c13a72b"
 }
