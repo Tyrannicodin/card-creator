@@ -7,7 +7,7 @@ const SEGMENTS = ["base", "underlay", "overlay"]
 @onready var editor = $"../../Tabs/CardEditor/pose_editor"
 
 var open_tab := 0
-var default_pose:Dictionary = {}
+var default_pose:Dictionary = {"skin": -1}
 var pose_creator:ConfirmationDialog
 
 func _ready():

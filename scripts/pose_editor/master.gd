@@ -15,7 +15,11 @@ var selected_wide
 var selected_slim
 
 # Saving stuff
-var skin:Image
+var skin:ImageTexture :
+	set(value):
+		skin = value
+		_apply_skin(value)
+var skin_id:int = -1
 var current_pose_path:String
 @onready var viewport:Viewport = $PreviewViewport
 
@@ -117,6 +121,11 @@ func load_pose_from_path(path:String):
 	load_pose(save_data)
 
 func load_pose(save_data:Dictionary):
+	if save_data.has("skin") and save_data["skin"] is int:
+		skin_id = save_data["skin"]
+		var new_skin = GlobalStorage.load_asset(save_data["skin"])
+		if new_skin:
+			skin = new_skin
 	pickup_changes = false
 	for skin_mesh in player_mesh.values():
 		for part in skin_mesh:
@@ -138,7 +147,9 @@ func save():
 func save_current_pose():
 	if not current_pose_path: return
 	var save_dict = parse_dict(player_mesh[SkinType.WIDE])
-	save_dict["skin"] = skin
+	if skin:
+		skin_id = GlobalStorage.save_asset(skin, skin_id)
+		save_dict["skin"] = skin_id
 	var save_file = FileAccess.open(current_pose_path, FileAccess.WRITE)
 	save_file.store_var(save_dict)
 	save_file.close()
@@ -226,12 +237,9 @@ func _apply_skin(skin_texture):
 					mdt.commit_to_surface(segment.mesh)
 
 func _on_file_dialog_file_selected(path):
-	var texture = ImageTexture.new()
-	var image = Image.new()
+	var image := Image.new()
 	image.load(path)
-	texture.set_image(image)
-	skin = image
-	_apply_skin(texture)
+	skin = ImageTexture.create_from_image(image)
 
 func _on_skintype_item_selected(index):
 	if index == 0:
