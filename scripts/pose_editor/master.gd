@@ -17,6 +17,7 @@ var selected_slim
 # Saving stuff
 var skin:Image
 var current_pose_path:String
+@onready var viewport:Viewport = $SubViewportContainer/SubViewport
 
 #sliders
 @onready var bend_slider:Slider
@@ -141,6 +142,11 @@ func save_current_pose():
 	var save_file = FileAccess.open(current_pose_path, FileAccess.WRITE)
 	save_file.store_var(save_dict)
 	save_file.close()
+
+func screenshot():
+	if not DirAccess.dir_exists_absolute("user://screenshots"):
+		DirAccess.make_dir_absolute("user://screenshots")
+	viewport.get_texture().get_image().save_png("user://screenshots/" + Time.get_datetime_string_from_system().replace(":", "_") + ".png")
 
 func parse_dict(dict:Dictionary):
 	var output = {}

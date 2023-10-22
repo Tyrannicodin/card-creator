@@ -151,8 +151,9 @@ popup/item_1/id = 1
 layout_mode = 2
 text = "Save pose"
 
-[node name="Spacer" type="Control" parent="LeftContainer/GridContainer2"]
+[node name="ScreeshotButton" type="Button" parent="LeftContainer/GridContainer2"]
 layout_mode = 2
+text = "Save image"
 
 [node name="SkinFileDialog" type="FileDialog" parent="LeftContainer"]
 title = "Open a File"
@@ -179,4 +180,5 @@ fov = 30.0
 [connection signal="value_changed" from="LeftContainer/GridContainer/bend" to="." method="_on_bend_value_changed"]
 [connection signal="item_selected" from="LeftContainer/GridContainer2/SkinType" to="." method="_on_skintype_item_selected"]
 [connection signal="pressed" from="LeftContainer/GridContainer2/SaveButton" to="." method="save_current_pose"]
+[connection signal="pressed" from="LeftContainer/GridContainer2/ScreeshotButton" to="." method="screenshot"]
 [connection signal="file_selected" from="LeftContainer/SkinFileDialog" to="." method="_on_file_dialog_file_selected"]
