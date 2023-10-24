@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://bgpbvjwjyab2g"]
+[gd_scene load_steps=11 format=3 uid="uid://bgpbvjwjyab2g"]
 
 [ext_resource type="PackedScene" uid="uid://bwwax6ypmwh3q" path="res://scenes/editor/pose_editor/player_full.tscn" id="1_7077t"]
 [ext_resource type="Script" path="res://scripts/pose_editor/master.gd" id="1_vqpyv"]
@@ -6,8 +6,14 @@
 [ext_resource type="PackedScene" uid="uid://s0qousks114p" path="res://scenes/editor/pose_editor/player_slim.tscn" id="3_e0nhy"]
 [ext_resource type="Script" path="res://scripts/pose_editor/skin_selector.gd" id="5_v6e1j"]
 
+[sub_resource type="Gradient" id="Gradient_eom5s"]
+offsets = PackedFloat32Array(1)
+colors = PackedColorArray(0.529412, 0.647059, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_hx0fq"]
+gradient = SubResource("Gradient_eom5s")
+
 [sub_resource type="Environment" id="Environment_vfflu"]
-background_mode = 1
 background_color = Color(0.529412, 0.647059, 1, 1)
 ambient_light_source = 2
 ambient_light_color = Color(1, 1, 1, 1)
@@ -26,9 +32,16 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_vqpyv")
 
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 2
+offset_right = 1919.0
+offset_bottom = 1079.0
+texture = SubResource("GradientTexture1D_hx0fq")
+
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(-0.965926, -0.103548, -0.237203, 0, -0.916481, 0.400077, -0.258819, 0.386445, 0.885253, 0, 3.65154, -1.89555)
-light_energy = 0.543
+light_energy = 0.45
+shadow_enabled = true
 
 [node name="player_full" parent="." instance=ExtResource("1_7077t")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 1.20628, -2.34576)
@@ -48,7 +61,9 @@ size_flags_horizontal = 3
 stretch = true
 
 [node name="SubViewport" type="SubViewport" parent="SubViewportContainer"]
+transparent_bg = true
 handle_input_locally = false
+msaa_3d = 1
 size = Vector2i(1920, 1080)
 render_target_update_mode = 4
 
@@ -167,9 +182,24 @@ filters = PackedStringArray("*.png ; PNG Images")
 [node name="PreviewViewport" type="SubViewport" parent="."]
 transparent_bg = true
 handle_input_locally = false
+msaa_3d = 1
 
 [node name="Camera3D" type="Camera3D" parent="PreviewViewport"]
-transform = Transform3D(1, 0, 0, 0, 0.999667, 0.0257931, 0, -0.0257931, 0.999667, 0, 2.32649, 2.38074)
+transform = Transform3D(1, 0, 0, 0, 0.999667, 0.0257931, 0, -0.0257931, 0.999667, 0, 2.32649, 2.39865)
+cull_mask = 1047553
+fov = 30.0
+
+[node name="ScreenshotViewport" type="SubViewport" parent="."]
+transparent_bg = true
+handle_input_locally = false
+msaa_2d = 3
+msaa_3d = 3
+screen_space_aa = 1
+size = Vector2i(500, 600)
+render_target_update_mode = 0
+
+[node name="Camera3D" type="Camera3D" parent="ScreenshotViewport"]
+transform = Transform3D(1, 0, 0, 0, 0.999667, 0.0257931, 0, -0.0257931, 0.999667, 0, 2.32649, 2.01849)
 cull_mask = 1047553
 fov = 30.0
 

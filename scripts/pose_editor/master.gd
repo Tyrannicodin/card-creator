@@ -21,7 +21,8 @@ var skin:ImageTexture :
 		_apply_skin(value)
 var skin_id:int = -1
 var current_pose_path:String
-@onready var viewport:Viewport = $PreviewViewport
+@onready var preview_viewport:Viewport = $PreviewViewport
+@onready var screenshot_viewport:Viewport = $ScreenshotViewport
 
 #sliders
 @onready var bend_slider:Slider
@@ -157,7 +158,11 @@ func save_current_pose():
 func screenshot():
 	if not DirAccess.dir_exists_absolute("user://screenshots"):
 		DirAccess.make_dir_absolute("user://screenshots")
-	viewport.get_texture().get_image().save_png("user://screenshots/" + Time.get_datetime_string_from_system().replace(":", "_") + ".png")
+	screenshot_viewport.render_target_update_mode = SubViewport.UPDATE_ALWAYS
+	await get_tree().create_timer(1).timeout
+	var image = screenshot_viewport.get_texture().get_image()
+	screenshot_viewport.render_target_update_mode = SubViewport.UPDATE_DISABLED
+	image.save_png("user://screenshots/" + Time.get_datetime_string_from_system().replace(":", "_") + ".png")
 
 func parse_dict(dict:Dictionary):
 	var output = {}
