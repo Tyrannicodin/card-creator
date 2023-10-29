@@ -196,6 +196,7 @@ position = Vector2(48, 30)
 scale = Vector2(0.45, 0.45)
 
 [node name="MarginContainer" type="MarginContainer" parent="Panel/VBoxContainer"]
+visible = false
 layout_mode = 2
 theme_override_constants/margin_left = 10
 theme_override_constants/margin_top = 5
