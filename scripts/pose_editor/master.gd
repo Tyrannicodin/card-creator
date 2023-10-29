@@ -3,8 +3,6 @@ extends Control
 
 signal save_complete()
 
-var mdt = MeshDataTool.new()
-
 # Player meshes
 @onready var player_wide = $player_full
 @onready var player_slim = $player_slim
@@ -162,6 +160,7 @@ func screenshot():
 	await get_tree().create_timer(1).timeout
 	var image = screenshot_viewport.get_texture().get_image()
 	screenshot_viewport.render_target_update_mode = SubViewport.UPDATE_DISABLED
+	image.resize(500, 600, Image.INTERPOLATE_LANCZOS)
 	image.save_png("user://screenshots/" + Time.get_datetime_string_from_system().replace(":", "_") + ".png")
 
 func parse_dict(dict:Dictionary):
@@ -233,11 +232,20 @@ func _apply_skin(skin_texture):
 		for part in skin_mesh.values():
 			for segment in part.values():
 				if segment is MeshInstance3D:
+					var mdt = MeshDataTool.new()
 					mdt.create_from_surface(segment.mesh, 0)
 					var skin_material = mdt.get_material()
+					print(skin_material)
 					skin_material.albedo_texture = skin_texture
-					#skin_material.texture_filter = BaseMaterial3D.TEXTURE_FILTER_NEAREST_WITH_MIPMAPS
 					mdt.set_material(skin_material)
+					
+					if part["overlay"] == segment:
+						var alpha_material = StandardMaterial3D.new()
+						alpha_material.albedo_texture = skin_material.albedo_texture
+						alpha_material.set_transparency(BaseMaterial3D.TRANSPARENCY_ALPHA)
+						alpha_material.texture_filter = BaseMaterial3D.TEXTURE_FILTER_NEAREST_WITH_MIPMAPS
+						mdt.set_material(alpha_material)
+						
 					segment.mesh.clear_surfaces()
 					mdt.commit_to_surface(segment.mesh)
 
