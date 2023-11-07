@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://dyfx7ijeh17ll" path="res://cards/effect.tscn" id="3_qwre4"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_527d3"]
-bg_color = Color(0.296875, 0.296875, 0.296875, 1)
+bg_color = Color(0.298039, 0.298039, 0.298039, 1)
 
 [node name="Root" type="Control"]
 layout_mode = 3
@@ -46,8 +46,21 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 
 [node name="Pack" type="PopupMenu" parent="Foreground/Menus"]
+item_count = 5
+item_0/text = "Save"
+item_0/id = 0
+item_1/text = "Export"
+item_1/id = 1
+item_2/text = ""
+item_2/id = 0
+item_2/separator = true
+item_3/text = "Quit app"
+item_3/id = 2
+item_4/text = "Quit to project list"
+item_4/id = 4
 
 [node name="Run" type="PopupMenu" parent="Foreground/Menus"]
 
@@ -75,6 +88,6 @@ layout_mode = 2
 visible = false
 layout_mode = 2
 
-[node name="AIlments" type="VBoxContainer" parent="Foreground/TabContainer"]
+[node name="Ailments" type="VBoxContainer" parent="Foreground/TabContainer"]
 visible = false
 layout_mode = 2

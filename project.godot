@@ -10,6 +10,10 @@ config_version=5
 
 [application]
 
-config/name="Card creator v2"
+config/name="Card creator"
 config/features=PackedStringArray("4.1", "Forward Plus")
 config/icon="res://icon.svg"
+
+[rendering]
+
+environment/defaults/default_clear_color=Color(0.301961, 0.301961, 0.301961, 1)

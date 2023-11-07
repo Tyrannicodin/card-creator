@@ -1,0 +1,48 @@
+[gd_scene format=3 uid="uid://j5pukgbpwgso"]
+
+[node name="editor" type="HBoxContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TabContainer" type="TabContainer" parent="."]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.25
+
+[node name="Scripts" type="VSplitContainer" parent="TabContainer"]
+layout_mode = 2
+
+[node name="Current" type="VBoxContainer" parent="TabContainer/Scripts"]
+layout_mode = 2
+
+[node name="Name" type="Label" parent="TabContainer/Scripts/Current"]
+layout_mode = 2
+
+[node name="Type" type="OptionButton" parent="TabContainer/Scripts/Current"]
+layout_mode = 2
+item_count = 3
+popup/item_0/text = "Hermit"
+popup/item_0/id = 0
+popup/item_1/text = "Effect"
+popup/item_1/id = 1
+popup/item_2/text = "Single use"
+popup/item_2/id = 2
+
+[node name="Files" type="VBoxContainer" parent="TabContainer/Scripts"]
+layout_mode = 2
+
+[node name="New" type="Button" parent="TabContainer/Scripts/Files"]
+layout_mode = 2
+text = "Create new"
+
+[node name="Nodes" type="VBoxContainer" parent="TabContainer"]
+visible = false
+layout_mode = 2
+
+[node name="GraphEdit" type="GraphEdit" parent="."]
+layout_mode = 2
+size_flags_horizontal = 3
+scroll_offset = Vector2(-574, 0)
