@@ -1,0 +1,202 @@
+[gd_scene load_steps=2 format=3 uid="uid://c7s5rg21cva2o"]
+
+[ext_resource type="PackedScene" uid="uid://cna5kwdi7rsn6" path="res://cards/base.tscn" id="1_2n4vy"]
+
+[node name="cards" instance=ExtResource("1_2n4vy")]
+
+[node name="LabelHermit" type="Label" parent="SplitScreen/ScrollContainer/GridsContainers" index="0"]
+layout_mode = 2
+text = "Hermit"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HermitContainer" type="GridContainer" parent="SplitScreen/ScrollContainer/GridsContainers" index="2"]
+layout_mode = 2
+columns = 2
+
+[node name="LabelType" type="Label" parent="SplitScreen/ScrollContainer/GridsContainers/HermitContainer" index="0"]
+layout_mode = 2
+text = "Type"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Type" type="OptionButton" parent="SplitScreen/ScrollContainer/GridsContainers/HermitContainer" index="1"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="LabelHealth" type="Label" parent="SplitScreen/ScrollContainer/GridsContainers/HermitContainer" index="2"]
+layout_mode = 2
+text = "Health"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="SpinBox" type="SpinBox" parent="SplitScreen/ScrollContainer/GridsContainers/HermitContainer" index="3"]
+layout_mode = 2
+max_value = 300.0
+step = 10.0
+allow_greater = true
+suffix = "hp"
+
+[node name="LabelBackground" type="Label" parent="SplitScreen/ScrollContainer/GridsContainers/HermitContainer" index="4"]
+layout_mode = 2
+text = "Background"
+
+[node name="Background" type="Button" parent="SplitScreen/ScrollContainer/GridsContainers/HermitContainer" index="5"]
+layout_mode = 2
+text = "Pick background"
+
+[node name="Seperator2" type="HSeparator" parent="SplitScreen/ScrollContainer/GridsContainers" index="3"]
+layout_mode = 2
+
+[node name="LabelPrimary" type="Label" parent="SplitScreen/ScrollContainer/GridsContainers" index="4"]
+layout_mode = 2
+text = "Primary attack"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PrimaryContainer" type="GridContainer" parent="SplitScreen/ScrollContainer/GridsContainers" index="5"]
+layout_mode = 2
+columns = 2
+
+[node name="LabelName" type="Label" parent="SplitScreen/ScrollContainer/GridsContainers/PrimaryContainer" index="0"]
+layout_mode = 2
+text = "Attack name"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Name" type="LineEdit" parent="SplitScreen/ScrollContainer/GridsContainers/PrimaryContainer" index="1"]
+layout_mode = 2
+size_flags_horizontal = 3
+placeholder_text = "Name"
+
+[node name="LabelHealth" type="Label" parent="SplitScreen/ScrollContainer/GridsContainers/PrimaryContainer" index="2"]
+layout_mode = 2
+text = "Damage"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="SpinBox" type="SpinBox" parent="SplitScreen/ScrollContainer/GridsContainers/PrimaryContainer" index="3"]
+layout_mode = 2
+max_value = 300.0
+step = 10.0
+allow_greater = true
+suffix = "hp"
+
+[node name="LabelSpecial" type="Label" parent="SplitScreen/ScrollContainer/GridsContainers/PrimaryContainer" index="4"]
+layout_mode = 2
+text = "Special description"
+
+[node name="Special" type="LineEdit" parent="SplitScreen/ScrollContainer/GridsContainers/PrimaryContainer" index="5"]
+layout_mode = 2
+placeholder_text = "No special attack"
+
+[node name="LabelItem1" type="Label" parent="SplitScreen/ScrollContainer/GridsContainers/PrimaryContainer" index="6"]
+layout_mode = 2
+text = "Item 1"
+
+[node name="OptionButton" type="OptionButton" parent="SplitScreen/ScrollContainer/GridsContainers/PrimaryContainer" index="7"]
+layout_mode = 2
+item_count = 1
+selected = 0
+popup/item_0/text = "None"
+popup/item_0/id = 0
+
+[node name="LabelItem2" type="Label" parent="SplitScreen/ScrollContainer/GridsContainers/PrimaryContainer" index="8"]
+layout_mode = 2
+text = "Item 2"
+
+[node name="OptionButton2" type="OptionButton" parent="SplitScreen/ScrollContainer/GridsContainers/PrimaryContainer" index="9"]
+layout_mode = 2
+item_count = 1
+selected = 0
+popup/item_0/text = "None"
+popup/item_0/id = 0
+
+[node name="LabelItem3" type="Label" parent="SplitScreen/ScrollContainer/GridsContainers/PrimaryContainer" index="10"]
+layout_mode = 2
+text = "Item 3"
+
+[node name="OptionButton3" type="OptionButton" parent="SplitScreen/ScrollContainer/GridsContainers/PrimaryContainer" index="11"]
+layout_mode = 2
+item_count = 1
+selected = 0
+popup/item_0/text = "None"
+popup/item_0/id = 0
+
+[node name="Seperator3" type="HSeparator" parent="SplitScreen/ScrollContainer/GridsContainers" index="6"]
+layout_mode = 2
+
+[node name="LabelSecondary" type="Label" parent="SplitScreen/ScrollContainer/GridsContainers" index="7"]
+layout_mode = 2
+text = "Secondary attack"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="SecondaryContainer" type="GridContainer" parent="SplitScreen/ScrollContainer/GridsContainers" index="8"]
+layout_mode = 2
+columns = 2
+
+[node name="LabelName" type="Label" parent="SplitScreen/ScrollContainer/GridsContainers/SecondaryContainer" index="0"]
+layout_mode = 2
+text = "Attack name"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Name" type="LineEdit" parent="SplitScreen/ScrollContainer/GridsContainers/SecondaryContainer" index="1"]
+layout_mode = 2
+size_flags_horizontal = 3
+placeholder_text = "Name"
+
+[node name="LabelHealth" type="Label" parent="SplitScreen/ScrollContainer/GridsContainers/SecondaryContainer" index="2"]
+layout_mode = 2
+text = "Damage"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="SpinBox" type="SpinBox" parent="SplitScreen/ScrollContainer/GridsContainers/SecondaryContainer" index="3"]
+layout_mode = 2
+max_value = 300.0
+step = 10.0
+allow_greater = true
+suffix = "hp"
+
+[node name="LabelSpecial" type="Label" parent="SplitScreen/ScrollContainer/GridsContainers/SecondaryContainer" index="4"]
+layout_mode = 2
+text = "Special description"
+
+[node name="Special" type="LineEdit" parent="SplitScreen/ScrollContainer/GridsContainers/SecondaryContainer" index="5"]
+layout_mode = 2
+placeholder_text = "No special attack"
+
+[node name="LabelItem1" type="Label" parent="SplitScreen/ScrollContainer/GridsContainers/SecondaryContainer" index="6"]
+layout_mode = 2
+text = "Item 1"
+
+[node name="OptionButton" type="OptionButton" parent="SplitScreen/ScrollContainer/GridsContainers/SecondaryContainer" index="7"]
+layout_mode = 2
+item_count = 1
+selected = 0
+popup/item_0/text = "None"
+popup/item_0/id = 0
+
+[node name="LabelItem2" type="Label" parent="SplitScreen/ScrollContainer/GridsContainers/SecondaryContainer" index="8"]
+layout_mode = 2
+text = "Item 2"
+
+[node name="OptionButton2" type="OptionButton" parent="SplitScreen/ScrollContainer/GridsContainers/SecondaryContainer" index="9"]
+layout_mode = 2
+item_count = 1
+selected = 0
+popup/item_0/text = "None"
+popup/item_0/id = 0
+
+[node name="LabelItem3" type="Label" parent="SplitScreen/ScrollContainer/GridsContainers/SecondaryContainer" index="10"]
+layout_mode = 2
+text = "Item 3"
+
+[node name="OptionButton3" type="OptionButton" parent="SplitScreen/ScrollContainer/GridsContainers/SecondaryContainer" index="11"]
+layout_mode = 2
+item_count = 1
+selected = 0
+popup/item_0/text = "None"
+popup/item_0/id = 0

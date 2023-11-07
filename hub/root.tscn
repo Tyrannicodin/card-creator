@@ -1,0 +1,80 @@
+[gd_scene load_steps=6 format=3 uid="uid://ci7p6hnkrkhu7"]
+
+[ext_resource type="PackedScene" uid="uid://w8e3e32cgfok" path="res://hub/pack_settings/pack_settings.tscn" id="1_0d6it"]
+[ext_resource type="Script" path="res://hub/pack_tabs.gd" id="1_cuwqt"]
+[ext_resource type="PackedScene" uid="uid://c7s5rg21cva2o" path="res://cards/hermit.tscn" id="2_vojc1"]
+[ext_resource type="PackedScene" uid="uid://dyfx7ijeh17ll" path="res://cards/effect.tscn" id="3_qwre4"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_527d3"]
+bg_color = Color(0.296875, 0.296875, 0.296875, 1)
+
+[node name="Root" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Background" type="Panel" parent="."]
+z_index = -1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_527d3")
+
+[node name="Foreground" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Menus" type="MenuBar" parent="Foreground"]
+layout_mode = 2
+flat = true
+
+[node name="Background" type="Panel" parent="Foreground/Menus"]
+z_index = -1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Pack" type="PopupMenu" parent="Foreground/Menus"]
+
+[node name="Run" type="PopupMenu" parent="Foreground/Menus"]
+
+[node name="Help" type="PopupMenu" parent="Foreground/Menus"]
+
+[node name="TabContainer" type="TabContainer" parent="Foreground"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+drag_to_rearrange_enabled = true
+script = ExtResource("1_cuwqt")
+
+[node name="Pack settings" parent="Foreground/TabContainer" instance=ExtResource("1_0d6it")]
+layout_mode = 2
+
+[node name="Hermit cards" parent="Foreground/TabContainer" instance=ExtResource("2_vojc1")]
+visible = false
+layout_mode = 2
+
+[node name="Effects And Single Use Cards" parent="Foreground/TabContainer" instance=ExtResource("3_qwre4")]
+visible = false
+layout_mode = 2
+
+[node name="Poses" type="VBoxContainer" parent="Foreground/TabContainer"]
+visible = false
+layout_mode = 2
+
+[node name="AIlments" type="VBoxContainer" parent="Foreground/TabContainer"]
+visible = false
+layout_mode = 2
