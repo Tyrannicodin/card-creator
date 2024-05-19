@@ -45,4 +45,3 @@ layout_mode = 2
 [node name="GraphEdit" type="GraphEdit" parent="."]
 layout_mode = 2
 size_flags_horizontal = 3
-scroll_offset = Vector2(-574, 0)

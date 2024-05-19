@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://cgjet8iq4bpkk"]
 
-[ext_resource type="StyleBox" uid="uid://cxovqntq5k0q0" path="res://cards/preview/border.tres" id="1_brdx1"]
-[ext_resource type="StyleBox" uid="uid://bk25petut4yx8" path="res://cards/preview/background_curved.tres" id="2_4t4gg"]
+[ext_resource type="StyleBox" uid="uid://cxovqntq5k0q0" path="res://cards/preview/common/border.tres" id="1_brdx1"]
+[ext_resource type="StyleBox" uid="uid://bk25petut4yx8" path="res://cards/preview/common/background_curved.tres" id="2_4t4gg"]
 
 [node name="card" type="Control"]
 layout_mode = 3

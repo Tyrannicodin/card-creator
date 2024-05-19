@@ -1,0 +1,231 @@
+[gd_scene load_steps=3 format=3 uid="uid://cn51j7qirw72e"]
+
+[ext_resource type="Script" path="res://cards/editor/type_input.gd" id="1_y83nm"]
+[ext_resource type="Script" path="res://cards/editor/input.gd" id="2_jpnd1"]
+
+[node name="HermitNew" type="VBoxContainer"]
+
+[node name="HermitContainer" type="GridContainer" parent="."]
+layout_mode = 2
+columns = 2
+
+[node name="LabelType" type="Label" parent="HermitContainer"]
+layout_mode = 2
+text = "Type"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Type" type="OptionButton" parent="HermitContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+script = ExtResource("1_y83nm")
+card_property = "type"
+
+[node name="LabelHealth" type="Label" parent="HermitContainer"]
+layout_mode = 2
+text = "Health"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="SpinBox" type="SpinBox" parent="HermitContainer"]
+layout_mode = 2
+max_value = 300.0
+step = 10.0
+allow_greater = true
+suffix = "hp"
+script = ExtResource("2_jpnd1")
+target_property = "value"
+property_updater = "value_changed"
+card_property = "health"
+
+[node name="LabelBackground" type="Label" parent="HermitContainer"]
+layout_mode = 2
+text = "Background"
+
+[node name="Background" type="Button" parent="HermitContainer"]
+layout_mode = 2
+text = "Pick background"
+
+[node name="LabelHermit" type="Label" parent="HermitContainer"]
+layout_mode = 2
+text = "Hermit"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Hermit" type="Button" parent="HermitContainer"]
+layout_mode = 2
+text = "Pick hermit image"
+
+[node name="Seperator2" type="HSeparator" parent="."]
+layout_mode = 2
+
+[node name="LabelPrimary" type="Label" parent="."]
+layout_mode = 2
+text = "Primary attack"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PrimaryContainer" type="GridContainer" parent="."]
+layout_mode = 2
+columns = 2
+
+[node name="LabelName" type="Label" parent="PrimaryContainer"]
+layout_mode = 2
+text = "Attack name"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Name" type="LineEdit" parent="PrimaryContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+placeholder_text = "Name"
+script = ExtResource("2_jpnd1")
+target_property = "text"
+property_updater = "text_changed"
+card_property = "primary_attack.name"
+
+[node name="LabelHealth" type="Label" parent="PrimaryContainer"]
+layout_mode = 2
+text = "Damage"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="SpinBox" type="SpinBox" parent="PrimaryContainer"]
+layout_mode = 2
+max_value = 300.0
+step = 10.0
+allow_greater = true
+suffix = "hp"
+script = ExtResource("2_jpnd1")
+target_property = "value"
+property_updater = "value_changed"
+card_property = "primary_attack.damage"
+
+[node name="LabelSpecial" type="Label" parent="PrimaryContainer"]
+layout_mode = 2
+text = "Special description"
+
+[node name="Special" type="LineEdit" parent="PrimaryContainer"]
+layout_mode = 2
+placeholder_text = "No special attack"
+script = ExtResource("2_jpnd1")
+target_property = "text"
+property_updater = "text_changed"
+card_property = "primary_attack.special_ability"
+
+[node name="LabelItem1" type="Label" parent="PrimaryContainer"]
+layout_mode = 2
+text = "Item 1"
+
+[node name="OptionButton" type="OptionButton" parent="PrimaryContainer"]
+layout_mode = 2
+script = ExtResource("1_y83nm")
+card_property = "primary_attack.item_1"
+extra_types = Array[String](["None", "Any"])
+
+[node name="LabelItem2" type="Label" parent="PrimaryContainer"]
+layout_mode = 2
+text = "Item 2"
+
+[node name="OptionButton2" type="OptionButton" parent="PrimaryContainer"]
+layout_mode = 2
+script = ExtResource("1_y83nm")
+card_property = "primary_attack.item_2"
+extra_types = Array[String](["None", "Any"])
+
+[node name="LabelItem3" type="Label" parent="PrimaryContainer"]
+layout_mode = 2
+text = "Item 3"
+
+[node name="OptionButton3" type="OptionButton" parent="PrimaryContainer"]
+layout_mode = 2
+script = ExtResource("1_y83nm")
+card_property = "primary_attack.item_3"
+extra_types = Array[String](["None", "Any"])
+
+[node name="Seperator3" type="HSeparator" parent="."]
+layout_mode = 2
+
+[node name="LabelSecondary" type="Label" parent="."]
+layout_mode = 2
+text = "Secondary attack"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="SecondaryContainer" type="GridContainer" parent="."]
+layout_mode = 2
+columns = 2
+
+[node name="LabelName" type="Label" parent="SecondaryContainer"]
+layout_mode = 2
+text = "Attack name"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Name" type="LineEdit" parent="SecondaryContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+placeholder_text = "Name"
+script = ExtResource("2_jpnd1")
+target_property = "text"
+property_updater = "text_changed"
+card_property = "secondary_attack.name"
+
+[node name="LabelHealth" type="Label" parent="SecondaryContainer"]
+layout_mode = 2
+text = "Damage"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="SpinBox" type="SpinBox" parent="SecondaryContainer"]
+layout_mode = 2
+max_value = 300.0
+step = 10.0
+allow_greater = true
+suffix = "hp"
+script = ExtResource("2_jpnd1")
+target_property = "value"
+property_updater = "value_changed"
+card_property = "secondary_attack.damage"
+
+[node name="LabelSpecial" type="Label" parent="SecondaryContainer"]
+layout_mode = 2
+text = "Special description"
+
+[node name="Special" type="LineEdit" parent="SecondaryContainer"]
+layout_mode = 2
+placeholder_text = "No special attack"
+script = ExtResource("2_jpnd1")
+target_property = "text"
+property_updater = "text_changed"
+card_property = "secondary_attack.special_ability"
+
+[node name="LabelItem1" type="Label" parent="SecondaryContainer"]
+layout_mode = 2
+text = "Item 1"
+
+[node name="OptionButton" type="OptionButton" parent="SecondaryContainer"]
+layout_mode = 2
+script = ExtResource("1_y83nm")
+card_property = "secondary_attack.item_1"
+extra_types = Array[String](["None", "Any"])
+
+[node name="LabelItem2" type="Label" parent="SecondaryContainer"]
+layout_mode = 2
+text = "Item 2"
+
+[node name="OptionButton2" type="OptionButton" parent="SecondaryContainer"]
+layout_mode = 2
+script = ExtResource("1_y83nm")
+card_property = "secondary_attack.item_2"
+extra_types = Array[String](["None", "Any"])
+
+[node name="LabelItem3" type="Label" parent="SecondaryContainer"]
+layout_mode = 2
+text = "Item 3"
+
+[node name="OptionButton3" type="OptionButton" parent="SecondaryContainer"]
+layout_mode = 2
+script = ExtResource("1_y83nm")
+card_property = "secondary_attack.item_3"
+extra_types = Array[String](["None", "Any"])

@@ -11,8 +11,13 @@ config_version=5
 [application]
 
 config/name="Card creator"
-config/features=PackedStringArray("4.1", "Forward Plus")
+config/features=PackedStringArray("4.2", "Forward Plus")
 config/icon="res://icon.svg"
+
+[autoload]
+
+Enums="*res://resources/enums.gd"
+CurrentPack="*res://hub/current_pack.gd"
 
 [rendering]
 

@@ -1,4 +1,6 @@
-[gd_scene format=3 uid="uid://w8e3e32cgfok"]
+[gd_scene load_steps=2 format=3 uid="uid://w8e3e32cgfok"]
+
+[ext_resource type="Script" path="res://hub/pack_settings/pack_settings.gd" id="1_s5j54"]
 
 [node name="Pack settings" type="MarginContainer"]
 anchors_preset = 15
@@ -10,6 +12,7 @@ theme_override_constants/margin_left = 10
 theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
+script = ExtResource("1_s5j54")
 
 [node name="GridsContainer" type="VBoxContainer" parent="."]
 layout_mode = 2
@@ -118,6 +121,6 @@ text = "Special attack color"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="AttackSpeed" type="ColorPickerButton" parent="GridsContainer/PaletteContainer"]
+[node name="AttackSpecial" type="ColorPickerButton" parent="GridsContainer/PaletteContainer"]
 layout_mode = 2
 size_flags_horizontal = 3

@@ -1,0 +1,2 @@
+extends BasicCard
+class_name EffectCard

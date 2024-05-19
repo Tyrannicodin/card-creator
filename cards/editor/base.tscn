@@ -1,0 +1,125 @@
+[gd_scene load_steps=4 format=3 uid="uid://cna5kwdi7rsn6"]
+
+[ext_resource type="Script" path="res://cards/editor/editor.gd" id="1_dpbxf"]
+[ext_resource type="Script" path="res://cards/editor/name_input.gd" id="2_8cli5"]
+[ext_resource type="Script" path="res://cards/editor/input.gd" id="3_xju73"]
+
+[node name="cards" type="MarginContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+script = ExtResource("1_dpbxf")
+
+[node name="SplitScreen" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="ScrollContainer" type="ScrollContainer" parent="SplitScreen"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="GridsContainers" type="VBoxContainer" parent="SplitScreen/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Header" type="Label" parent="SplitScreen/ScrollContainer/GridsContainers"]
+layout_mode = 2
+text = "Card"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="GeneralContainer" type="GridContainer" parent="SplitScreen/ScrollContainer/GridsContainers"]
+layout_mode = 2
+columns = 2
+
+[node name="LabelId" type="Label" parent="SplitScreen/ScrollContainer/GridsContainers/GeneralContainer"]
+layout_mode = 2
+text = "ID"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Id" type="LineEdit" parent="SplitScreen/ScrollContainer/GridsContainers/GeneralContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+tooltip_text = "The card's id, this is automatically created from the card name"
+placeholder_text = "Id"
+editable = false
+
+[node name="LabelName" type="Label" parent="SplitScreen/ScrollContainer/GridsContainers/GeneralContainer"]
+layout_mode = 2
+text = "Name"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Name" type="LineEdit" parent="SplitScreen/ScrollContainer/GridsContainers/GeneralContainer"]
+layout_mode = 2
+tooltip_text = "The card name, it should be short enough to fit on a card"
+placeholder_text = "Name"
+script = ExtResource("2_8cli5")
+
+[node name="LabelRarity" type="Label" parent="SplitScreen/ScrollContainer/GridsContainers/GeneralContainer"]
+layout_mode = 2
+text = "Rarity"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Rarity" type="OptionButton" parent="SplitScreen/ScrollContainer/GridsContainers/GeneralContainer"]
+layout_mode = 2
+item_count = 3
+selected = 2
+popup/item_0/text = "Common"
+popup/item_0/id = 0
+popup/item_1/text = "Rare"
+popup/item_1/id = 1
+popup/item_2/text = "Ultra rare"
+popup/item_2/id = 2
+script = ExtResource("3_xju73")
+card_property = "rarity"
+
+[node name="LabelToken" type="Label" parent="SplitScreen/ScrollContainer/GridsContainers/GeneralContainer"]
+layout_mode = 2
+text = "Token Cost"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Token" type="SpinBox" parent="SplitScreen/ScrollContainer/GridsContainers/GeneralContainer"]
+layout_mode = 2
+max_value = 5.0
+suffix = "tokens"
+custom_arrow_step = 1.0
+script = ExtResource("3_xju73")
+target_property = "value"
+property_updater = "value_changed"
+card_property = "cost"
+
+[node name="LabelScript" type="Label" parent="SplitScreen/ScrollContainer/GridsContainers/GeneralContainer"]
+layout_mode = 2
+text = "Script"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Script" type="OptionButton" parent="SplitScreen/ScrollContainer/GridsContainers/GeneralContainer"]
+layout_mode = 2
+item_count = 1
+popup/item_0/text = "Create new"
+popup/item_0/id = 0
+
+[node name="PreviewContainer" type="SubViewportContainer" parent="SplitScreen"]
+layout_mode = 2
+
+[node name="SubViewport" type="SubViewport" parent="SplitScreen/PreviewContainer"]
+handle_input_locally = false
+size = Vector2i(400, 400)
+render_target_update_mode = 4
+
+[connection signal="card_set" from="." to="SplitScreen/ScrollContainer/GridsContainers/GeneralContainer/Name" method="card_set"]
+[connection signal="card_set" from="." to="SplitScreen/ScrollContainer/GridsContainers/GeneralContainer/Rarity" method="card_set"]
+[connection signal="card_update" from="SplitScreen/ScrollContainer/GridsContainers/GeneralContainer/Name" to="." method="property_updated"]
+[connection signal="text_changed" from="SplitScreen/ScrollContainer/GridsContainers/GeneralContainer/Name" to="SplitScreen/ScrollContainer/GridsContainers/GeneralContainer/Name" method="text_changed"]
+[connection signal="card_update" from="SplitScreen/ScrollContainer/GridsContainers/GeneralContainer/Rarity" to="." method="property_updated"]
+[connection signal="card_update" from="SplitScreen/ScrollContainer/GridsContainers/GeneralContainer/Token" to="." method="property_updated"]

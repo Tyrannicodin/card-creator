@@ -1,8 +1,8 @@
 [gd_scene load_steps=9 format=3 uid="uid://cl0swfurryg55"]
 
-[ext_resource type="PackedScene" uid="uid://cgjet8iq4bpkk" path="res://cards/preview/base.tscn" id="1_14xbl"]
-[ext_resource type="FontFile" uid="uid://dwxpjc1rxehai" path="res://cards/preview/BangersRegular.otf" id="2_7s0up"]
-[ext_resource type="Texture2D" uid="uid://c8b4oq71oao7b" path="res://cards/preview/star_color.svg" id="3_i7pur"]
+[ext_resource type="PackedScene" uid="uid://cgjet8iq4bpkk" path="res://cards/preview/base.tscn" id="1_g8v1w"]
+[ext_resource type="FontFile" uid="uid://dwxpjc1rxehai" path="res://cards/preview/common/BangersRegular.otf" id="2_2j670"]
+[ext_resource type="Texture2D" uid="uid://c8b4oq71oao7b" path="res://cards/preview/effect/star_color.svg" id="3_q8xpo"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_w2pmw"]
 bg_color = Color(0.886275, 0.792157, 0.545098, 1)
@@ -23,7 +23,7 @@ corner_radius_bottom_left = 15
 
 [sub_resource type="LabelSettings" id="LabelSettings_t5can"]
 line_spacing = 0.0
-font = ExtResource("2_7s0up")
+font = ExtResource("2_2j670")
 font_size = 72
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_aim1n"]
@@ -32,7 +32,7 @@ corner_radius_top_left = 50
 corner_radius_top_right = 50
 corner_radius_bottom_right = 50
 
-[node name="card" instance=ExtResource("1_14xbl")]
+[node name="card" instance=ExtResource("1_g8v1w")]
 
 [node name="Foreground" parent="." index="0"]
 theme_override_styles/panel = SubResource("StyleBoxFlat_w2pmw")
@@ -65,7 +65,7 @@ offset_left = -15.0
 offset_top = 65.0
 offset_right = 375.0
 offset_bottom = 432.0
-texture = ExtResource("3_i7pur")
+texture = ExtResource("3_q8xpo")
 expand_mode = 1
 
 [node name="Icon" type="TextureRect" parent="." index="4"]

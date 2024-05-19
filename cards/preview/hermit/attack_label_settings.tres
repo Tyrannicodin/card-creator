@@ -1,9 +1,8 @@
 [gd_resource type="LabelSettings" load_steps=2 format=3 uid="uid://gwlgovj8a17m"]
 
-[ext_resource type="FontFile" uid="uid://dwxpjc1rxehai" path="res://cards/preview/BangersRegular.otf" id="1_npnsy"]
+[ext_resource type="FontFile" uid="uid://dwxpjc1rxehai" path="res://cards/preview/common/BangersRegular.otf" id="1_npnsy"]
 
 [resource]
 line_spacing = 0.0
 font = ExtResource("1_npnsy")
 font_size = 39
-font_color = Color(0, 0, 0, 1)

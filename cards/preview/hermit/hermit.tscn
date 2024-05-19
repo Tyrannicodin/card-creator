@@ -1,9 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://6oweyur5b4y0"]
+[gd_scene load_steps=8 format=3 uid="uid://6oweyur5b4y0"]
 
-[ext_resource type="PackedScene" uid="uid://cgjet8iq4bpkk" path="res://cards/preview/base.tscn" id="1_tv60e"]
-[ext_resource type="StyleBox" uid="uid://cxovqntq5k0q0" path="res://cards/preview/border.tres" id="2_7h03a"]
-[ext_resource type="LabelSettings" uid="uid://gwlgovj8a17m" path="res://cards/preview/attack_label_settings.tres" id="5_irbfx"]
-[ext_resource type="LabelSettings" uid="uid://b05d6a8l4a1wy" path="res://cards/preview/damage_label_settings.tres" id="6_nnydk"]
+[ext_resource type="PackedScene" uid="uid://cgjet8iq4bpkk" path="res://cards/preview/common/base.tscn" id="1_fgx28"]
+[ext_resource type="StyleBox" uid="uid://cxovqntq5k0q0" path="res://cards/preview/common/border.tres" id="2_g3w87"]
+[ext_resource type="Script" path="res://cards/preview/hermit/hermit_card.gd" id="2_ud1fw"]
+[ext_resource type="LabelSettings" uid="uid://gwlgovj8a17m" path="res://cards/preview/hermit/attack_label_settings.tres" id="3_tqfx6"]
+[ext_resource type="Texture2D" uid="uid://bbw8a1xysmgbs" path="res://icon.svg" id="4_5r42e"]
+[ext_resource type="LabelSettings" uid="uid://b05d6a8l4a1wy" path="res://cards/preview/hermit/damage_label_settings.tres" id="4_jgmcy"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_64iv2"]
 bg_color = Color(1, 1, 1, 1)
@@ -11,7 +13,8 @@ corner_radius_top_left = 50
 corner_radius_bottom_right = 50
 corner_radius_bottom_left = 50
 
-[node name="card" instance=ExtResource("1_tv60e")]
+[node name="card" instance=ExtResource("1_fgx28")]
+script = ExtResource("2_ud1fw")
 
 [node name="PictureBackground" type="Panel" parent="." index="2"]
 layout_mode = 0
@@ -19,7 +22,7 @@ offset_left = 45.0
 offset_top = 60.0
 offset_right = 355.0
 offset_bottom = 256.0
-theme_override_styles/panel = ExtResource("2_7h03a")
+theme_override_styles/panel = ExtResource("2_g3w87")
 
 [node name="MarginContainer" type="MarginContainer" parent="PictureBackground" index="0"]
 layout_mode = 1
@@ -66,7 +69,7 @@ grow_horizontal = 2
 grow_vertical = 2
 expand_mode = 5
 
-[node name="Panel" type="Panel" parent="." index="3"]
+[node name="Corner" type="Panel" parent="." index="3"]
 layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
@@ -76,7 +79,7 @@ offset_bottom = 100.0
 grow_horizontal = 0
 theme_override_styles/panel = SubResource("StyleBoxFlat_64iv2")
 
-[node name="TextureRect" type="TextureRect" parent="Panel" index="0"]
+[node name="TextureRect" type="TextureRect" parent="Corner" index="0"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -89,6 +92,7 @@ offset_right = 34.0
 offset_bottom = 34.0
 grow_horizontal = 2
 grow_vertical = 2
+texture = ExtResource("4_5r42e")
 expand_mode = 1
 
 [node name="AttackDivider" type="Panel" parent="." index="4"]
@@ -97,7 +101,7 @@ offset_left = 20.0
 offset_top = 315.0
 offset_right = 380.0
 offset_bottom = 325.0
-theme_override_styles/panel = ExtResource("2_7h03a")
+theme_override_styles/panel = ExtResource("2_g3w87")
 
 [node name="Attack1" type="Control" parent="." index="5"]
 anchors_preset = 0
@@ -142,11 +146,12 @@ offset_right = 51.5
 offset_bottom = 21.5
 grow_horizontal = 2
 grow_vertical = 2
-label_settings = ExtResource("5_irbfx")
+label_settings = ExtResource("3_tqfx6")
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Damage" type="Label" parent="Attack1" index="2"]
+modulate = Color(1, 0, 0, 1)
 layout_mode = 1
 anchors_preset = 11
 anchor_left = 1.0
@@ -155,7 +160,7 @@ anchor_bottom = 1.0
 offset_left = -1.0
 grow_horizontal = 0
 grow_vertical = 2
-label_settings = ExtResource("6_nnydk")
+label_settings = ExtResource("4_jgmcy")
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -202,11 +207,12 @@ offset_right = 51.5
 offset_bottom = 21.5
 grow_horizontal = 2
 grow_vertical = 2
-label_settings = ExtResource("5_irbfx")
+label_settings = ExtResource("3_tqfx6")
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Damage" type="Label" parent="Attack2" index="2"]
+modulate = Color(1, 0, 0, 1)
 layout_mode = 1
 anchors_preset = 11
 anchor_left = 1.0
@@ -215,7 +221,7 @@ anchor_bottom = 1.0
 offset_left = -1.0
 grow_horizontal = 0
 grow_vertical = 2
-label_settings = ExtResource("6_nnydk")
+label_settings = ExtResource("4_jgmcy")
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -232,7 +238,7 @@ anchors_preset = 9
 anchor_bottom = 1.0
 offset_right = 1.0
 grow_vertical = 2
-label_settings = ExtResource("5_irbfx")
+label_settings = ExtResource("3_tqfx6")
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -245,6 +251,16 @@ anchor_bottom = 1.0
 offset_left = -19.0
 grow_horizontal = 0
 grow_vertical = 2
-label_settings = ExtResource("6_nnydk")
+label_settings = ExtResource("4_jgmcy")
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="TokenIcon" type="TextureRect" parent="." index="8"]
+layout_mode = 1
+offset_left = 68.0
+offset_top = 80.0
+offset_right = 138.0
+offset_bottom = 150.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+expand_mode = 1

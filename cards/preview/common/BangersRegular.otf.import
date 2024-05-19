@@ -3,12 +3,12 @@
 importer="font_data_dynamic"
 type="FontFile"
 uid="uid://dwxpjc1rxehai"
-path="res://.godot/imported/BangersRegular.otf-00f9200a3fb16cd17e1a32f3f1d14dfa.fontdata"
+path="res://.godot/imported/BangersRegular.otf-9ed5f77d7c63185e343c9a960fd05cea.fontdata"
 
 [deps]
 
-source_file="res://cards/preview/BangersRegular.otf"
-dest_files=["res://.godot/imported/BangersRegular.otf-00f9200a3fb16cd17e1a32f3f1d14dfa.fontdata"]
+source_file="res://cards/preview/common/BangersRegular.otf"
+dest_files=["res://.godot/imported/BangersRegular.otf-9ed5f77d7c63185e343c9a960fd05cea.fontdata"]
 
 [params]
 
