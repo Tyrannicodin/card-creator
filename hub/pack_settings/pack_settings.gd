@@ -12,17 +12,17 @@ extends MarginContainer
 @onready var attackSpecialColor: ColorPickerButton = $GridsContainer/PaletteContainer/AttackSpecial
 
 func _ready():
-	get_pack_info()
+    get_pack_info()
 
 func get_pack_info():
-	if not CurrentPack.current_pack:
-		return
-	idText.text = CurrentPack.current_pack.id
-	nameText.text = CurrentPack.current_pack.display_name
-	packIcon.texture = CurrentPack.current_pack.icon
+    if not CurrentPack.current_pack:
+        return
+    idText.text = CurrentPack.current_pack.id
+    nameText.text = CurrentPack.current_pack.display_name
+    packIcon.texture = CurrentPack.current_pack.icon
 
-	backgroundColor.color = CurrentPack.current_pack.background
-	foregroundColor.color = CurrentPack.current_pack.foreground
-	textColor.color = CurrentPack.current_pack.text
-	attackNormalColor.color = CurrentPack.current_pack.normal_attack
-	attackSpecialColor.color = CurrentPack.current_pack.special_attack
+    backgroundColor.color = CurrentPack.current_pack.background
+    foregroundColor.color = CurrentPack.current_pack.foreground
+    textColor.color = CurrentPack.current_pack.text
+    attackNormalColor.color = CurrentPack.current_pack.normal_attack
+    attackSpecialColor.color = CurrentPack.current_pack.special_attack

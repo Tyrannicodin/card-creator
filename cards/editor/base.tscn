@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://cna5kwdi7rsn6"]
+[gd_scene load_steps=5 format=3 uid="uid://cna5kwdi7rsn6"]
 
-[ext_resource type="Script" path="res://cards/editor/editor.gd" id="1_dpbxf"]
-[ext_resource type="Script" path="res://cards/editor/name_input.gd" id="2_8cli5"]
-[ext_resource type="Script" path="res://cards/editor/input.gd" id="3_xju73"]
+[ext_resource type="Script" path="res://cards/editor/properties/editor.gd" id="1_dpbxf"]
+[ext_resource type="Script" path="res://cards/editor/properties/name_input.gd" id="2_8cli5"]
+[ext_resource type="Script" path="res://cards/editor/card_list.gd" id="2_d5pwv"]
+[ext_resource type="Script" path="res://cards/editor/properties/input.gd" id="3_xju73"]
 
 [node name="cards" type="MarginContainer"]
 anchors_preset = 15
@@ -18,6 +19,27 @@ script = ExtResource("1_dpbxf")
 
 [node name="SplitScreen" type="HBoxContainer" parent="."]
 layout_mode = 2
+
+[node name="CardSelector" type="ScrollContainer" parent="SplitScreen"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.5
+
+[node name="CardList" type="VBoxContainer" parent="SplitScreen/CardSelector"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="OptionButton" type="OptionButton" parent="SplitScreen/CardSelector/CardList"]
+layout_mode = 2
+item_count = 3
+selected = 0
+popup/item_0/text = "Create new..."
+popup/item_0/id = 0
+popup/item_1/text = "Hermit Card"
+popup/item_1/id = 1
+popup/item_2/text = "Effect/Single use card"
+popup/item_2/id = 2
+script = ExtResource("2_d5pwv")
 
 [node name="ScrollContainer" type="ScrollContainer" parent="SplitScreen"]
 layout_mode = 2
@@ -119,6 +141,8 @@ render_target_update_mode = 4
 
 [connection signal="card_set" from="." to="SplitScreen/ScrollContainer/GridsContainers/GeneralContainer/Name" method="card_set"]
 [connection signal="card_set" from="." to="SplitScreen/ScrollContainer/GridsContainers/GeneralContainer/Rarity" method="card_set"]
+[connection signal="item_selected" from="SplitScreen/CardSelector/CardList/OptionButton" to="SplitScreen/CardSelector/CardList/OptionButton" method="item_selected"]
+[connection signal="load_card" from="SplitScreen/CardSelector/CardList/OptionButton" to="." method="load_card"]
 [connection signal="card_update" from="SplitScreen/ScrollContainer/GridsContainers/GeneralContainer/Name" to="." method="property_updated"]
 [connection signal="text_changed" from="SplitScreen/ScrollContainer/GridsContainers/GeneralContainer/Name" to="SplitScreen/ScrollContainer/GridsContainers/GeneralContainer/Name" method="text_changed"]
 [connection signal="card_update" from="SplitScreen/ScrollContainer/GridsContainers/GeneralContainer/Rarity" to="." method="property_updated"]

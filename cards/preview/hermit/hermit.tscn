@@ -42,7 +42,7 @@ stretch = true
 
 [node name="SubViewport" type="SubViewport" parent="PictureBackground/MarginContainer/SubViewportContainer" index="0"]
 handle_input_locally = false
-size = Vector2i(300, 186)
+size = Vector2i(2, 2)
 render_target_update_mode = 4
 
 [node name="TextureRect" type="TextureRect" parent="PictureBackground/MarginContainer/SubViewportContainer/SubViewport" index="0"]

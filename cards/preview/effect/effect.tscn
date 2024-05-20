@@ -1,11 +1,21 @@
-[gd_scene load_steps=9 format=3 uid="uid://cl0swfurryg55"]
+[gd_scene load_steps=12 format=3 uid="uid://cl0swfurryg55"]
 
-[ext_resource type="PackedScene" uid="uid://cgjet8iq4bpkk" path="res://cards/preview/base.tscn" id="1_g8v1w"]
+[ext_resource type="PackedScene" uid="uid://cgjet8iq4bpkk" path="res://cards/preview/common/base.tscn" id="1_g8v1w"]
 [ext_resource type="FontFile" uid="uid://dwxpjc1rxehai" path="res://cards/preview/common/BangersRegular.otf" id="2_2j670"]
+[ext_resource type="Script" path="res://cards/preview/effect/effect_card.gd" id="2_awjf1"]
+[ext_resource type="Script" path="res://resources/cards/effect.gd" id="3_c77wp"]
 [ext_resource type="Texture2D" uid="uid://c8b4oq71oao7b" path="res://cards/preview/effect/star_color.svg" id="3_q8xpo"]
 
+[sub_resource type="Resource" id="Resource_7tadq"]
+script = ExtResource("3_c77wp")
+id = ""
+name = ""
+rarity = 0
+cost = 0
+script_id = ""
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_w2pmw"]
-bg_color = Color(0.886275, 0.792157, 0.545098, 1)
+bg_color = Color(1, 1, 1, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cs66a"]
 bg_color = Color(1, 1, 1, 1)
@@ -15,7 +25,7 @@ corner_radius_bottom_right = 15
 corner_radius_bottom_left = 15
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_o1h8o"]
-bg_color = Color(0.886275, 0.792157, 0.545098, 1)
+bg_color = Color(1, 1, 1, 1)
 corner_radius_top_left = 15
 corner_radius_top_right = 15
 corner_radius_bottom_right = 15
@@ -27,12 +37,14 @@ font = ExtResource("2_2j670")
 font_size = 72
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_aim1n"]
-bg_color = Color(0.886275, 0.792157, 0.545098, 1)
+bg_color = Color(1, 1, 1, 1)
 corner_radius_top_left = 50
 corner_radius_top_right = 50
 corner_radius_bottom_right = 50
 
 [node name="card" instance=ExtResource("1_g8v1w")]
+script = ExtResource("2_awjf1")
+card = SubResource("Resource_7tadq")
 
 [node name="Foreground" parent="." index="0"]
 theme_override_styles/panel = SubResource("StyleBoxFlat_w2pmw")

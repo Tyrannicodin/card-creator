@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://cn51j7qirw72e"]
 
-[ext_resource type="Script" path="res://cards/editor/type_input.gd" id="1_y83nm"]
-[ext_resource type="Script" path="res://cards/editor/input.gd" id="2_jpnd1"]
+[ext_resource type="Script" path="res://cards/editor/properties/type_input.gd" id="1_8qg4x"]
+[ext_resource type="Script" path="res://cards/editor/properties/input.gd" id="2_jrwnl"]
 
 [node name="HermitNew" type="VBoxContainer"]
 
@@ -18,7 +18,7 @@ vertical_alignment = 1
 [node name="Type" type="OptionButton" parent="HermitContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-script = ExtResource("1_y83nm")
+script = ExtResource("1_8qg4x")
 card_property = "type"
 
 [node name="LabelHealth" type="Label" parent="HermitContainer"]
@@ -33,7 +33,7 @@ max_value = 300.0
 step = 10.0
 allow_greater = true
 suffix = "hp"
-script = ExtResource("2_jpnd1")
+script = ExtResource("2_jrwnl")
 target_property = "value"
 property_updater = "value_changed"
 card_property = "health"
@@ -79,7 +79,7 @@ vertical_alignment = 1
 layout_mode = 2
 size_flags_horizontal = 3
 placeholder_text = "Name"
-script = ExtResource("2_jpnd1")
+script = ExtResource("2_jrwnl")
 target_property = "text"
 property_updater = "text_changed"
 card_property = "primary_attack.name"
@@ -96,7 +96,7 @@ max_value = 300.0
 step = 10.0
 allow_greater = true
 suffix = "hp"
-script = ExtResource("2_jpnd1")
+script = ExtResource("2_jrwnl")
 target_property = "value"
 property_updater = "value_changed"
 card_property = "primary_attack.damage"
@@ -108,7 +108,7 @@ text = "Special description"
 [node name="Special" type="LineEdit" parent="PrimaryContainer"]
 layout_mode = 2
 placeholder_text = "No special attack"
-script = ExtResource("2_jpnd1")
+script = ExtResource("2_jrwnl")
 target_property = "text"
 property_updater = "text_changed"
 card_property = "primary_attack.special_ability"
@@ -119,7 +119,7 @@ text = "Item 1"
 
 [node name="OptionButton" type="OptionButton" parent="PrimaryContainer"]
 layout_mode = 2
-script = ExtResource("1_y83nm")
+script = ExtResource("1_8qg4x")
 card_property = "primary_attack.item_1"
 extra_types = Array[String](["None", "Any"])
 
@@ -129,7 +129,7 @@ text = "Item 2"
 
 [node name="OptionButton2" type="OptionButton" parent="PrimaryContainer"]
 layout_mode = 2
-script = ExtResource("1_y83nm")
+script = ExtResource("1_8qg4x")
 card_property = "primary_attack.item_2"
 extra_types = Array[String](["None", "Any"])
 
@@ -139,7 +139,7 @@ text = "Item 3"
 
 [node name="OptionButton3" type="OptionButton" parent="PrimaryContainer"]
 layout_mode = 2
-script = ExtResource("1_y83nm")
+script = ExtResource("1_8qg4x")
 card_property = "primary_attack.item_3"
 extra_types = Array[String](["None", "Any"])
 
@@ -166,7 +166,7 @@ vertical_alignment = 1
 layout_mode = 2
 size_flags_horizontal = 3
 placeholder_text = "Name"
-script = ExtResource("2_jpnd1")
+script = ExtResource("2_jrwnl")
 target_property = "text"
 property_updater = "text_changed"
 card_property = "secondary_attack.name"
@@ -183,7 +183,7 @@ max_value = 300.0
 step = 10.0
 allow_greater = true
 suffix = "hp"
-script = ExtResource("2_jpnd1")
+script = ExtResource("2_jrwnl")
 target_property = "value"
 property_updater = "value_changed"
 card_property = "secondary_attack.damage"
@@ -195,7 +195,7 @@ text = "Special description"
 [node name="Special" type="LineEdit" parent="SecondaryContainer"]
 layout_mode = 2
 placeholder_text = "No special attack"
-script = ExtResource("2_jpnd1")
+script = ExtResource("2_jrwnl")
 target_property = "text"
 property_updater = "text_changed"
 card_property = "secondary_attack.special_ability"
@@ -206,7 +206,7 @@ text = "Item 1"
 
 [node name="OptionButton" type="OptionButton" parent="SecondaryContainer"]
 layout_mode = 2
-script = ExtResource("1_y83nm")
+script = ExtResource("1_8qg4x")
 card_property = "secondary_attack.item_1"
 extra_types = Array[String](["None", "Any"])
 
@@ -216,7 +216,7 @@ text = "Item 2"
 
 [node name="OptionButton2" type="OptionButton" parent="SecondaryContainer"]
 layout_mode = 2
-script = ExtResource("1_y83nm")
+script = ExtResource("1_8qg4x")
 card_property = "secondary_attack.item_2"
 extra_types = Array[String](["None", "Any"])
 
@@ -226,6 +226,6 @@ text = "Item 3"
 
 [node name="OptionButton3" type="OptionButton" parent="SecondaryContainer"]
 layout_mode = 2
-script = ExtResource("1_y83nm")
+script = ExtResource("1_8qg4x")
 card_property = "secondary_attack.item_3"
 extra_types = Array[String](["None", "Any"])
