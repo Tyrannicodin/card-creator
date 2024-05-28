@@ -2,8 +2,8 @@ extends Resource
 class_name Pack
 
 @export_group("Basic")
-@export var id: String = ""
-@export var display_name: String = ""
+@export var id: String = "my_id"
+@export var display_name: String = "My display name"
 @export var icon: Texture2D
 
 @export_group("Colours")

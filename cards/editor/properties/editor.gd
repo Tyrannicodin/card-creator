@@ -50,8 +50,9 @@ func load_card(card: BasicCard):
 func property_updated(property, value):
     if freeze_preview:
         return
-    set_recursive(current_card, property, value)
-    $SplitScreen/PreviewContainer/SubViewport.get_child(0).card_set(current_card)
+    if property:
+        set_recursive(current_card, property, value)
+    $SplitScreen/PreviewContainer/SubViewport.get_child(0).update_card()
 
 func set_recursive(target, property, value):
     var split_property = property.split(".")

@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://w8e3e32cgfok"]
+[gd_scene load_steps=3 format=3 uid="uid://w8e3e32cgfok"]
 
 [ext_resource type="Script" path="res://hub/pack_settings/pack_settings.gd" id="1_s5j54"]
+[ext_resource type="Script" path="res://hub/pack_settings/pack_input.gd" id="2_op30v"]
 
 [node name="Pack settings" type="MarginContainer"]
 anchors_preset = 15
@@ -17,6 +18,10 @@ script = ExtResource("1_s5j54")
 [node name="GridsContainer" type="VBoxContainer" parent="."]
 layout_mode = 2
 
+[node name="Button" type="Button" parent="GridsContainer"]
+layout_mode = 2
+text = "Reload CurrentPack"
+
 [node name="GeneralContainer" type="GridContainer" parent="GridsContainer"]
 layout_mode = 2
 columns = 2
@@ -32,6 +37,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 tooltip_text = "The pack id, this can't be changed here and must be changed in the pack selection screen."
 placeholder_text = "ID"
+editable = false
 
 [node name="LabelName" type="Label" parent="GridsContainer/GeneralContainer"]
 layout_mode = 2
@@ -44,6 +50,10 @@ layout_mode = 2
 size_flags_horizontal = 3
 tooltip_text = "The pack name that is shown in game"
 placeholder_text = "Display name"
+script = ExtResource("2_op30v")
+target_property = "text"
+property_updater = "text_changed"
+card_property = "display_name"
 
 [node name="LabelIcon" type="Label" parent="GridsContainer/GeneralContainer"]
 layout_mode = 2
@@ -84,6 +94,8 @@ vertical_alignment = 1
 [node name="Background" type="ColorPickerButton" parent="GridsContainer/PaletteContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
+script = ExtResource("2_op30v")
+card_property = "background"
 
 [node name="LabelForeground" type="Label" parent="GridsContainer/PaletteContainer"]
 layout_mode = 2
@@ -94,6 +106,7 @@ vertical_alignment = 1
 [node name="Foreground" type="ColorPickerButton" parent="GridsContainer/PaletteContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
+script = ExtResource("2_op30v")
 
 [node name="LabelText" type="Label" parent="GridsContainer/PaletteContainer"]
 layout_mode = 2
@@ -104,6 +117,8 @@ vertical_alignment = 1
 [node name="Text" type="ColorPickerButton" parent="GridsContainer/PaletteContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
+script = ExtResource("2_op30v")
+card_property = "text"
 
 [node name="LabelAttackNormal" type="Label" parent="GridsContainer/PaletteContainer"]
 layout_mode = 2
@@ -114,6 +129,8 @@ vertical_alignment = 1
 [node name="AttackNormal" type="ColorPickerButton" parent="GridsContainer/PaletteContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
+script = ExtResource("2_op30v")
+card_property = "normal_attack"
 
 [node name="LabelAttackSpecial" type="Label" parent="GridsContainer/PaletteContainer"]
 layout_mode = 2
@@ -124,3 +141,7 @@ vertical_alignment = 1
 [node name="AttackSpecial" type="ColorPickerButton" parent="GridsContainer/PaletteContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
+script = ExtResource("2_op30v")
+card_property = "special_attack"
+
+[connection signal="pressed" from="GridsContainer/Button" to="." method="pack_reload"]

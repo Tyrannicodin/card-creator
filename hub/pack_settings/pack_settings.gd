@@ -1,28 +1,23 @@
 extends MarginContainer
 
 
-@onready var idText: LineEdit = $GridsContainer/GeneralContainer/Id
-@onready var nameText: LineEdit = $GridsContainer/GeneralContainer/Name
-@onready var packIcon: TextureRect = $GridsContainer/GeneralContainer/Icon/IconTexture
-
-@onready var backgroundColor: ColorPickerButton = $GridsContainer/PaletteContainer/Background
-@onready var foregroundColor: ColorPickerButton = $GridsContainer/PaletteContainer/Foreground
-@onready var textColor: ColorPickerButton = $GridsContainer/PaletteContainer/Text
-@onready var attackNormalColor: ColorPickerButton = $GridsContainer/PaletteContainer/AttackNormal
-@onready var attackSpecialColor: ColorPickerButton = $GridsContainer/PaletteContainer/AttackSpecial
+signal pack_set(pack: Pack)
 
 func _ready():
-    get_pack_info()
+	CurrentPack.on_pack_load.connect(on_pack_set)
+	for child in (
+		$GridsContainer/GeneralContainer.get_children() +
+		$GridsContainer/PaletteContainer.get_children()):
+		if child.get("pack_set"):
+			pack_set.connect(child.get("pack_set"))
+			child.pack_update.connect(pack_update)
 
-func get_pack_info():
-    if not CurrentPack.current_pack:
-        return
-    idText.text = CurrentPack.current_pack.id
-    nameText.text = CurrentPack.current_pack.display_name
-    packIcon.texture = CurrentPack.current_pack.icon
+func on_pack_set(pack: Pack):
+	pack_set.emit(pack)
 
-    backgroundColor.color = CurrentPack.current_pack.background
-    foregroundColor.color = CurrentPack.current_pack.foreground
-    textColor.color = CurrentPack.current_pack.text
-    attackNormalColor.color = CurrentPack.current_pack.normal_attack
-    attackSpecialColor.color = CurrentPack.current_pack.special_attack
+func pack_update(property: String, value: Variant):
+	CurrentPack.current_pack.set(property, value)
+	$"../Cards".property_updated("", "")
+
+func pack_reload():
+	pack_set.emit(CurrentPack.current_pack)

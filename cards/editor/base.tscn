@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://cna5kwdi7rsn6"]
+[gd_scene load_steps=6 format=3 uid="uid://cna5kwdi7rsn6"]
 
 [ext_resource type="Script" path="res://cards/editor/properties/editor.gd" id="1_dpbxf"]
 [ext_resource type="Script" path="res://cards/editor/properties/name_input.gd" id="2_8cli5"]
 [ext_resource type="Script" path="res://cards/editor/card_list.gd" id="2_d5pwv"]
 [ext_resource type="Script" path="res://cards/editor/properties/input.gd" id="3_xju73"]
+[ext_resource type="PackedScene" uid="uid://6oweyur5b4y0" path="res://cards/preview/hermit/hermit.tscn" id="5_utcj3"]
 
 [node name="cards" type="MarginContainer"]
 anchors_preset = 15
@@ -138,6 +139,8 @@ layout_mode = 2
 handle_input_locally = false
 size = Vector2i(400, 400)
 render_target_update_mode = 4
+
+[node name="card" parent="SplitScreen/PreviewContainer/SubViewport" instance=ExtResource("5_utcj3")]
 
 [connection signal="card_set" from="." to="SplitScreen/ScrollContainer/GridsContainers/GeneralContainer/Name" method="card_set"]
 [connection signal="card_set" from="." to="SplitScreen/ScrollContainer/GridsContainers/GeneralContainer/Rarity" method="card_set"]

@@ -1,5 +1,7 @@
 extends Node
 
+signal on_pack_load(pack: Pack)
+
 var current_pack: Pack = Pack.new()
 var current_path: String
 
@@ -21,10 +23,12 @@ func _ready():
     card.secondary_attack.item_2 = Enums.AttackType.FARM
     card.secondary_attack.item_3 = Enums.AttackType.ANY
     current_pack.cards[card.id] = card
+    on_pack_load.emit(current_pack)
 
 func load_pack(path: String):
     current_pack = ResourceLoader.load(path, "Pack")
     current_path = path
+    on_pack_load.emit(current_pack)
 
 func save_pack(path: String = ""):
     var save_path = current_path

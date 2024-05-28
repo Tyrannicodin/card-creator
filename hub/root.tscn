@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://ci7p6hnkrkhu7"]
+[gd_scene load_steps=5 format=3 uid="uid://ci7p6hnkrkhu7"]
 
 [ext_resource type="PackedScene" uid="uid://w8e3e32cgfok" path="res://hub/pack_settings/pack_settings.tscn" id="1_0d6it"]
 [ext_resource type="Script" path="res://hub/pack_tabs.gd" id="1_cuwqt"]
+[ext_resource type="PackedScene" uid="uid://cna5kwdi7rsn6" path="res://cards/editor/base.tscn" id="3_fho1u"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_527d3"]
 bg_color = Color(0.298039, 0.298039, 0.298039, 1)
@@ -74,6 +75,10 @@ script = ExtResource("1_cuwqt")
 [node name="Pack settings" parent="Foreground/TabContainer" instance=ExtResource("1_0d6it")]
 layout_mode = 2
 
+[node name="Cards" parent="Foreground/TabContainer" instance=ExtResource("3_fho1u")]
+visible = false
+layout_mode = 2
+
 [node name="Poses" type="VBoxContainer" parent="Foreground/TabContainer"]
 visible = false
 layout_mode = 2
@@ -81,3 +86,6 @@ layout_mode = 2
 [node name="Ailments" type="VBoxContainer" parent="Foreground/TabContainer"]
 visible = false
 layout_mode = 2
+
+[connection signal="card_set" from="Foreground/TabContainer/Cards" to="Foreground/TabContainer/Cards/SplitScreen/ScrollContainer/GridsContainers/GeneralContainer/Name" method="card_set"]
+[connection signal="card_set" from="Foreground/TabContainer/Cards" to="Foreground/TabContainer/Cards/SplitScreen/ScrollContainer/GridsContainers/GeneralContainer/Rarity" method="card_set"]
