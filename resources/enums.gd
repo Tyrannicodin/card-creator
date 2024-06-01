@@ -33,3 +33,11 @@ enum AttackType {
     SPEEDRUNNER,
     TERRAFORM,
 }
+
+enum ComponentType {
+    BOOLEAN,
+    NUMBER,
+    ROW,
+    TEXT,
+    CARD,
+}

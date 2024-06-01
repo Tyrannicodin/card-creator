@@ -1,43 +1,36 @@
-[gd_scene load_steps=3 format=3 uid="uid://cf54y5vm4nhdc"]
+[gd_scene load_steps=2 format=3 uid="uid://cf54y5vm4nhdc"]
 
 [ext_resource type="Script" path="res://script_editor/node_spawners/script_node.gd" id="1_ke7jj"]
-[ext_resource type="Script" path="res://script_editor/node_spawners/component.gd" id="2_tdfww"]
 
 [node name="If statement" type="GraphNode"]
 offset_right = 9.0
 offset_bottom = 55.0
-slot/0/left_enabled = false
-slot/0/left_type = 0
+resizable = true
+title = "If Statement"
+slot/0/left_enabled = true
+slot/0/left_type = 2
 slot/0/left_color = Color(1, 1, 1, 1)
 slot/0/left_icon = null
-slot/0/right_enabled = false
-slot/0/right_type = 0
+slot/0/right_enabled = true
+slot/0/right_type = 3
 slot/0/right_color = Color(1, 1, 1, 1)
 slot/0/right_icon = null
 slot/0/draw_stylebox = true
-slot/1/left_enabled = false
+slot/1/left_enabled = true
 slot/1/left_type = 0
-slot/1/left_color = Color(1, 1, 1, 1)
+slot/1/left_color = Color(0, 1, 1, 1)
 slot/1/left_icon = null
-slot/1/right_enabled = false
-slot/1/right_type = 0
+slot/1/right_enabled = true
+slot/1/right_type = 3
 slot/1/right_color = Color(1, 1, 1, 1)
 slot/1/right_icon = null
 slot/1/draw_stylebox = true
 script = ExtResource("1_ke7jj")
 
-[node name="If" type="Label" parent="."]
+[node name="Label" type="Label" parent="."]
 layout_mode = 2
-text = "If _________ do
-"
-script = ExtResource("2_tdfww")
-left = true
-right = true
-right_color = Color(0, 0.882353, 0.243137, 1)
+text = "If ... do"
 
 [node name="Else" type="Label" parent="."]
 layout_mode = 2
-text = "Else do"
-script = ExtResource("2_tdfww")
-right = true
-right_color = Color(0.941176, 0, 0.0470588, 1)
+text = "Else do            "
