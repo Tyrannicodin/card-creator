@@ -1,18 +1,18 @@
-[gd_scene load_steps=2 format=3 uid="uid://cf54y5vm4nhdc"]
+[gd_scene load_steps=2 format=3 uid="uid://bsa7juq8eyjgx"]
 
-[ext_resource type="Script" path="res://script_editor/node_spawners/script_node.gd" id="1_ke7jj"]
+[ext_resource type="Script" path="res://script_editor/node_spawners/script_node.gd" id="1_788um"]
 
 [node name="If statement" type="GraphNode"]
 offset_right = 9.0
 offset_bottom = 55.0
-tooltip_text = "If ... do top output, else to bottom output"
+tooltip_text = "End the loop and optionally return a value"
 resizable = true
-title = "If Statement"
+title = "End/Return"
 slot/0/left_enabled = true
 slot/0/left_type = 2
 slot/0/left_color = Color(1, 1, 1, 1)
 slot/0/left_icon = null
-slot/0/right_enabled = true
+slot/0/right_enabled = false
 slot/0/right_type = 3
 slot/0/right_color = Color(1, 1, 1, 1)
 slot/0/right_icon = null
@@ -21,12 +21,12 @@ slot/1/left_enabled = true
 slot/1/left_type = 0
 slot/1/left_color = Color(0, 1, 1, 1)
 slot/1/left_icon = null
-slot/1/right_enabled = true
+slot/1/right_enabled = false
 slot/1/right_type = 3
 slot/1/right_color = Color(1, 1, 1, 1)
 slot/1/right_icon = null
 slot/1/draw_stylebox = true
-script = ExtResource("1_ke7jj")
+script = ExtResource("1_788um")
 
 [node name="Label" type="Label" parent="."]
 layout_mode = 2

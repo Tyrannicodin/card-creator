@@ -5,7 +5,6 @@ func _get_drag_data(at_position):
 	if get_parent() is GraphEdit:
 		return
 
-	print("Drag requested   ", at_position)
 	var preview: Control = Control.new()
 	var copy: GraphNode = duplicate()
 	preview.add_child(copy)

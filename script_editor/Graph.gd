@@ -10,10 +10,15 @@ func _ready():
 
 func _on_connection_request(from_node: StringName, from_port: int, to_node: StringName, to_port: int):
 	#TODO: Recursion checker
+	#TODO: Connection number checker
 	connect_node(from_node, from_port, to_node, to_port)
 
 func _on_disconnection_request(from_node: StringName, from_port: int, to_node: StringName, to_port: int):
 	disconnect_node(from_node, from_port, to_node, to_port)
+
+func _on_popup_request(request_location: Vector2):
+	$PopupMenu.position = request_location + position
+	$PopupMenu.popup()
 
 func _can_drop_data(_at_position, data):
 	return data.has("node") and zoom == 1

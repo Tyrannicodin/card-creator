@@ -4,6 +4,7 @@
 
 [node name="OnDetach" type="GraphNode"]
 tooltip_text = "Triggered when the card is removed from the board"
+resizable = true
 title = "On Attach"
 slot/0/left_enabled = false
 slot/0/left_type = 0

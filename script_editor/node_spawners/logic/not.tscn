@@ -3,7 +3,8 @@
 [ext_resource type="Script" path="res://script_editor/node_spawners/script_node.gd" id="1_aoan5"]
 
 [node name="Not" type="GraphNode"]
-tooltip_text = "Inverts A"
+tooltip_text = "Inverts A - works on non-boolean values too
+WARNING: Do not use to check if an active row is valid, that will cause a Jamm bug. Instead use a != block and a null constant"
 resizable = true
 title = "Not A"
 slot/0/left_enabled = true

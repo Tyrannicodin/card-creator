@@ -17,6 +17,7 @@ grow_vertical = 2
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 0.3
+all_tabs_in_front = true
 script = ExtResource("1_51s2h")
 
 [node name="scripts" type="VSplitContainer" parent="TabContainer"]
@@ -48,6 +49,7 @@ text = "Create new"
 [node name="GraphEdit" type="GraphEdit" parent="."]
 layout_mode = 2
 size_flags_horizontal = 3
+scroll_offset = Vector2(-271, 0)
 right_disconnects = true
 script = ExtResource("2_4x8hf")
 
@@ -60,3 +62,16 @@ offset_bottom = 45.0
 text = "Your zoom level must be 1 (press the 1 button to reset zoom) to place a node
 (sorry, I can't get the scaling to work atm)"
 label_settings = SubResource("LabelSettings_wsinc")
+
+[node name="PopupMenu" type="PopupMenu" parent="GraphEdit"]
+hide_on_checkable_item_selection = false
+item_count = 3
+item_0/text = "Copy"
+item_0/id = 0
+item_1/text = "Paste"
+item_1/id = 1
+item_2/text = "Delete"
+item_2/id = 2
+
+[connection signal="disconnection_request" from="GraphEdit" to="GraphEdit" method="_on_disconnection_request"]
+[connection signal="popup_request" from="GraphEdit" to="GraphEdit" method="_on_popup_request"]
